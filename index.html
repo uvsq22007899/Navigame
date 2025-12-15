@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NaviGame – IDF Mobilités</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="app">
+
+    <header>Île-de-France Mobilités</header>
+
+    <main>
+      <section id="onboarding" class="page active">
+
+        <div class="onboarding-track" id="track">
+
+          <!-- SLIDE 1 -->
+          <div class="slide">
+            <div class="card">
+              <img src="asset/jaune.svg" class="svg-card svg-jaune" alt="" />
+
+              <div class="step-progress">
+                <span class="step-dot"></span>
+                <div class="step-line"></div>
+                <div class="step-line"></div>
+                <div class="step-line"></div>
+              </div>
+
+              <h2>
+                Et si vos trajets devenaient un <span class="orange">jeu</span> ?
+              </h2>
+
+              <p>
+                Faites de vos déplacements un moment ludique grâce à
+                <strong>NaviGame</strong>, des mini-quiz culturels à jouer pendant votre trajet.
+              </p>
+            </div>
+          </div>
+
+          <!-- SLIDE 2 -->
+          <div class="slide">
+            <div class="card">
+              <img src="asset/vert.svg" class="svg-card svg-vert" alt="" />
+
+              <div class="step-progress">
+                <span class="step-dot"></span>
+                <div class="step-line"></div>
+                <div class="step-line"></div>
+                <div class="step-line"></div>
+              </div>
+
+              <h2>
+                <span class="green">Simple</span> comme votre trajet
+              </h2>
+
+              <p>
+                Entrez en station, lancez une session, jouez quelques minutes
+                et gagnez des points avant d’arriver à destination.
+              </p>
+            </div>
+          </div>
+
+          <!-- SLIDE 3 -->
+          <div class="slide">
+            <div class="card">
+              <div id="lottie-rose" class="lottie"></div>
+
+              <div class="step-progress">
+                <span class="step-dot"></span>
+                <div class="step-line"></div>
+                <div class="step-line"></div>
+                <div class="step-line"></div>
+              </div>
+
+              <h2>
+                Jouez ensemble, en toute <span class="pink">tranquillité</span>
+              </h2>
+
+              <p>
+                Partagez la partie avec les voyageurs de votre trajet
+                de façon anonyme et temporaire.
+              </p>
+            </div>
+          </div>
+
+          <!-- SLIDE 4 (BLEU → LOTTIE) -->
+          <div class="slide">
+            <div class="card">
+
+              <!-- LOTTIE BLEU -->
+              <div class="lottie-bleu"></div>
+
+              <div class="step-progress">
+                <span class="step-dot"></span>
+                <div class="step-line"></div>
+                <div class="step-line"></div>
+                <div class="step-line"></div>
+              </div>
+
+              <h2>
+                À vous de <span class="blue">jouer</span> !
+              </h2>
+
+              <p>
+                Cumulez des points, débloquez des badges,
+                grimpez au classement et profitez de récompenses partenaires.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="nav-buttons">
+          <button class="back" onclick="prevSlide()">‹</button>
+          <button class="next" onclick="nextSlide()">Suivant</button>
+        </div>
+
+      </section>
+    </main>
+
+  </div>
+
+  <!-- LOTTIE -->
+  <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>
