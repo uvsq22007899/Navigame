@@ -86,10 +86,58 @@ main {
   pointer-events:none;
 }
 
-.svg-jaune { bottom:-35px; left:0; width:180px; }
+.svg-jaune { bottom:-35px; left:0; width:170px; }
 .svg-vert  { bottom:0; left:0; width:385px; }
-.svg-rose  { bottom:-25px; left:0; width:240px; }
+.svg-rose  { bottom:-5px; left:0; width:240px; }
 .svg-bleu  { bottom:0; left:0; width:400px; }
+
+/* LOTTIE (général) */
+.lottie {
+  position:absolute;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* LOTTIE JAUNE */
+#lottie-jaune {
+  position: absolute;
+  bottom: -75px;
+  left: -135px;
+  width: 280px;
+  height: 360px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* LOTTIE VERT */
+#lottie-vert {
+  position: absolute;
+  bottom: -90px;
+  left: -10px;
+  width: 485px;     /* même taille que l'ancien svg vert */
+  height: 360px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* LOTTIE ROSE */
+#lottie-rose {
+  bottom:-85px;
+  left:-40px;
+  width:240px;
+  height:320px; /* important : évite le "bug" de mise en page */
+}
+
+/* LOTTIE BLEU */
+.lottie-bleu {
+  position:absolute;
+  bottom:-110px;
+  left:-30px;
+  width:450px;
+  height:400px; /* mets 250/300 si tu veux + grand */
+  pointer-events:none;
+  z-index:0;
+}
 
 /* PROGRESSION À ÉTAPES */
 .step-progress {
@@ -99,18 +147,6 @@ main {
   gap:14px;
   margin-bottom:22px;
 }
-
-
-.lottie-bleu {
-  position: absolute;
-  bottom: 10px;
-  left: -10px;
-  width: 450px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-
 
 .step-line {
   flex:1;
