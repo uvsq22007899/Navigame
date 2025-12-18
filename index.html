@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NaviGame – IDF Mobilités</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 </head>
 
 <body>
   <div class="app">
-
     <header>Île-de-France Mobilités</header>
 
     <main>
-      <section id="onboarding" class="page active">
-
+      <!-- =========================
+           ONBOARDING (nickel)
+      ========================== -->
+      <section id="onboarding" class="page">
         <div class="onboarding-track" id="track">
 
           <!-- SLIDE 1 -->
           <div class="slide">
             <div class="card">
               <div id="lottie-jaune" class="lottie"></div>
-
 
               <div class="step-progress">
                 <span class="step-dot"></span>
@@ -45,7 +50,6 @@
           <div class="slide">
             <div class="card">
               <div id="lottie-vert" class="lottie"></div>
-
 
               <div class="step-progress">
                 <span class="step-dot"></span>
@@ -88,11 +92,9 @@
             </div>
           </div>
 
-          <!-- SLIDE 4 (BLEU → LOTTIE) -->
+          <!-- SLIDE 4 -->
           <div class="slide">
             <div class="card">
-
-              <!-- LOTTIE BLEU -->
               <div class="lottie-bleu"></div>
 
               <div class="step-progress">
@@ -112,24 +114,178 @@
               </p>
             </div>
           </div>
-
         </div>
 
         <!-- NAVIGATION -->
         <div class="nav-buttons">
-          <button class="back" onclick="prevSlide()">‹</button>
-          <button class="next" onclick="nextSlide()">Suivant</button>
+          <button class="back" type="button" onclick="prevSlide()">‹</button>
+          <button id="nextBtn" class="next" type="button" onclick="nextSlide()">Suivant</button>
+        </div>
+      </section>
+
+      <!-- =========================
+           HOME (clean)
+      ========================== -->
+      <section id="home" class="page hidden">
+        <div id="map"></div>
+
+        <div class="home-search">
+          <div class="searchbar">
+            <span class="search-ico">🔍</span>
+            <span class="search-text">Rechercher un itinéraire</span>
+          </div>
+          <button class="filter-btn" type="button" aria-label="Filtres">⚙︎</button>
         </div>
 
+        <!-- bottom sheet (statique pour l’instant) -->
+        <div class="sheet">
+          <div class="sheet-handle"></div>
+
+          <div class="sheet-shortcuts">
+            <button class="chip active" type="button">
+              <span class="chip-ico">⌂</span>
+              <span class="chip-txt">
+                <strong>Maison</strong>
+                <small>3 rue du petit cham…</small>
+              </span>
+            </button>
+
+            <button class="chip" type="button">
+              <span class="chip-ico">💼</span>
+              <span class="chip-txt">
+                <strong>Travail</strong>
+                <small>44 Av de colmar, Ru…</small>
+              </span>
+            </button>
+          </div>
+
+          <div class="sheet-section">
+            <h3>Récemment consulté</h3>
+            <div class="recent-card">
+              <div class="recent-top">
+                <span class="recent-pin">📍</span>
+                <span class="recent-addr">69 Avenue du Marechal Joffre, Nanterre</span>
+                <span class="recent-arrow">→</span>
+              </div>
+
+              <div class="recent-main">
+                <div class="recent-title">
+                  Boulanvilliers, Paris 16e<br><span>Arrondissement</span>
+                </div>
+                <div class="recent-badges">
+                  <span class="b">RER</span>
+                  <span class="b red">A</span>
+                  <span class="b">M</span>
+                  <span class="b green">6</span>
+                  <span class="b">M</span>
+                  <span class="b yellow">9</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sheet-section">
+            <h3>Où allons-nous ?</h3>
+            <div class="list">
+              <button class="row" type="button">
+                <span class="row-ico">🕒</span>
+                <span class="row-txt">
+                  <strong>Boulanvilliers</strong>
+                  <small>Paris 16E Arrondissement (75016)</small>
+                </span>
+                <span class="row-arrow">→</span>
+              </button>
+
+              <button class="row" type="button">
+                <span class="row-ico">🕒</span>
+                <span class="row-txt">
+                  <strong>Belleville</strong>
+                  <small>Paris 20E Arrondissement (75020)</small>
+                </span>
+                <span class="row-arrow">→</span>
+              </button>
+
+              <button class="row" type="button">
+                <span class="row-ico">🕒</span>
+                <span class="row-txt">
+                  <strong>Rue du Ranelagh</strong>
+                  <small>Paris 16E Arrondissement (75016)</small>
+                </span>
+                <span class="row-arrow">→</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="sheet-section">
+            <h3>Actualités</h3>
+            <div class="news-carousel">
+              <article class="news-card">
+                <div class="news-img"></div>
+                <div class="news-body">
+                  <h4>Le Passe Navigo coûtera 90,80€…</h4>
+                  <p>Mais pour 9 Franciliens sur 10, le prix sera de 45,50€ par mois…</p>
+                </div>
+              </article>
+
+              <article class="news-card">
+                <div class="news-img alt"></div>
+                <div class="news-body">
+                  <h4>À voir, à faire en décembre…</h4>
+                  <p>Un marché de Noël pas comme les autres, une expo, une balade…</p>
+                </div>
+              </article>
+
+              <article class="news-card">
+                <div class="news-img alt2"></div>
+                <div class="news-body">
+                  <h4>Nouveautés réseau</h4>
+                  <p>Travaux, améliorations et infos pratiques pour vos trajets…</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <nav class="bottom-nav" aria-label="Navigation">
+          <button class="nav-item active" type="button">
+            <span class="nav-ico">🗺️</span>
+            <span class="nav-txt">Itinéraires</span>
+          </button>
+
+          <button class="nav-item" type="button">
+            <span class="nav-ico">⚠️</span>
+            <span class="nav-txt">Info trafic</span>
+          </button>
+
+          <button class="nav-center" type="button" aria-label="NaviGame">
+            <span class="nav-center-dot">NG</span>
+          </button>
+
+          <button class="nav-item" type="button">
+            <span class="nav-ico">🛒</span>
+            <span class="nav-txt">Achat</span>
+          </button>
+
+          <button class="nav-item" type="button">
+            <span class="nav-ico">👤</span>
+            <span class="nav-txt">Mon espace</span>
+          </button>
+        </nav>
       </section>
     </main>
-
   </div>
 
   <!-- LOTTIE -->
   <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
 
-  <!-- SCRIPT -->
-  <script src="script.js"></script>
+  <!-- Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- JS split -->
+  <script src="onboarding.js"></script>
+  <script src="home.js"></script>
+  <script src="app.js"></script>
 </body>
+
 </html>
