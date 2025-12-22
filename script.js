@@ -59,9 +59,7 @@ function updateProgress() {
   updateNextButton();
 }
 
-/* =========================
-   LOTTIE
-========================= */
+
 const animDuration = 800;
 const extraDelay = 200;
 
@@ -181,7 +179,5 @@ window.prevSlide = function prevSlide() {
   changeSlide(currentSlide - 1);
 };
 
-/* =========================
-   INIT
-========================= */
+
 updateProgress();

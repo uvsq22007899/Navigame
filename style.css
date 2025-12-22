@@ -53,9 +53,6 @@ main {
   pointer-events: none;
 }
 
-/* =========================
-   ONBOARDING
-========================= */
 
 /* TRACK */
 .onboarding-track {
@@ -572,12 +569,10 @@ main {
   letter-spacing: .5px;
 }
 
-
-/* BOTTOM SHEET */
-
 /* =========================
    BOTTOM SHEET (final)
 ========================= */
+
 .sheet {
   position: absolute;
   left: 0;
@@ -604,7 +599,7 @@ main {
 
 .sheet-shortcuts {
   display: flex;
-  flex-direction: row;      /* 🔥 FORCÉ */
+  flex-direction: row;     
   gap: 12px;
   padding: 6px 2px 12px;
 }
