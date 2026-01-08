@@ -5,7 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NaviGame – IDF Mobilités</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- CSS global -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- CSS par écran -->
+  <link rel="stylesheet" href="css/onboarding.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/itinerary.css" />
+  <link rel="stylesheet" href="css/quiz.css" />
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -151,13 +159,14 @@
               </span>
             </button>
 
-            <button class="chip" type="button">
+            <button class="chip" id="btn-work" type="button">
               <span class="chip-ico">💼</span>
               <span class="chip-txt">
                 <strong>Travail</strong>
                 <small>44 Av de colmar, Ru…</small>
               </span>
             </button>
+
           </div>
 
           <div class="sheet-section">
@@ -273,6 +282,156 @@
           </button>
         </nav>
       </section>
+
+      <!-- =========================
+           ITINERARY (AJOUTÉ - non destructif)
+      ========================== -->
+      <section id="itinerary" class="page hidden">
+        <!-- Header -->
+        <header class="it-header">
+          <button class="it-back" id="btn-back-home" type="button" aria-label="Retour">←</button>
+
+          <div class="it-headings">
+            <h1 class="it-h1">Itinéraires</h1>
+          </div>
+        </header>
+
+        <!-- Carte départ / arrivée + swap -->
+        <section class="it-card-box">
+          <div class="it-route-card">
+            <div class="it-route-left">
+              <div class="it-route-row">
+                <span class="it-ico">✈︎</span>
+                <div class="it-route-txt">
+                  <span class="it-route-label">Départ</span>
+                  <span class="it-route-value">64 Rue du Ranelagh, 75016 Paris</span>
+                </div>
+              </div>
+
+              <div class="it-route-row">
+                <span class="it-ico">⌁</span>
+                <div class="it-route-txt">
+                  <span class="it-route-label">Arrivée</span>
+                  <span class="it-route-value">44 Av de Colmar, Rueil-Malmaison</span>
+                </div>
+              </div>
+            </div>
+
+            <button class="it-swap" type="button" aria-label="Inverser">
+              ⇅
+            </button>
+          </div>
+
+          <!-- Modes -->
+          <nav class="it-modes" aria-label="Modes de transport">
+            <button class="it-mode active" type="button">
+              <span class="it-mode-ico">🚆</span>
+              <span class="it-mode-txt">&gt;1h</span>
+              <span class="it-underline"></span>
+            </button>
+
+            <button class="it-mode" type="button">
+              <span class="it-mode-ico">🚶</span>
+              <span class="it-mode-txt">-</span>
+              <span class="it-underline"></span>
+            </button>
+
+            <button class="it-mode" type="button">
+              <span class="it-mode-ico">🚗</span>
+              <span class="it-mode-txt">-</span>
+              <span class="it-underline"></span>
+            </button>
+
+            <button class="it-mode" type="button">
+              <span class="it-mode-ico">🚲</span>
+              <span class="it-mode-txt">-</span>
+              <span class="it-underline"></span>
+            </button>
+          </nav>
+        </section>
+
+        <!-- Liste trajets -->
+        <section class="it-list-wrap">
+          <h2 class="it-title">Trajets suggérés</h2>
+
+          <div class="it-list">
+            <button class="it-row" type="button">
+              <div class="it-row-left">
+                <span class="it-walk">🚶</span>
+
+                <div class="it-badges">
+                  <span class="it-badge">M</span>
+                  <span class="it-badge yellow">9</span>
+                  <span class="it-badge">M</span>
+                  <span class="it-badge green">6</span>
+                  <span class="it-badge">RER</span>
+                  <span class="it-badge red">A</span>
+                </div>
+
+                <div class="it-times">
+                  <span class="it-times-label">Départs :</span>
+                  <span class="it-times-value">13:12, 13:30, 13:45, 14:14 de Ranelagh</span>
+                </div>
+              </div>
+
+              <div class="it-row-right">
+                <span class="it-range">13:12 → 14:05</span>
+                <span class="it-min">55min</span>
+                <span class="it-arrow">→</span>
+              </div>
+            </button>
+
+            <button class="it-row" type="button">
+              <div class="it-row-left">
+                <span class="it-walk">🚶</span>
+
+                <div class="it-badges">
+                  <span class="it-badge">RER</span>
+                  <span class="it-badge yellow">C</span>
+                  <span class="it-badge">RER</span>
+                  <span class="it-badge red">A</span>
+                </div>
+
+                <div class="it-times">
+                  <span class="it-times-label">Départs :</span>
+                  <span class="it-times-value">13:12, 13:30, 13:45, 14:14 de Ranelagh</span>
+                </div>
+              </div>
+
+              <div class="it-row-right">
+                <span class="it-range">13:12 → 14:05</span>
+                <span class="it-min">45min</span>
+                <span class="it-arrow">→</span>
+              </div>
+            </button>
+          </div>
+        </section>
+
+        <!-- Bottom nav (comme le Figma) -->
+        <nav class="it-bottom" aria-label="Navigation Itinéraires">
+          <button class="nav-item active" type="button">
+            <span class="nav-ico">🗺️</span>
+            <span class="nav-txt">Itinéraires</span>
+          </button>
+
+          <button class="nav-item" type="button">
+            <span class="nav-ico">⚠️</span>
+            <span class="nav-txt">Info trafic</span>
+          </button>
+
+          <button class="nav-item" type="button">
+            <span class="nav-ico">🛒</span>
+            <span class="nav-txt">Achat</span>
+          </button>
+
+          <button class="nav-item" type="button">
+            <span class="nav-ico">👤</span>
+            <span class="nav-txt">Mon espace</span>
+          </button>
+        </nav>
+      </section>
+
+
     </main>
   </div>
 
@@ -284,8 +443,10 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
   <!-- JS split -->
-  <script src="onboarding.js"></script>
-  <script src="home.js"></script>
-  <script src="app.js"></script>
+  <script src="js/onboarding.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/app.js"></script>
+
 </body>
+
 </html>

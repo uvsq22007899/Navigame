@@ -1,0 +1,72 @@
+:root{
+  --blue:#5aa7ff;
+  --green:#5fb37a;
+  --pink:#e88aa5;
+  --orange:#f4a22a;
+  --gray:#6f6f6f;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui,sans-serif;
+}
+
+body{
+  height:100vh;
+  background:#f2f4f7;
+}
+
+.app{
+  max-width:390px;
+  height:100vh;
+  margin:auto;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+}
+
+main{
+  flex:1;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Pages (transition globale) */
+.page{
+  position:absolute;
+  inset:0;
+  transition:opacity .25s ease, transform .25s ease;
+  opacity:1;
+  transform:translateX(0);
+}
+
+.page.hidden{
+  opacity:0;
+  transform:translateX(18px);
+  pointer-events:none;
+}
+
+/* Helpers couleurs */
+.orange{ color:var(--orange); }
+.green{ color:var(--green); }
+.pink{ color:var(--pink); }
+.blue{ color:var(--blue); }
+
+/* Nav items (utilisés Home + Itinerary) */
+.nav-item{
+  width:68px;
+  border:none;
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  color:#6f6f6f;
+}
+
+.nav-item.active{ color:var(--blue); }
+
+.nav-ico{ font-size:20px; }
+.nav-txt{ font-size:11px; }

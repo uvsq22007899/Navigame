@@ -1,0 +1,271 @@
+/* PAGE */
+#itinerary{
+  background:#f2f4f7;
+  padding:10px 14px 92px;
+}
+
+/* Header */
+.it-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:6px 0 10px;
+}
+
+.it-back{
+  width:44px;
+  height:44px;
+  border:none;
+  border-radius:14px;
+  background:rgba(255,255,255,.95);
+  box-shadow:0 10px 25px rgba(0,0,0,.10);
+  font-size:18px;
+}
+
+.it-headings{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  transform:translateX(-22px); /* compense visuellement le bouton back */
+}
+
+.it-h1{
+  font-size:18px;
+  font-weight:800;
+}
+
+/* Card départ/arrivée */
+.it-card-box{ margin-top:6px; }
+
+.it-route-card{
+  background:#fff;
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,.06);
+  padding:12px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.it-route-left{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.it-route-row{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+
+.it-ico{
+  width:22px;
+  opacity:.65;
+  font-size:16px;
+  transform:translateY(2px);
+}
+
+.it-route-txt{ flex:1; }
+
+.it-route-label{
+  display:block;
+  font-size:12px;
+  color:#8a8a8a;
+  margin-bottom:2px;
+}
+
+.it-route-value{
+  display:block;
+  font-size:14px;
+  color:#111;
+}
+
+.it-swap{
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  border:2px solid rgba(62,145,255,.55);
+  background:#fff;
+  color:#3e91ff;
+  font-size:18px;
+}
+
+/* Modes */
+.it-modes{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:10px;
+  padding:6px 6px 0;
+}
+
+.it-mode{
+  flex:1;
+  border:none;
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  padding:6px 4px 10px;
+  color:#6f6f6f;
+  position:relative;
+}
+
+.it-mode-ico{
+  width:46px;
+  height:46px;
+  border-radius:999px;
+  border:2px solid rgba(0,0,0,.18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  background:#fff;
+}
+
+.it-mode.active{ color:#3e91ff; }
+
+.it-mode.active .it-mode-ico{
+  border-color:rgba(62,145,255,.75);
+}
+
+.it-mode-txt{
+  font-size:12px;
+  opacity:.9;
+}
+
+.it-underline{
+  position:absolute;
+  bottom:0;
+  left:18%;
+  right:18%;
+  height:3px;
+  border-radius:3px;
+  background:transparent;
+}
+
+.it-mode.active .it-underline{ background:#3e91ff; }
+
+/* Title */
+.it-title{
+  margin-top:16px;
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:-.5px;
+}
+
+/* List */
+.it-list{
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.it-row{
+  width:100%;
+  border:none;
+  background:transparent;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  padding:10px 0;
+  border-top:1px solid rgba(0,0,0,.06);
+}
+
+.it-row:first-child{ border-top:none; }
+
+.it-row-left{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.it-walk{ opacity:.65; }
+
+.it-badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+}
+
+.it-badge{
+  min-width:34px;
+  height:34px;
+  padding:0 10px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  background:#fff;
+  border:2px solid rgba(0,0,0,.20);
+  font-size:12px;
+  color:#111;
+}
+
+.it-badge.red{ background:#ff4b4b; color:#fff; border:none; }
+.it-badge.green{ background:#77c38a; color:#111; border:none; }
+.it-badge.yellow{ background:#f0d24c; color:#111; border:none; }
+
+.it-times{
+  color:#6f6f6f;
+  font-size:12px;
+  line-height:1.25;
+}
+
+.it-times-label{
+  font-weight:700;
+  margin-right:6px;
+}
+
+.it-times-value{ opacity:.9; }
+
+/* Right column */
+.it-row-right{
+  width:96px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:6px;
+  color:#111;
+}
+
+.it-range{
+  font-size:12px;
+  color:#6f6f6f;
+}
+
+.it-min{
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:-.5px;
+}
+
+.it-arrow{
+  font-weight:900;
+  opacity:.6;
+  transform:translateY(-2px);
+}
+
+/* Bottom (Itinerary) */
+.it-bottom{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:70px;
+  background:rgba(255,255,255,.75);
+  border-top:1px solid rgba(0,0,0,.08);
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  padding:8px 10px;
+  backdrop-filter:blur(12px);
+}

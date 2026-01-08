@@ -1,0 +1,391 @@
+#home{
+  position:absolute;
+  inset:0;
+}
+
+#map{
+  position:absolute;
+  inset:0;
+}
+
+.home-search{
+  position:absolute;
+  left:16px;
+  right:16px;
+  top:14px;
+  display:flex;
+  gap:10px;
+  z-index:500;
+}
+
+.searchbar{
+  flex:1;
+  height:44px;
+  border-radius:14px;
+  background:rgba(255,255,255,.92);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:0 14px;
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+  backdrop-filter:blur(10px);
+}
+
+.search-ico{ opacity:.75; }
+
+.search-text{
+  color:#6f6f6f;
+  font-size:14px;
+}
+
+.filter-btn{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  border:none;
+  background:rgba(255,255,255,.92);
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+  backdrop-filter:blur(10px);
+  font-size:18px;
+}
+
+/* BOTTOM SHEET */
+.sheet{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:100vh;
+  max-height:100vh;
+
+  background:#f6f6f6;
+  border-radius:26px 26px 0 0;
+  box-shadow:0 -12px 30px rgba(0,0,0,.16);
+
+  transform:translateY(65%);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+
+  z-index:600;
+  overflow:auto;
+  padding:10px 14px 18px;
+
+  touch-action:none;
+  will-change:transform;
+}
+
+.sheet-handle{
+  width:44px;
+  height:5px;
+  background:#d9d9d9;
+  border-radius:999px;
+  margin:6px auto 10px;
+}
+
+.sheet-grab-zone{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:60px;
+  cursor:grab;
+}
+
+.sheet-shortcuts{
+  display:flex;
+  flex-direction:row;
+  gap:12px;
+  padding:6px 2px 12px;
+}
+
+.chip{
+  flex:1;
+  border:none;
+  border-radius:12px;
+  background:#cfe2f7;
+  padding:10px 10px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.chip.active{
+  outline:2px solid rgba(90,167,255,.35);
+}
+
+.chip-ico{
+  font-size:18px;
+  opacity:.85;
+}
+
+.chip-txt strong{
+  display:block;
+  font-size:14px;
+}
+
+.chip-txt small{
+  display:block;
+  font-size:11px;
+  opacity:.7;
+}
+
+.sheet-section{ padding:10px 4px; }
+
+.sheet-section h3{
+  font-size:18px;
+  margin:6px 0 10px;
+}
+
+.recent-card{
+  background:#efefef;
+  border-radius:14px;
+  padding:12px;
+  border:1px solid rgba(0,0,0,.06);
+}
+
+.recent-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#6f6f6f;
+  font-size:12px;
+}
+
+.recent-addr{
+  flex:1;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.recent-arrow{
+  font-weight:800;
+  color:#8a8a8a;
+}
+
+.recent-main{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:10px;
+}
+
+.recent-title{
+  font-size:18px;
+  line-height:1.15;
+}
+
+.recent-title span{
+  font-size:16px;
+  opacity:.75;
+}
+
+.recent-badges{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.b{
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.12);
+  font-size:12px;
+}
+
+.b.red{ background:#ff4b4b; color:#fff; border:none; }
+.b.green{ background:#77c38a; color:#1a1a1a; border:none; }
+.b.yellow{ background:#f0d24c; color:#1a1a1a; border:none; }
+
+.list{
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,.06);
+}
+
+.row{
+  width:100%;
+  border:none;
+  background:#fff;
+  padding:12px 12px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+.row:last-child{ border-bottom:none; }
+
+.row-ico{ width:26px; opacity:.75; }
+
+.row-txt{ text-align:left; flex:1; }
+
+.row-txt strong{ display:block; font-size:16px; }
+
+.row-txt small{
+  display:block;
+  font-size:12px;
+  opacity:.65;
+  margin-top:2px;
+}
+
+.row-arrow{ font-weight:900; opacity:.6; }
+
+.news-carousel{
+  display:flex;
+  gap:14px;
+  overflow:auto;
+  padding-bottom:8px;
+}
+
+.news-card{
+  min-width:260px;
+  max-width:260px;
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,.06);
+}
+
+.news-img{
+  height:120px;
+  background:linear-gradient(135deg,#d9d9d9,#f0f0f0);
+}
+
+.news-img.alt{
+  background:linear-gradient(135deg,#e6e6e6,#f7f7f7);
+}
+
+.news-img.alt2{
+  background:linear-gradient(135deg,#dfe8f7,#f6f8ff);
+}
+
+.news-body{ padding:10px 12px 12px; }
+
+.news-body h4{
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.news-body p{
+  font-size:13px;
+  color:#6f6f6f;
+  line-height:1.35;
+}
+
+/* BOTTOM NAV (Home) */
+.bottom-nav{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:70px;
+  background:rgba(255,255,255,.96);
+  border-top:1px solid rgba(0,0,0,.08);
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  padding:8px 10px;
+  z-index:700;
+  backdrop-filter:blur(12px);
+}
+
+.nav-center{
+  width:62px;
+  height:62px;
+  border-radius:999px;
+  border:none;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transform:translateY(-12px);
+}
+
+.nav-center-dot{
+  width:46px;
+  height:46px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  background:#3e91ff;
+  color:#fff;
+  letter-spacing:.5px;
+}
+/* =========================
+   MAP STATIONS — CLEAN (unique)
+========================= */
+
+/* Hover léger */
+.leaflet-marker-icon,
+.leaflet-interactive {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.leaflet-marker-icon:hover {
+  transform: scale(1.06);
+}
+
+/* =========================
+   POPUP
+========================= */
+.station-popup { min-width: 180px; }
+.station-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.station-lines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.muted {
+  font-size: 13px;
+  color: #8a8a8a;
+}
+
+/* =========================
+   BADGES (METRO / RER)
+========================= */
+.line-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  height:28px;
+  min-width:28px;
+  padding:0 10px;
+
+  border-radius:999px;
+  font-weight:900;
+  font-size:13px;
+  color:#fff;
+
+  box-shadow: 0 6px 14px rgba(0,0,0,.18);
+}
+
+/* Métro = rond */
+.line-badge.metro{
+  width:28px;
+  padding:0;
+  border-radius:50%;
+  color:#111;
+}
+
+/* RER = pilule */
+.line-badge.rer{
+  padding:0 12px;
+  font-size:12px;
+  letter-spacing:.3px;
+}
