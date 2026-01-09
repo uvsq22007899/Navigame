@@ -156,3 +156,15 @@
   color:#fff;
   font-weight:600;
 }
+
+.skip-dev{
+  position:absolute;
+  top:16px;
+  right:16px;
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:none;
+  background:rgba(0,0,0,.06);
+  color:#555;
+}

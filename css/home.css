@@ -341,8 +341,8 @@
 ========================= */
 .station-popup { min-width: 180px; }
 .station-title {
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 .station-lines {
@@ -350,6 +350,8 @@
   flex-wrap: wrap;
   gap: 8px;
 }
+
+
 .muted {
   font-size: 13px;
   color: #8a8a8a;
@@ -388,4 +390,341 @@
   padding:0 12px;
   font-size:12px;
   letter-spacing:.3px;
+}
+
+/* =========================
+   MAP MARKERS (LOGOS) — METRO / RER
+========================= */
+
+/* On neutralise le "cadre" Leaflet */
+.station-marker{
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Le groupe qui contient le badge + le +X */
+.st-pin{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transform: translate(-12px, -12px); /* centre visuel sur le point */
+}
+
+/* Badge principal (ligne principale) */
+.st-badge{
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: .2px;
+  color: #fff;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,.18);
+  border: 2px solid rgba(255,255,255,.92); /* contour blanc clean */
+}
+
+/* METRO = rond */
+.st-badge.metro{
+  width: 28px;
+  padding: 0;
+  border-radius: 50%;
+  color: #111; /* chiffres noirs comme app */
+}
+
+/* RER = pilule (déjà OK par défaut) */
+.st-badge.rer{
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 10px; /* carré arrondi */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: .2px;
+  color: #fff;
+}
+
+
+/* Petit "+X" quand il y a plusieurs lignes */
+.st-more{
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.98);
+  border: 1px solid rgba(0,0,0,.12);
+  color: #111;
+  font-weight: 900;
+  font-size: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+}
+
+/* =========================
+   POPUP LEAFLET (CLEAN)
+========================= */
+.leaflet-popup-content-wrapper{
+  border-radius: 16px;
+}
+.leaflet-popup-content{
+  margin: 12px 12px;
+}
+
+/* Metro 3 & 14 uniquement → chiffre blanc */
+.st-badge.metro.line-3,
+.st-badge.metro.line-14,
+.st-badge.metro.line-11,
+.st-badge.metro.line-2 {
+  color: #fff;
+}
+
+/* Popup – Metro 3 & 14 → chiffre blanc */
+.line-badge.metro.line-3,
+.line-badge.metro.line-14,
+.line-badge.metro.line-11,
+.line-badge.metro.line-2 {
+  color: #fff;
+}
+
+/* =========================
+   POPUP — PANEL "PROCHAINS PASSAGES"
+========================= */
+.pop-panel{
+  margin-top:12px;
+  background:#f4f4f4;
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.pop-block{
+  border-top:1px solid rgba(0,0,0,.10);
+}
+.pop-block:first-child{ border-top:none; }
+
+.pop-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 12px 10px;
+}
+
+.pop-pill{
+  height:34px;
+  min-width:34px;
+  padding:0 12px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:13px;
+  color:#fff;
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
+  border:2px solid rgba(255,255,255,.92);
+}
+.pop-pill.metro{
+  width:34px;
+  padding:0;
+  border-radius:50%;
+  color:#fff; /* numéro blanc */
+}
+.pop-pill.rer{
+  letter-spacing:.2px;
+}
+
+.pop-head-txt{
+  font-size:13px;
+  color:#6f6f6f;
+  font-weight:700;
+}
+
+.pop-list{
+  background:#fff;
+}
+
+.pop-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px;
+  border-top:1px solid rgba(0,0,0,.08);
+}
+.pop-row:first-child{ border-top:none; }
+
+.pop-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+.pop-dot{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  flex:0 0 34px;
+  box-shadow:0 8px 18px rgba(0,0,0,.10);
+}
+.pop-dir{
+  font-size:16px;
+  font-weight:500;
+  color:#111;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.pop-right{
+  display:flex;
+  align-items:center;
+  gap: 5px;
+  flex:0 0 auto;
+}
+.pop-ico{ opacity:.8; }
+.pop-time{
+  font-size:18px;
+  font-weight:900;
+  color:#111;
+}
+
+/* =========================
+   POPUP v2 (style type Citymapper)
+========================= */
+
+.station-popup.v2 { min-width: 220px; }
+
+.station-popup.v2 .station-title{
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.pop-sub{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  margin-bottom: 10px;
+}
+
+/* logo M rond */
+.pop-mode{
+  width:30px;
+  height:30px;
+  border-radius:999px;
+  border:2px solid rgba(0,0,0,.75);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:14px;
+  color:#111;
+}
+
+.pop-panel.v2{
+  border:1px solid rgba(0,0,0,.14);
+  border-radius:16px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.pop-list.v2{ display:flex; flex-direction:column; }
+
+.pop-row.v2{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 14px;
+  border-top:1px solid rgba(0,0,0,.10);
+}
+.pop-row.v2:first-child{ border-top:none; }
+
+.pop-left.v2{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+.pop-dot.v2{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  flex:0 0 auto;
+}
+
+.pop-dir.v2{
+  font-size:16px;
+  font-weight:600;
+  color:#111;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width: 210px;
+}
+
+.pop-time.v2{
+  font-size:16px;
+  font-weight:800;
+  color:#111;
+  white-space:nowrap;
+}
+
+.pop-right.v2{
+  display:flex;
+  align-items:center;
+  gap:3px;
+}
+
+.min-ico.v2{
+  width:16px;
+  height:16px;
+  display:block;
+}
+
+/* POPUP: force le texte en blanc pour certains fonds foncés */
+.line-badge.metro[style*="#837902"], /* M3 */
+.line-badge.metro[style*="#62259D"], /* M14 */
+.line-badge.metro[style*="#704B1C"], /* M11 */
+.line-badge.metro[style*="#003CA6"]  /* M2 */
+{
+  color:#fff !important;
+}
+
+.pop-dot.v2.pop-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:14px;
+  color:#fff;
+}
+
+:root{
+  --min-color:#429660;
+}
+
+/* icône min.svg teintable */
+.min-ico.v2{
+  width:16px;
+  height:16px;
+  display:block;
+  background: var(--min-color);
+
+  -webkit-mask: url("../asset/min.svg") center / contain no-repeat;
+  mask: url("../asset/min.svg") center / contain no-repeat;
+}
+
+/* clignotement léger */
+.blink{
+  animation: minPulse 1s ease-in-out infinite;
+}
+
+@keyframes minPulse{
+  0%, 100% { opacity: .55; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.06); }
 }
