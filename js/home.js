@@ -8,6 +8,12 @@ let map;
 // 2 couches: dots (léger) + icons (logos)
 let stationsDotsLayer;
 let stationsIconsLayer;
+// Index des stations (autocomplete)
+let stationsIndex = [];                // [{ name, norm, latlng, lines, key }]
+const stationLayersByKey = new Map();  // key -> { dots, icons }
+let stationsGroupedIndex = []; // [{ name, norm, lines, candidates:[{key,latlng}] }]
+
+
 
 function initHomeMapOnce() {
   if (mapInited) return;
@@ -17,16 +23,15 @@ function initHomeMapOnce() {
 
   map = L.map("map", {
     zoomControl: false,
+    attributionControl: false,
     minZoom: 11,
     maxZoom: 18
   }).setView(paris, 12);
 
   L.tileLayer(
     "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-    { attribution: "© OpenStreetMap © CARTO" }
+    { attribution: "" }
   ).addTo(map);
-
-  L.control.zoom({ position: "bottomright" }).addTo(map);
 
   // Stations
   loadStations();
@@ -35,12 +40,14 @@ function initHomeMapOnce() {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(pos => {
       const me = [pos.coords.latitude, pos.coords.longitude];
+
       L.circleMarker(me, {
         radius: 7,
         color: "#3e91ff",
         fillColor: "#3e91ff",
         fillOpacity: 1
       }).addTo(map);
+
       map.setView(me, 14);
     });
   }
@@ -49,6 +56,7 @@ function initHomeMapOnce() {
 }
 
 window.initHomeMapOnce = initHomeMapOnce;
+
 
 /* =========================
    STATIONS (GeoJSON) + ICONS (zoom)
@@ -71,6 +79,31 @@ function normalizeLineId(type, id) {
   if (type === "M" && (s === "7BIS" || s === "7B")) return "7B";
   return s;
 }
+function getStationMode(lines) {
+  const hasRer = (lines || []).some(l => String(l.type).toUpperCase() === "RER");
+  return hasRer ? "RER" : "M";
+}
+
+function normText(s) {
+  return (s || "")
+    .toString()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[\u2010-\u2015]/g, "-")
+    .replace(/\u00A0/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function keyFromFeature(feature) {
+  const name = normText(feature?.properties?.name);
+  const [lng, lat] = feature.geometry.coordinates;
+  const r = (n, d = 3) => Math.round(n * 10 ** d) / 10 ** d;
+  return `${name}|${r(lat, 3)}|${r(lng, 3)}`;
+}
+
+
 
 function buildPopupHTML(props) {
   const name = props?.name || "Station";
@@ -84,8 +117,12 @@ function buildPopupHTML(props) {
     const id = normalizeLineId(l.type, l.id);
     const label = l.type === "RER" ? `RER ${id}` : id;
     const color = stationColor(l.type, id);
-    const cls = l.type === "RER" ? "line-badge rer" : "line-badge metro";
+    const cls = l.type === "RER"
+      ? `line-badge rer line-${id}`
+      : `line-badge metro line-${id}`;
+
     return `<span class="${cls}" style="background:${color}">${label}</span>`;
+
   }).join("");
 
   // ✅ rond M seulement si c'est métro
@@ -195,46 +232,46 @@ function buildDeparturesHTML(stationName, lines) {
 
   let term1, term2;
 
-if (pool.length === 2) {
-  // métro standard
-  term1 = pool[0];
-  term2 = pool[1];
-} else {
-  // ✅ RER / branches : on force 2 différents
-  term1 = pickFromPool(seedBase + 11, pool);
+  if (pool.length === 2) {
+    // métro standard
+    term1 = pool[0];
+    term2 = pool[1];
+  } else {
+    // ✅ RER / branches : on force 2 différents
+    term1 = pickFromPool(seedBase + 11, pool);
 
-  // boucle courte pour garantir différent
-  term2 = term1;
-  for (let i = 0; i < 6 && term2 === term1; i++) {
-    term2 = pickFromPool(seedBase + 22 + i * 7, pool);
-  }
+    // boucle courte pour garantir différent
+    term2 = term1;
+    for (let i = 0; i < 6 && term2 === term1; i++) {
+      term2 = pickFromPool(seedBase + 22 + i * 7, pool);
+    }
 
-  // fallback ultime si jamais
-  if (term2 === term1 && pool.length > 1) {
-    term2 = pool.find(t => t !== term1) || term1;
+    // fallback ultime si jamais
+    if (term2 === term1 && pool.length > 1) {
+      term2 = pool.find(t => t !== term1) || term1;
+    }
   }
-}
 
 
 
   // ✅ 2 prochains passages PAR direction => format "1, 6 min"
   // METRO: courts, RER: plus long + léger décalage entre les 2 directions
-const a1 = isRer ? rInt(seedBase + 44, 6, 18) : rInt(seedBase + 44, 1, 8);
-const a2 = isRer ? rInt(seedBase + 55, 10, 28) : rInt(seedBase + 55, 4, 14);
+  const a1 = isRer ? rInt(seedBase + 44, 6, 18) : rInt(seedBase + 44, 1, 8);
+  const a2 = isRer ? rInt(seedBase + 55, 10, 28) : rInt(seedBase + 55, 4, 14);
 
-// ✅ seeds différentes + petit offset réaliste
-const b1base = isRer ? rInt(seedBase + 144, 6, 18) : rInt(seedBase + 144, 1, 8);
-const b2base = isRer ? rInt(seedBase + 155, 10, 28) : rInt(seedBase + 155, 4, 14);
+  // ✅ seeds différentes + petit offset réaliste
+  const b1base = isRer ? rInt(seedBase + 144, 6, 18) : rInt(seedBase + 144, 1, 8);
+  const b2base = isRer ? rInt(seedBase + 155, 10, 28) : rInt(seedBase + 155, 4, 14);
 
-const b1 = Math.max(1, b1base + (isRer ? 1 : 0));   // +1 min RER parfois
-const b2 = Math.max(b1 + 2, b2base + (isRer ? 2 : 1)); // garantit un écart
+  const b1 = Math.max(1, b1base + (isRer ? 1 : 0));   // +1 min RER parfois
+  const b2 = Math.max(b1 + 2, b2base + (isRer ? 2 : 1)); // garantit un écart
 
 
   return `
   <div class="pop-list v2">
     <div class="pop-row v2">
       <div class="pop-left v2">
-        <span class="pop-dot v2 pop-line" style="background:${color}">${id}</span>
+        <span class="pop-dot v2 pop-line line-${id}" style="background:${color}">${id}</span>
         <span class="pop-dir v2">Vers ${term1}</span>
       </div>
       <div class="pop-right v2">
@@ -245,7 +282,7 @@ const b2 = Math.max(b1 + 2, b2base + (isRer ? 2 : 1)); // garantit un écart
 
     <div class="pop-row v2">
       <div class="pop-left v2">
-        <span class="pop-dot v2 pop-line" style="background:${color}">${id}</span>
+        <span class="pop-dot v2 pop-line line-${id}" style="background:${color}">${id}</span>
         <span class="pop-dir v2">Vers ${term2}</span>
       </div>
       <div class="pop-right v2">
@@ -278,8 +315,9 @@ function buildMarkerHTML(lines) {
   const label = isRer ? id : id;
 
   const cls = isRer
-    ? "st-badge rer"
+    ? `st-badge rer line-${id}`
     : `st-badge metro line-${id}`;
+
 
   return `
     <div class="st-pin">
@@ -378,6 +416,72 @@ function loadStations() {
 
       const merged = mergeStationsGeoJSON(geojson);
       console.log("before/after:", geojson.features.length, merged.features.length);
+      stationsIndex = (merged.features || []).map(f => {
+        const name = f.properties?.name || "Station";
+        const [lng, lat] = f.geometry.coordinates;
+        const lines = Array.isArray(f.properties?.lines) ? f.properties.lines : [];
+        return {
+          name,
+          norm: normText(name),
+          latlng: [lat, lng],
+          lines,
+          key: keyFromFeature(f)
+        };
+      });
+      // ✅ Group by station name (merge lines + keep multiple candidates)
+      (function buildGroupedIndex() {
+        const groups = new Map(); // normName -> group
+
+        function lineKey(l) {
+          const t = (l.type || "").toUpperCase() === "RER" ? "RER" : "M";
+          const id = normalizeLineId(t, l.id);
+          return `${t}:${id}`;
+        }
+
+        for (const s of stationsIndex) {
+          const k = s.norm; // group by normalized name
+          if (!groups.has(k)) {
+            groups.set(k, { name: s.name, norm: s.norm, lines: [], candidates: [] });
+          }
+          const g = groups.get(k);
+
+          // candidates (pour choisir le bon point au clic)
+          g.candidates.push({ key: s.key, latlng: s.latlng });
+
+          // merge lines unique
+          const seen = new Set(g.lines.map(lineKey));
+          for (const l of (s.lines || [])) {
+            const lk = lineKey(l);
+            if (!seen.has(lk)) { seen.add(lk); g.lines.push(l); }
+          }
+        }
+
+        // petit tri: RER d’abord, puis métro
+        stationsGroupedIndex = [...groups.values()].map(g => ({
+          ...g,
+          lines: [...g.lines].sort(a => (a.type === "RER" ? -1 : 1))
+        }));
+
+        console.log("✅ stationsGroupedIndex:", stationsGroupedIndex.length);
+      })();
+
+
+      console.log("✅ stationsIndex filled:", stationsIndex.length);
+
+      // ✅ build index pour la barre de recherche
+      stationsIndex = (merged.features || []).map(f => {
+        const name = f.properties?.name || "Station";
+        const [lng, lat] = f.geometry.coordinates;
+        const lines = Array.isArray(f.properties?.lines) ? f.properties.lines : [];
+        return {
+          name,
+          norm: normText(name),
+          latlng: [lat, lng],
+          lines,
+          key: keyFromFeature(f)
+        };
+      });
+
 
 
       // ✅ CLEAN (évite doublons si loadStations est relancé)
@@ -396,6 +500,10 @@ function loadStations() {
             fillOpacity: 1
           }),
         onEachFeature: (feature, layer) => {
+          const k = keyFromFeature(feature);
+          const prev = stationLayersByKey.get(k) || {};
+          stationLayersByKey.set(k, { ...prev, dots: layer });
+
           layer.bindPopup(buildPopupHTML(feature.properties), {
             closeButton: false,
             offset: [0, -8]
@@ -421,11 +529,16 @@ function loadStations() {
           return L.marker(latlng, { icon, interactive: true });
         },
         onEachFeature: (feature, layer) => {
+          const k = keyFromFeature(feature);
+          const prev = stationLayersByKey.get(k) || {};
+          stationLayersByKey.set(k, { ...prev, icons: layer });
+
           layer.bindPopup(buildPopupHTML(feature.properties), {
             closeButton: false,
             offset: [0, -10]
           });
         }
+
       });
 
       // ✅ Start propre
@@ -513,3 +626,162 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("touchmove", onMove, { passive: true });
   window.addEventListener("touchend", onEnd);
 });
+
+function initSearchUI() {
+  const input = document.getElementById("stationSearch");
+  const results = document.getElementById("searchResults");
+  const clearBtn = document.getElementById("searchClear");
+
+  if (!input || !results) {
+    console.warn("Search UI missing elements", { input, results });
+    return;
+  }
+
+  function hide() {
+    results.classList.add("hidden");
+    results.innerHTML = "";
+  }
+
+  function render(items) {
+    results.innerHTML = items.map((s) => {
+      const lines = Array.isArray(s.lines) ? s.lines : [];
+
+      // tri : RER d'abord, puis métro
+      const sorted = [...lines].sort(a => (a.type === "RER" ? -1 : 1));
+
+      // ✅ logo gauche = mode (pas une ligne)
+      const hasRer = sorted.some(l => String(l.type).toUpperCase() === "RER");
+      const modeLabel = hasRer ? "RER" : "M";
+      const modeClass = hasRer ? "rer" : "metro";
+
+      const maxShow = 6;
+      const show = sorted.slice(0, maxShow);
+      const rest = Math.max(0, sorted.length - show.length);
+
+      // rangée sous titre (tous les badges)
+      const badgesRow = show.map(l => {
+        const t = String(l.type).toUpperCase() === "RER" ? "RER" : "M";
+        const id = normalizeLineId(t, l.id);
+        const bg = stationColor(t, id);
+        return `<span class="sr-badge ${t === "RER" ? "rer" : "metro"} line-${id}" style="background:${bg}">${id}</span>`;
+      }).join("");
+
+      const moreHTML = rest ? `<span class="sr-more">+${rest}</span>` : "";
+
+      return `
+      <button class="search-item v2" type="button" role="option" data-key="${s.norm}">
+        <div class="search-icon">
+          <span class="si-mode ${modeClass}">${modeLabel}</span>
+        </div>
+
+        <div class="search-content">
+          <div class="search-title">${s.name}</div>
+          <div class="search-lines">
+            ${badgesRow}
+            ${moreHTML}
+          </div>
+        </div>
+      </button>
+    `;
+    }).join("");
+
+    results.classList.toggle("hidden", items.length === 0);
+  }
+
+
+
+
+
+  function doSearch(qRaw) {
+    const q = normText(qRaw);
+    if (!q) { hide(); return; }
+
+    const starts = [];
+    const contains = [];
+
+    for (const s of stationsGroupedIndex) {
+      if (s.norm.startsWith(q)) starts.push(s);
+      else if (s.norm.includes(q)) contains.push(s);
+      if (starts.length >= 8) break;
+    }
+
+    const out = starts.length ? starts.slice(0, 8) : contains.slice(0, 8);
+    render(out);
+  }
+
+  input.addEventListener("input", (e) => doSearch(e.target.value));
+  input.addEventListener("focus", () => { if (input.value.trim()) doSearch(input.value); });
+
+  clearBtn?.addEventListener("click", () => {
+    input.value = "";
+    hide();
+    input.focus();
+  });
+
+  results.addEventListener("click", (e) => {
+    const btn = e.target.closest(".search-item");
+    if (!btn) return;
+
+    const key = btn.getAttribute("data-key");
+    const match = stationsGroupedIndex.find(s => s.norm === key);
+    if (!match || !map) return;
+    // ✅ choisir le point le plus proche du centre actuel de la map
+    function dist2(a, b) {
+      const dx = a[0] - b[0];
+      const dy = a[1] - b[1];
+      return dx * dx + dy * dy;
+    }
+
+    const center = map.getCenter();
+    const centerLL = [center.lat, center.lng];
+
+    let best = match.candidates[0];
+    let bestD = Infinity;
+
+    for (const c of match.candidates) {
+      const d = dist2(c.latlng, centerLL);
+      if (d < bestD) {
+        bestD = d;
+        best = c;
+      }
+    }
+
+    const pickedKey = best.key;
+    const pickedLatLng = best.latlng;
+
+    // fermer résultats
+    hide();
+    input.blur();
+
+    // zoom
+    map.setView(pickedLatLng, 15, { animate: true });
+
+    // ouvrir popup du marker correspondant
+    setTimeout(() => {
+      toggleStationsLayer();
+
+      const layers = stationLayersByKey.get(pickedKey);
+      const targetLayer =
+        (map.getZoom() >= 14 ? layers?.icons : layers?.dots) || layers?.icons || layers?.dots;
+
+      if (targetLayer && typeof targetLayer.openPopup === "function") {
+        targetLayer.openPopup();
+      }
+    }, 180);
+
+
+    hide();
+    input.blur();
+
+
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".searchbar--input")) hide();
+  });
+
+  console.log("✅ Search UI ready. stationsIndex:", stationsIndex.length);
+}
+
+document.addEventListener("DOMContentLoaded", initSearchUI);
+

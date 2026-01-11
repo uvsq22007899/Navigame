@@ -12,6 +12,7 @@
   <!-- CSS par écran -->
   <link rel="stylesheet" href="css/onboarding.css" />
   <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/map.css" />
   <link rel="stylesheet" href="css/itinerary.css" />
   <link rel="stylesheet" href="css/quiz.css" />
 
@@ -34,7 +35,7 @@
           <div class="slide">
             <div class="card">
               <div id="lottie-jaune" class="lottie"></div>
-              
+
               <button class="skip-dev" onclick="finishOnboarding()">SKIP (DEV)</button>
 
 
@@ -140,10 +141,17 @@
         <div id="map"></div>
 
         <div class="home-search">
-          <div class="searchbar">
-            <span class="search-ico">🔍</span>
-            <span class="search-text">Rechercher un itinéraire</span>
+          <div class="searchbar searchbar--input">
+            <span class="search-ico" aria-hidden="true"></span>
+
+            <input id="stationSearch" class="search-input" type="text" autocomplete="off"
+              placeholder="Rechercher une station" aria-label="Rechercher une station" />
+
+            <button id="searchClear" class="search-clear" type="button" aria-label="Effacer">✕</button>
+
+            <div id="searchResults" class="search-results hidden" role="listbox" aria-label="Résultats"></div>
           </div>
+
           <button class="filter-btn" type="button" aria-label="Filtres">⚙︎</button>
         </div>
 
@@ -155,7 +163,7 @@
 
           <div class="sheet-shortcuts">
             <button class="chip active" type="button">
-              <span class="chip-ico">⌂</span>
+              <span class="chip-ico">🏠</span>
               <span class="chip-txt">
                 <strong>Maison</strong>
                 <small>3 rue du petit cham…</small>
@@ -233,57 +241,82 @@
             <h3>Actualités</h3>
             <div class="news-carousel">
               <article class="news-card">
-                <div class="news-img"></div>
+                <img class="news-thumb" src="asset/news-1.jpg" alt="">
                 <div class="news-body">
+                  <div class="news-tag">Info</div>
                   <h4>Le Passe Navigo coûtera 90,80€…</h4>
                   <p>Mais pour 9 Franciliens sur 10, le prix sera de 45,50€ par mois…</p>
                 </div>
               </article>
 
               <article class="news-card">
-                <div class="news-img alt"></div>
+                <img class="news-thumb" src="asset/news-2.jpg" alt="">
                 <div class="news-body">
+                  <div class="news-tag">Info</div>
                   <h4>À voir, à faire en décembre…</h4>
                   <p>Un marché de Noël pas comme les autres, une expo, une balade…</p>
                 </div>
               </article>
 
               <article class="news-card">
-                <div class="news-img alt2"></div>
+                <img class="news-thumb" src="asset/news-3.jpg" alt="">
                 <div class="news-body">
+                  <div class="news-tag">Info</div>
                   <h4>Nouveautés réseau</h4>
                   <p>Travaux, améliorations et infos pratiques pour vos trajets…</p>
                 </div>
               </article>
+
+              <article class="news-card">
+                <img class="news-thumb" src="asset/news-4.jpg" alt="">
+                <div class="news-body">
+                  <div class="news-tag">Info</div>
+                  <h4>La nouvelle ligne de Métro est là…</h4>
+                  <p>La ligne 15 sera prête à vous accueillir : nouvelles gares, nouveaux repères…</p>
+                </div>
+              </article>
+
+              <article class="news-card">
+                <img class="news-thumb" src="asset/news-5.jpg" alt="">
+                <div class="news-body">
+                  <div class="news-tag">Info</div>
+                  <h4>Véligo Location se réinvente…</h4>
+                  <p>En 2026 : plus de choix, plus simple, et des nouveautés côté offres…</p>
+                </div>
+              </article>
             </div>
+
           </div>
         </div>
 
         <nav class="bottom-nav" aria-label="Navigation">
           <button class="nav-item active" type="button">
-            <span class="nav-ico">🗺️</span>
+            <img class="nav-svg" src="asset/itineraires.svg" alt="" aria-hidden="true">
             <span class="nav-txt">Itinéraires</span>
           </button>
 
           <button class="nav-item" type="button">
-            <span class="nav-ico">⚠️</span>
+            <img class="nav-svg" src="asset/infotrafic.svg" alt="" aria-hidden="true">
             <span class="nav-txt">Info trafic</span>
           </button>
 
-          <button class="nav-center" type="button" aria-label="NaviGame">
-            <span class="nav-center-dot">NG</span>
-          </button>
-
           <button class="nav-item" type="button">
-            <span class="nav-ico">🛒</span>
+            <img class="nav-svg" src="asset/achat.svg" alt="" aria-hidden="true">
             <span class="nav-txt">Achat</span>
           </button>
 
           <button class="nav-item" type="button">
-            <span class="nav-ico">👤</span>
+            <img class="nav-svg" src="asset/navigame.svg" alt="" aria-hidden="true">
+            <span class="nav-txt">NaviGame</span>
+          </button>
+
+          <button class="nav-item" type="button">
+            <img class="nav-svg" src="asset/monespace.svg" alt="" aria-hidden="true">
             <span class="nav-txt">Mon espace</span>
           </button>
         </nav>
+
+
       </section>
 
       <!-- =========================

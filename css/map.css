@@ -1,0 +1,591 @@
+/* =========================
+   MAP STATIONS — CLEAN (unique)
+========================= */
+
+/* Hover léger */
+.leaflet-marker-icon,
+.leaflet-interactive {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.leaflet-marker-icon:hover {
+  transform: scale(1.06);
+}
+
+/* =========================
+   POPUP (base)
+========================= */
+.station-popup { min-width: 180px; }
+
+.station-title{
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.station-lines{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.muted{
+  font-size: 13px;
+  color: #8a8a8a;
+}
+
+/* =========================
+   BADGES (METRO / RER) — POPUP
+========================= */
+.line-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  height:28px;
+  min-width:28px;
+  padding:0 10px;
+
+  border-radius:999px;
+  font-weight:900;
+  font-size:13px;
+
+  box-shadow: 0 6px 14px rgba(0,0,0,.18);
+}
+
+/* Métro = rond */
+.line-badge.metro{
+  width:28px;
+  padding:0;
+  border-radius:50%;
+}
+
+/* RER = pilule */
+.line-badge.rer{
+  padding:0 12px;
+  font-size:12px;
+  letter-spacing:.3px;
+}
+
+/* =========================
+   MAP MARKERS (LOGOS) — METRO / RER
+========================= */
+
+/* On neutralise le "cadre" Leaflet */
+.station-marker{
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Le groupe qui contient le badge + le +X */
+.st-pin{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transform: translate(-12px, -12px); /* centre visuel sur le point */
+}
+
+/* Badge principal (ligne principale) */
+.st-badge{
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: .2px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,.18);
+  border: 2px solid rgba(255,255,255,.92); /* contour blanc clean */
+}
+
+/* METRO = rond */
+.st-badge.metro{
+  width: 28px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+/* RER = carré arrondi */
+.st-badge.rer{
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: .2px;
+}
+
+/* Petit "+X" quand il y a plusieurs lignes */
+.st-more{
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.98);
+  border: 1px solid rgba(0,0,0,.12);
+  color: #111;
+  font-weight: 900;
+  font-size: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+}
+
+/* =========================
+   POPUP LEAFLET (CLEAN)
+========================= */
+.leaflet-popup-content-wrapper{
+  border-radius: 16px;
+}
+.leaflet-popup-content{
+  margin: 12px 12px;
+}
+
+/* =========================================================
+   TEXT COLOR RULES (CLEAN)
+   Default: dark
+   White only: RER A B D E + H K N U V / Metro 3 4 11 12 14
+========================================================= */
+:root{
+  --txt-dark: #1a1a1a;  /* noir/gris très foncé */
+  --txt-light: #fff;
+}
+
+/* ✅ DEFAULT: tout en foncé */
+.st-badge,
+.line-badge,
+.pop-pill,
+.pop-dot.v2.pop-line{
+  color: var(--txt-dark) !important;
+}
+
+/* ✅ WHITE LIST — MAP markers */
+.st-badge.metro.line-2,
+.st-badge.metro.line-3,
+.st-badge.metro.line-4,
+.st-badge.metro.line-11,
+.st-badge.metro.line-12,
+.st-badge.metro.line-14,
+
+.st-badge.rer.line-A,
+.st-badge.rer.line-B,
+.st-badge.rer.line-D,
+.st-badge.rer.line-E,
+.st-badge.rer.line-H,
+.st-badge.rer.line-K,
+.st-badge.rer.line-N,
+.st-badge.rer.line-U,
+.st-badge.rer.line-V{
+  color: var(--txt-light) !important;
+}
+
+/* ✅ WHITE LIST — POPUP badges (petits badges du haut) */
+.line-badge.metro.line-3,
+.line-badge.metro.line-2,
+.line-badge.metro.line-4,
+.line-badge.metro.line-11,
+.line-badge.metro.line-12,
+.line-badge.metro.line-14,
+
+.line-badge.rer.line-A,
+.line-badge.rer.line-B,
+.line-badge.rer.line-D,
+.line-badge.rer.line-E,
+.line-badge.rer.line-H,
+.line-badge.rer.line-K,
+.line-badge.rer.line-N,
+.line-badge.rer.line-U,
+.line-badge.rer.line-V{
+  color: var(--txt-light) !important;
+}
+
+/* ✅ WHITE LIST — POPUP v2 : ronds/labels à gauche des terminus */
+.pop-dot.v2.pop-line.line-3,
+.pop-dot.v2.pop-line.line-2,
+.pop-dot.v2.pop-line.line-Z,
+.pop-dot.v2.pop-line.line-4,
+.pop-dot.v2.pop-line.line-11,
+.pop-dot.v2.pop-line.line-12,
+.pop-dot.v2.pop-line.line-14,
+
+.pop-dot.v2.pop-line.line-A,
+.pop-dot.v2.pop-line.line-B,
+.pop-dot.v2.pop-line.line-D,
+.pop-dot.v2.pop-line.line-E,
+.pop-dot.v2.pop-line.line-H,
+.pop-dot.v2.pop-line.line-K,
+.pop-dot.v2.pop-line.line-N,
+.pop-dot.v2.pop-line.line-U,
+.pop-dot.v2.pop-line.line-V{
+  color: var(--txt-light) !important;
+}
+
+/* =========================
+   POPUP — PANEL "PROCHAINS PASSAGES" (ancienne version)
+========================= */
+.pop-panel{
+  margin-top:12px;
+  background:#f4f4f4;
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.pop-block{ border-top:1px solid rgba(0,0,0,.10); }
+.pop-block:first-child{ border-top:none; }
+
+.pop-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 12px 10px;
+}
+
+.pop-pill{
+  height:34px;
+  min-width:34px;
+  padding:0 12px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:13px;
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
+  border:2px solid rgba(255,255,255,.92);
+}
+.pop-pill.metro{
+  width:34px;
+  padding:0;
+  border-radius:50%;
+}
+.pop-pill.rer{ letter-spacing:.2px; }
+
+.pop-head-txt{
+  font-size:13px;
+  color:#6f6f6f;
+  font-weight:700;
+}
+
+.pop-list{ background:#fff; }
+
+.pop-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px;
+  border-top:1px solid rgba(0,0,0,.08);
+}
+.pop-row:first-child{ border-top:none; }
+
+.pop-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.pop-dot{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  flex:0 0 34px;
+  box-shadow:0 8px 18px rgba(0,0,0,.10);
+}
+
+.pop-dir{
+  font-size:16px;
+  font-weight:500;
+  color:#111;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.pop-right{
+  display:flex;
+  align-items:center;
+  gap: 5px;
+  flex:0 0 auto;
+}
+
+.pop-ico{ opacity:.8; }
+
+.pop-time{
+  font-size:18px;
+  font-weight:900;
+  color:#111;
+}
+
+/* =========================
+   POPUP v2 (style Citymapper)
+========================= */
+.station-popup.v2 { min-width: 220px; }
+
+.station-popup.v2 .station-title{
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.pop-sub{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  margin-bottom: 10px;
+}
+
+/* logo M rond */
+.pop-mode{
+  width:30px;
+  height:30px;
+  border-radius:999px;
+  border:2px solid rgba(0,0,0,.75);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:14px;
+  color:#111;
+}
+
+.pop-panel.v2{
+  border:1px solid rgba(0,0,0,.14);
+  border-radius:16px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.pop-list.v2{ display:flex; flex-direction:column; }
+
+.pop-row.v2{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 14px;
+  border-top:1px solid rgba(0,0,0,.10);
+}
+.pop-row.v2:first-child{ border-top:none; }
+
+.pop-left.v2{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+.pop-dot.v2{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  flex:0 0 auto;
+}
+
+.pop-dir.v2{
+  font-size:16px;
+  font-weight:600;
+  color:#111;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width: 210px;
+}
+
+.pop-time.v2{
+  font-size:16px;
+  font-weight:800;
+  color:#111;
+  white-space:nowrap;
+}
+
+.pop-right.v2{
+  display:flex;
+  align-items:center;
+  gap:3px;
+}
+
+/* Le rond/label de ligne à gauche (dans v2) */
+.pop-dot.v2.pop-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:14px;
+}
+
+/* =========================
+   MIN SVG (teintable + blink)
+========================= */
+/* =========================================================
+   SEARCH (V2) — CLEAN + NO DUPLICATES
+   - Garde le min.svg + blink
+   - Garde la logique white/black pour les badges (comme map)
+   - Supprime l'ancien search V1 (search-left/right/more etc.)
+========================================================= */
+
+:root{
+  --min-color:#429660;
+  --txt-dark: #1a1a1a;
+  --txt-light: #fff;
+}
+
+/* icône min.svg teintable */
+.min-ico.v2{
+  width:16px;
+  height:16px;
+  display:block;
+  background: var(--min-color);
+  -webkit-mask: url("../asset/min.svg") center / contain no-repeat;
+  mask: url("../asset/min.svg") center / contain no-repeat;
+}
+
+/* clignotement léger */
+.blink{
+  animation: minPulse 1s ease-in-out infinite;
+}
+
+@keyframes minPulse{
+  0%, 100% { opacity: .55; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.06); }
+}
+
+/* =========================
+   SEARCH ITEM (V2)
+========================= */
+.search-item.v2{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  width:100%;
+  border:none;
+  background:transparent;
+  padding:12px 14px;
+}
+
+/* badge principal gauche */
+.search-icon{
+  width:40px;
+  padding-top:2px;
+}
+
+/* badge principal (gauche) */
+.si-badge{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:14px;
+  border:2px solid rgba(255,255,255,.92);
+  box-shadow:0 10px 18px rgba(0,0,0,.12);
+  color: var(--txt-dark);
+}
+
+/* colonne texte */
+.search-content{
+  flex:1;
+  min-width:0;
+}
+
+.search-title{
+  font-size:18px;
+  font-weight:800;
+  line-height:1.05;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-top:1px;
+}
+
+/* ligne de badges sous titre */
+.search-lines{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-top:6px;
+  flex-wrap:nowrap;
+  overflow:hidden;
+}
+
+/* badges sous titre */
+.sr-badge{
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:12px;
+  border:2px solid rgba(255,255,255,.92);
+  box-shadow:0 8px 14px rgba(0,0,0,.10);
+  color: var(--txt-dark);
+}
+
+/* +X */
+.sr-more{
+  height:24px;
+  padding:0 8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.95);
+  border:1px solid rgba(0,0,0,.10);
+  font-weight:900;
+  font-size:12px;
+  color: var(--txt-dark);
+}
+
+/* =========================
+   TEXT COLOR RULES — SEARCH BADGES
+   Default: dark
+   White only: RER A B D E + H K N U V / Metro 2 3 4 11 12 14
+   (même logique que la map)
+========================= */
+
+/* ✅ DEFAULT: tout en foncé */
+.si-badge,
+.sr-badge{
+  color: var(--txt-dark) !important;
+}
+
+/* ✅ WHITE LIST — SEARCH badges */
+.si-badge.metro.line-2,
+.si-badge.metro.line-3,
+.si-badge.metro.line-4,
+.si-badge.metro.line-11,
+.si-badge.metro.line-12,
+.si-badge.metro.line-14,
+
+.si-badge.rer.line-A,
+.si-badge.rer.line-B,
+.si-badge.rer.line-D,
+.si-badge.rer.line-E,
+.si-badge.rer.line-H,
+.si-badge.rer.line-K,
+.si-badge.rer.line-N,
+.si-badge.rer.line-U,
+.si-badge.rer.line-V,
+
+.sr-badge.metro.line-2,
+.sr-badge.metro.line-3,
+.sr-badge.metro.line-4,
+.sr-badge.metro.line-11,
+.sr-badge.metro.line-12,
+.sr-badge.metro.line-14,
+
+.sr-badge.rer.line-A,
+.sr-badge.rer.line-B,
+.sr-badge.rer.line-D,
+.sr-badge.rer.line-E,
+.sr-badge.rer.line-H,
+.sr-badge.rer.line-K,
+.sr-badge.rer.line-N,
+.sr-badge.rer.line-U,
+.sr-badge.rer.line-V{
+  color: var(--txt-light) !important;
+}
