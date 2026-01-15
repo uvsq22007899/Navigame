@@ -1,0 +1,161 @@
+#trip { pointer-events: none; } /* on rend interactif seulement l'UI */
+#trip .trip-ui, #trip .trip-sheet { pointer-events: auto; }
+
+.trip-ui{
+  position:absolute;
+  inset:0;
+  z-index:650;
+}
+
+.trip-back{
+  position:absolute;
+  top:18px; left:16px;
+  width:44px; height:44px;
+  border:none; border-radius:999px;
+  background:#fff;
+  box-shadow:0 10px 25px rgba(0,0,0,.14);
+  font-size:22px;
+}
+
+.trip-fabs{
+  position:absolute;
+  top:80px; right:16px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.trip-fab{
+  width:44px; height:44px;
+  border:none; border-radius:999px;
+  background:#fff;
+  box-shadow:0 10px 25px rgba(0,0,0,.14);
+  font-size:18px;
+}
+
+.trip-start{
+  position:absolute;
+  right:16px;
+  top:250px;
+  height:54px;
+  padding:0 18px;
+  border:none;
+  border-radius:10px;
+  background:#2f86ff;
+  color:#fff;
+  font-weight:900;
+  font-size:18px;
+  box-shadow:0 12px 28px rgba(47,134,255,.35);
+}
+
+.trip-sheet{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  background:#fff;
+  border-top-left-radius:22px;
+  border-top-right-radius:22px;
+  box-shadow:0 -18px 40px rgba(0,0,0,.12);
+  padding:10px 14px 18px;
+  z-index:660;
+}
+
+.trip-handle{
+  width:46px; height:5px;
+  border-radius:10px;
+  background:rgba(0,0,0,.12);
+  margin:6px auto 12px;
+}
+
+.trip-row{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px;
+  padding-bottom:10px;
+}
+
+.trip-badges{ display:flex; align-items:center; gap:10px; }
+.tb-mode{
+  width:34px; height:34px;
+  border-radius:999px;
+  border:2px solid rgba(0,0,0,.22);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900;
+}
+.tb-line{
+  width:34px; height:34px;
+  border-radius:999px;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900;
+  background:#FFCD00;
+  color:#111;
+}
+
+.trip-time{ text-align:right; }
+.trip-range{ color:#6f6f6f; font-weight:700; font-size:13px; }
+.trip-min{ font-size:28px; font-weight:950; letter-spacing:-.5px; }
+
+.trip-block{ padding:8px 0; }
+.trip-label{ color:#6f6f6f; font-weight:800; font-size:13px; }
+.trip-value{ font-weight:900; font-size:18px; }
+
+.trip-card{
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:16px;
+  padding:12px;
+  box-shadow:0 10px 26px rgba(0,0,0,.08);
+  margin:8px 0 10px;
+}
+.trip-card-top{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.trip-card-left{ display:flex; align-items:center; gap:10px; }
+.trip-card-title{ font-weight:950; }
+.trip-more{ border:none; background:transparent; font-size:22px; opacity:.7; }
+.trip-card-sub{ margin-top:6px; color:#6f6f6f; font-weight:800; }
+
+.trip-times{
+  margin-top:10px;
+  border:1px solid rgba(0,0,0,.14);
+  border-radius:12px;
+  overflow:hidden;
+}
+.trip-time-row{
+  display:flex; justify-content:space-between;
+  padding:10px 12px;
+  border-top:1px solid rgba(0,0,0,.10);
+  font-weight:800;
+  color:#6f6f6f;
+}
+.trip-time-row:first-child{ border-top:none; }
+.trip-time-row .ok{ color:#1b7f3a; }
+
+.trip-stops{
+  margin-top:10px;
+  font-weight:900;
+  color:#111;
+  opacity:.85;
+}
+
+
+
+/* Les pages au-dessus */
+section.page{
+  position: absolute;
+  inset: 0;
+  z-index: 600;
+}
+
+/* Si tu veux que HOME laisse voir la map */
+#home{
+  background: transparent;
+}
+
+/* Itinerary peut avoir son fond */
+#itinerary{
+  background:#f2f4f7;
+}
+
+
+.leaflet-interactive.ng-stop-pulse{
+  animation: ngBlinkSoft 1s ease-in-out infinite;
+}
+
+@keyframes ngBlinkSoft{
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}

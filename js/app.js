@@ -1,24 +1,29 @@
 /* =========================================================
-   ROUTEUR SIMPLE (pages en <section>) + navigation
-   - Onboarding -> Home
-   - Home -> Itinerary (bouton Travail)
-   - Itinerary -> Home (bouton back)
+   ROUTEUR SIMPLE (sections .page) + Leaflet safe refresh
 ========================================================= */
 
 function showPage(pageId) {
+  // on ne touche qu'aux sections "page"
   const pages = document.querySelectorAll("main .page");
-  pages.forEach(p => p.classList.add("hidden"));
+  pages.forEach(p => {
+    const isTarget = p.id === pageId;
+    p.classList.toggle("hidden", !isTarget);
+  });
 
-  const target = document.getElementById(pageId);
-  if (!target) return;
-  target.classList.remove("hidden");
+  // Refresh Leaflet à chaque switch
+  setTimeout(() => {
+    if (typeof window.map !== "undefined" && window.map && typeof window.map.invalidateSize === "function") {
+      window.map.invalidateSize(true);
+    }
+  }, 80);
 }
+window.showPage = showPage;
 
 /** Appelé à la fin de l'onboarding */
 function finishOnboarding() {
   showPage("home");
 
-  // ta map Leaflet ne doit s'init qu'une fois
+  // init map une seule fois
   if (typeof window.initHomeMapOnce === "function") {
     window.initHomeMapOnce();
   }
@@ -26,26 +31,17 @@ function finishOnboarding() {
 window.finishOnboarding = finishOnboarding;
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Par défaut : onboarding visible (comme ton HTML)
-  // Si tu veux forcer home en dev : showPage("home");
+  // défaut: onboarding (comme ton HTML)
+  // showPage("home"); // dev si besoin
 
+  // Work (optionnel): si tu veux juste ouvrir itinerary direct
   const btnWork = document.getElementById("btn-work");
-  const btnBackHome = document.getElementById("btn-back-home");
-
   if (btnWork) {
-    btnWork.addEventListener("click", () => {
-      showPage("itinerary");
-    });
-  }
-
-  if (btnBackHome) {
-    btnBackHome.addEventListener("click", () => {
-      showPage("home");
-
-      // petit fix Leaflet au retour (sinon carte parfois “cassée” en size)
-      if (typeof window.map !== "undefined" && window.map && typeof window.map.invalidateSize === "function") {
-        setTimeout(() => window.map.invalidateSize(true), 50);
-      }
-    });
+    btnWork.addEventListener("click", (e) => {
+      // laisse home.js gérer goToWork() si tu l'utilises
+      // sinon fallback:
+      // e.preventDefault();
+      // showPage("itinerary");
+    }, true);
   }
 });

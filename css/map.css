@@ -1,6 +1,20 @@
 /* =========================
    MAP STATIONS — CLEAN (unique)
 ========================= */
+/* HOME laisse la map recevoir les interactions */
+#home{
+  pointer-events: none;
+  background: transparent;
+}
+
+/* MAIS l’UI doit rester cliquable */
+#home .home-search,
+#home .sheet,
+#home .bottom-nav,
+#home .search-results{
+  pointer-events: auto;
+}
+
 
 /* Hover léger */
 .leaflet-marker-icon,
@@ -324,14 +338,46 @@
 /* =========================
    POPUP v2 (style Citymapper)
 ========================= */
-.station-popup.v2 { min-width: 220px; }
+/* =========================================================
+   POPUP v2 (style Citymapper) + CTA "Y aller"
+========================================================= */
 
+.station-popup.v2{
+  min-width: 220px;
+  position: relative; /* pour le bouton absolute */
+}
+
+/* Titre station */
+/* le header de la popup */
+.pop-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+
+/* ✅ IMPORTANT : le bloc gauche doit prendre la place dispo */
+.pop-top > div:first-child{
+  flex: 1;
+  min-width: 0; /* ✅ sinon ellipsis bug en flex */
+}
+
+/* ✅ ton title: 1 ligne + … seulement si besoin */
 .station-popup.v2 .station-title{
   font-size: 22px;
   font-weight: 800;
   margin-bottom: 10px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* au lieu de padding-right:128px */
+  max-width: calc(100% - 50px); /* ajuste si besoin */
 }
 
+
+/* Sous-ligne (logo M + badge ligne) */
 .pop-sub{
   display:flex;
   align-items:center;
@@ -353,6 +399,7 @@
   color:#111;
 }
 
+/* Panel */
 .pop-panel.v2{
   border:1px solid rgba(0,0,0,.14);
   border-radius:16px;
@@ -385,6 +432,14 @@
   flex:0 0 auto;
 }
 
+.pop-dot.v2.pop-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:14px;
+}
+
 .pop-dir.v2{
   font-size:16px;
   font-weight:600;
@@ -395,6 +450,12 @@
   max-width: 210px;
 }
 
+.pop-right.v2{
+  display:flex;
+  align-items:center;
+  gap:3px;
+}
+
 .pop-time.v2{
   font-size:16px;
   font-weight:800;
@@ -402,29 +463,52 @@
   white-space:nowrap;
 }
 
-.pop-right.v2{
-  display:flex;
-  align-items:center;
-  gap:3px;
-}
+/* =========================================================
+   CTA "Y aller" — épuré (petit, contour fin)
+========================================================= */
 
-/* Le rond/label de ligne à gauche (dans v2) */
-.pop-dot.v2.pop-line{
-  display:flex;
+.pop-go{
+  position:absolute;
+  top:30px;
+  right:0px;
+
+  height:38px;          /* ✅ plus petit */
+  padding:0 16px;
+  border-radius:8px;
+
+  background:#fff;
+  border:1px solid #3e91ff;
+
+  color:#3e91ff;
+  font-weight:600;
+  font-size:15px;
+  letter-spacing:.1px;
+
+  display:inline-flex;
   align-items:center;
   justify-content:center;
-  font-weight:900;
-  font-size:14px;
+  gap:8px;
+  
+
+  cursor:pointer;
+  user-select:none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* =========================
-   MIN SVG (teintable + blink)
-========================= */
+.pop-go .chev{
+  font-weight:900;
+  line-height:1;
+  opacity:.9;
+}
+
+.pop-go:active{
+  transform: scale(.98);
+  transform: translateY(1px);
+  opacity:.92;
+}
+
 /* =========================================================
-   SEARCH (V2) — CLEAN + NO DUPLICATES
-   - Garde le min.svg + blink
-   - Garde la logique white/black pour les badges (comme map)
-   - Supprime l'ancien search V1 (search-left/right/more etc.)
+   MIN SVG (teintable + blink)
 ========================================================= */
 
 :root{
@@ -433,7 +517,6 @@
   --txt-light: #fff;
 }
 
-/* icône min.svg teintable */
 .min-ico.v2{
   width:16px;
   height:16px;
@@ -443,7 +526,6 @@
   mask: url("../asset/min.svg") center / contain no-repeat;
 }
 
-/* clignotement léger */
 .blink{
   animation: minPulse 1s ease-in-out infinite;
 }
@@ -453,9 +535,10 @@
   50%      { opacity: 1;   transform: scale(1.06); }
 }
 
-/* =========================
-   SEARCH ITEM (V2)
-========================= */
+/* =========================================================
+   SEARCH (V2) — CLEAN
+========================================================= */
+
 .search-item.v2{
   display:flex;
   align-items:flex-start;
@@ -539,13 +622,6 @@
   font-size:12px;
   color: var(--txt-dark);
 }
-
-/* =========================
-   TEXT COLOR RULES — SEARCH BADGES
-   Default: dark
-   White only: RER A B D E + H K N U V / Metro 2 3 4 11 12 14
-   (même logique que la map)
-========================= */
 
 /* ✅ DEFAULT: tout en foncé */
 .si-badge,

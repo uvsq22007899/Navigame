@@ -70,3 +70,172 @@ main{
 
 .nav-ico{ font-size:20px; }
 .nav-txt{ font-size:11px; }
+
+
+.page.hidden{ display:none; }
+
+#itinerary{
+  position:absolute;
+  inset:0;
+  background:#f6f6f6;
+  z-index:2000;
+  padding: 14px 14px 22px;
+}
+
+.it-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding: 6px 0 10px;
+}
+.it-back{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:14px;
+  background:#fff;
+  box-shadow: 0 8px 18px rgba(0,0,0,.10);
+  font-size:22px;
+  font-weight:900;
+  cursor:pointer;
+}
+.it-title{
+  margin:0;
+  font-size:20px;
+  font-weight:900;
+}
+
+.it-form{
+  background:#fff;
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  overflow:hidden;
+  margin-top: 10px;
+}
+.it-field{
+  display:flex;
+  gap:10px;
+  padding: 14px 14px;
+  border-top:1px solid rgba(0,0,0,.06);
+}
+.it-field:first-child{ border-top:none; }
+.it-label{
+  width:64px;
+  font-size:13px;
+  color:#6f6f6f;
+  font-weight:700;
+}
+.it-value{
+  font-size:16px;
+  font-weight:800;
+  color:#111;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.it-sub{
+  margin: 16px 2px 10px;
+  font-size:22px;
+  font-weight:900;
+}
+
+.it-list{ display:flex; flex-direction:column; gap:12px; }
+
+.it-card{
+  background:#fff;
+  border-radius:18px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  padding: 14px 14px;
+}
+.it-row-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:8px;
+}
+.it-badges{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.it-duration{
+  font-size:28px;
+  font-weight:900;
+  color:#111;
+  white-space:nowrap;
+}
+.it-meta{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#111;
+  font-weight:800;
+}
+.it-meta .muted{
+  margin:0;
+  font-size:14px;
+  color:#6f6f6f;
+  font-weight:700;
+}
+
+/* petits badges type app */
+.it-mode{
+  height:28px;
+  padding:0 10px;
+  border-radius:999px;
+  border:2px solid rgba(0,0,0,.15);
+  font-weight:900;
+  font-size:12px;
+  background:#fff;
+}
+.it-line{
+  width:30px;
+  height:30px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:13px;
+  border:2px solid rgba(255,255,255,.92);
+  box-shadow:0 8px 14px rgba(0,0,0,.10);
+}
+
+/* 1) Le "téléphone" doit être le parent de référence */
+.app{
+  position: relative;
+  width: 390px;        /* ajuste si besoin */
+  height: 844px;       /* ajuste si besoin */
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 28px; /* si tu veux */
+}
+
+/* 2) La map remplit le téléphone (pas tout l’écran) */
+#map{
+  position: absolute;  /* ✅ au lieu de fixed */
+  inset: 0;
+  z-index: 0;
+}
+
+/* 3) Tes pages au-dessus */
+section.page{
+  position: absolute;
+  inset: 0;
+  z-index: 600;
+}
+
+/* (optionnel) centre l’app sur desktop */
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f2f4f7;
+}

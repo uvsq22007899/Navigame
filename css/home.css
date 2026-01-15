@@ -57,55 +57,92 @@
 /* =========================
    BOTTOM SHEET
 ========================= */
-.sheet {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  height: 100vh;
-  max-height: 100vh;
-
-  background: #f6f6f6;
-  border-radius: 26px 26px 0 0;
-  box-shadow: 0 -12px 30px rgba(0, 0, 0, .16);
-
-  transform: translateY(65%);
-  transition: transform .35s cubic-bezier(.2, .8, .2, 1);
-
-  z-index: 600;
-  overflow: auto;
-  padding: 10px 14px 18px;
-
-  touch-action: none;
-  will-change: transform;
-}
-
-.sheet-handle {
-  width: 44px;
-  height: 5px;
-  background: #d9d9d9;
-  border-radius: 999px;
-  margin: 6px auto 10px;
-}
-
-.sheet-grab-zone {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  cursor: grab;
-}
-
 /* =========================
-   SHORTCUT CHIPS
+   BOTTOM SHEET (CLEAN)
 ========================= */
-.sheet-shortcuts {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  padding: 6px 2px 12px;
+
+.sheet{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:600;
+
+  /* visuel */
+  background:#f6f6f6;
+  border-radius:26px 26px 0 0;
+  box-shadow:0 -12px 30px rgba(0,0,0,.16);
+
+  /* layout */
+  display:flex;
+  flex-direction:column;
+
+  /* IMPORTANT : la sheet ne scroll PAS, c'est .sheet-content qui scroll */
+  overflow:hidden;
+
+  /* animation */
+  transform:translateY(65%);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  will-change:transform;
+
+  /* drag */
+  touch-action:none;
+
+  /* hauteur */
+  height:100%;
+  max-height:100dvh;
+}
+
+/* zone drag (poignée + zone de grab) */
+.sheet-grab-zone{
+  position:relative;     /* ✅ pas absolute sinon ça casse le layout */
+  cursor:grab;
+  touch-action:none;     /* ✅ drag propre */
+
+  /* ✅ + d’air autour du trait gris (ta demande) */
+  padding-top:8px;
+  padding-bottom:2px;
+
+  /* petit padding horizontal si besoin */
+  padding-left:14px;
+  padding-right:14px;
+}
+
+.sheet-handle{
+  width:56px;
+  height:5px;
+  background:#d9d9d9;
+  border-radius:999px;
+
+  /* ✅ centré + air bas */
+  margin:0 auto 10px;
+}
+
+/* shortcuts (chips) */
+.sheet-shortcuts{
+  display:flex;
+  flex-direction:row;
+  gap:12px;
+
+  /* un peu d’air sous les chips */
+  padding:6px 2px 12px;
+}
+
+/* contenu scrollable */
+.sheet-content{
+  flex:1;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+
+  /* ✅ scroll vertical uniquement */
+  touch-action:pan-y;
+
+  /* ✅ air top/bottom du contenu */
+  padding:14px 14px 10px;
+
+  /* ✅ pour pas que ta nav fixe cache le carrousel */
+  padding-bottom:140px;
 }
 
 .chip {
