@@ -18,6 +18,8 @@ function updateProgress() {
     dot.style.backgroundColor = stepColors[currentSlide];
   });
   updateNextButton();
+  document.querySelector(".back").style.visibility = (currentSlide === 0) ? "hidden" : "visible";
+
 }
 
 /* =========================
@@ -140,9 +142,14 @@ window.prevSlide = function prevSlide() {
   }
 
   changeSlide(currentSlide - 1);
+  
 };
 
 /* =========================
    INIT
 ========================= */
 updateProgress();
+lottieJaune.addEventListener("data_ready", () => lottieJaune.goToAndStop(lottieJaune.totalFrames, true), { once:true });
+
+
+

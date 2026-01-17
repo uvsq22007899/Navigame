@@ -142,39 +142,56 @@
   padding:14px 14px 10px;
 
   /* ✅ pour pas que ta nav fixe cache le carrousel */
-  padding-bottom:140px;
+  padding-bottom:100px;
 }
 
-.chip {
-  flex: 1;
-  border: none;
-  border-radius: 12px;
-  background: #cfe2f7;
-  padding: 10px 10px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
+.chip{
+  flex:1;
+  border:none;
+  border-radius:16px;                 /* moins gros */
+  background: rgba(90,167,255,.14);
+  border: 1px solid rgba(62,145,255,.20);
+
+  padding:10px 12px;                  /* ✅ plus petit */
+  display:flex;
+  align-items:center;
+  gap:10px;
+  justify-content:center;  
+  min-width:0;                        /* ✅ ellipsis safe */
 }
 
-.chip.active {
-  outline: 2px solid rgba(90, 167, 255, .35);
+
+
+
+
+.chip-ico{
+  font-size:27px;
+  opacity:.95;
+  width:auto;
+  height:auto;
+  background:transparent;   /* ✅ enlève le blanc */
+  box-shadow:none;         /* ✅ */
+  border-radius:0;         /* ✅ */
+  display:block;
+  transform: translateX(-8px);
 }
 
-.chip-ico {
-  font-size: 18px;
-  opacity: .85;
+
+
+.chip-txt{
+  min-width:0;
 }
 
 .chip-txt strong {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
   display: block;
-  font-size: 14px;
+  font-size: 22px;
+  font-weight: 500; /* optionnel si tu veux + impact */
+    text-align:center;   
 }
 
-.chip-txt small {
-  display: block;
-  font-size: 11px;
-  opacity: .7;
-}
+
+
 
 /* =========================
    SECTIONS
@@ -189,90 +206,153 @@
 }
 
 /* =========================
-   RECENT CARD
+   RECENT CARD — V2 (trajet) [SMALL]
 ========================= */
-.recent-card {
-  background: #efefef;
-  border-radius: 14px;
-  padding: 12px;
-  border: 1px solid rgba(0, 0, 0, .06);
+.recent-card.v2{
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:22px;
+  padding:16px 16px 14px;
+  box-shadow:0 14px 30px rgba(0,0,0,.08);
 }
 
-.recent-top {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #6f6f6f;
-  font-size: 12px;
+.recent-card.v2 .recent-head{
+  display:flex;
+  align-items:flex-start;
+  gap:12px; /* un poil moins */
 }
 
-.recent-addr {
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* ✅ Colonne départ/arrivée (réduite) */
+.recent-card.v2 .recent-pincol{
+  width:34px;                /* 46 -> 34 */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:2px;           /* 4 -> 2 */
+  transform: scale(.72);     /* ✅ réduit tout le bloc */
+  transform-origin: top left;
 }
 
-.recent-arrow {
-  font-weight: 800;
-  color: #8a8a8a;
+.recent-card.v2 .rp{ display:block; }
+
+.recent-card.v2 .rp-from{
+  width:22px; height:22px;   /* 26 -> 22 */
+  border-radius:999px;
+  border:3px solid rgba(0,0,0,.75);
+  background:transparent;
+  position:relative;
+}
+.recent-card.v2 .rp-from::after{
+  content:"";
+  position:absolute;
+  inset:5px;                 /* 6 -> 5 */
+  border-radius:999px;
+  border:3px solid rgba(0,0,0,.75);
 }
 
-.recent-main {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 10px;
+.recent-card.v2 .rp-line{
+  width:2px;
+  height:28px;               /* 34 -> 28 */
+  margin:5px 0;              /* 6 -> 5 */
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,.55) 0 6px,
+    transparent 6px 12px
+  );
+  border-radius:2px;
 }
 
-.recent-title {
-  font-size: 18px;
-  line-height: 1.15;
+.recent-card.v2 .rp-to{
+  width:26px; height:26px;   /* 32 -> 26 */
+  background: rgba(0,0,0,.85);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  position:relative;
+}
+.recent-card.v2 .rp-to::after{
+  content:"";
+  position:absolute;
+  width:10px; height:10px;   /* 12 -> 10 */
+  background:#fff;
+  border-radius:999px;
+  top:8px; left:8px;         /* 10 -> 8 */
+  transform: rotate(45deg);
 }
 
-.recent-title span {
-  font-size: 16px;
-  opacity: .75;
+/* ✅ Texte */
+.recent-card.v2 .recent-texts{
+  flex:1;
+  min-width:0;
 }
 
-.recent-badges {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+.recent-card.v2 .recent-from{
+  font-size:12px;            /* 14 -> 12 */
+  color: rgba(0,0,0,.50);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-top:2px;
 }
 
-.b {
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, .12);
-  font-size: 12px;
+/* ✅ GROS TITRE (réduit) */
+.recent-card.v2 .recent-to{
+  margin-top:6px;            /* 8 -> 6 */
+  font-size:22px;            /* 30 -> 22 (≈ /1.36) */
+  font-weight:750;
+  letter-spacing:-.6px;
+  line-height:1.05;
+  color:#111;
 }
 
-.b.red {
-  background: #ff4b4b;
-  color: #fff;
-  border: none;
+/* ✅ Bouton "..." plus petit */
+.recent-card.v2 .recent-more{
+  border:none;
+  background:transparent;
+  color:#2f86ff;
+  font-weight:900;
+  font-size:16px;            /* 20 -> 16 */
+  line-height:1;
+  padding:4px 6px;           /* 6/8 -> 4/6 */
+  border-radius:10px;
+  opacity:.95;
 }
 
-.b.green {
-  background: #77c38a;
-  color: #1a1a1a;
-  border: none;
+/* ✅ Badges M / 14 (réduits) */
+.recent-card.v2 .recent-badges.v2{
+  margin-top:-10px;           /* 18 -> 12 */
+  display:flex;
+  align-items:center;
+  gap:10px;                  /* 12 -> 10 */
 }
 
-.b.yellow {
-  background: #f0d24c;
-  color: #1a1a1a;
-  border: none;
+.recent-card.v2 .b{
+  width:34px;                /* 50 -> 34 */
+  height:34px;               /* 50 -> 34 */
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:950;
+  border:none;
+  box-shadow:none;
 }
+
+.recent-card.v2 .b.mode{
+  background:#fff;
+  border:3px solid rgba(0,0,0,.8); /* 4 -> 3 */
+  color: rgba(0,0,0,.8);
+  font-size:18px;            /* 26 -> 18 */
+}
+
+.recent-card.v2 .b.line{
+  background:#6d2aa6;        /* violet 14 */
+  color:#fff;
+  font-size:18px;            /* 26 -> 18 */
+}
+
+/* option: classes par ligne */
+.recent-card.v2 .b.line.l14{ background:#6d2aa6; }
+
 
 /* =========================
    LIST ROWS
@@ -466,7 +546,7 @@
   position: absolute;
   left: 16px;
   right: 16px;
-  top: 22px;
+  top: 42px;
   /* plus bas comme Figma */
   display: flex;
   gap: 12px;
@@ -547,8 +627,6 @@
   background: #f6f6f6;
   border-radius: 26px 26px 0 0;
   box-shadow: 0 -12px 30px rgba(0, 0, 0, .16);
-
-  transform: translateY(46%);
   /* ⬅️ au lieu de 65% : démarre plus haut */
   transition: transform .35s cubic-bezier(.2, .8, .2, 1);
 

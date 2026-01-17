@@ -46,7 +46,10 @@ main{
   opacity:0;
   transform:translateX(18px);
   pointer-events:none;
+  visibility:hidden;
 }
+
+
 
 /* Helpers couleurs */
 .orange{ color:var(--orange); }
@@ -231,11 +234,97 @@ section.page{
 }
 
 /* (optionnel) centre l’app sur desktop */
+/* Fond bleu + centrage (tu gardes) */
+/* =========================
+   FOND GLOBAL
+========================= */
 body{
   margin:0;
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#f2f4f7;
+  background:#6aa4ff;
+}
+
+.bg-curves{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  overflow:visible;
+}
+
+.bg-curves .curve{
+  position:absolute;
+  height:auto;
+  opacity:0;                     /* caché */
+  transition:opacity .25s ease;  /* fondu */
+  will-change:opacity;
+}
+.bg-curves .curve svg *{
+  stroke: #b0ccf9 !important;
+  fill: #b0ccf9 !important;
+}
+/* visible quand prêt */
+.bg-curves .curve.is-ready{ opacity:.35; }
+
+/* tes positions */
+.bg-curves .curve-green{ top:0px; left:-50px; width:400px; transform:rotate(-45deg); }
+.bg-curves .curve-pink{  top:-35px; right:-30px; width:230px; transform:rotate(180deg); }
+.bg-curves .curve-blue{  bottom:0px; left:-80px; width:350px; transform:rotate(210deg); }
+.bg-curves .curve-yellow{bottom:-70px; right:0px; width:230px; transform:rotate(-100deg); }
+
+
+
+/* conteneur */
+.phone{
+  position: relative;
+  width: 415px;
+  height: 900px;
+  border-radius: 55px;
+}
+
+.phone{
+  transform: scale(0.93);
+  transform-origin: center;
+}
+
+
+.phone .app{
+  position:absolute;
+  inset: 14px;          /* ✅ correspond à l’épaisseur du cadre */
+  border-radius: 34px;
+  overflow:hidden;
+  background:#fff;
+  z-index: 1;
+  max-width: none;      /* ✅ important si tu as max-width:390px ailleurs */
+  height: auto;
+}
+
+
+/* ✅ le cadre iPhone (autour, sans réduire l'app) */
+.phone-frame{
+  position:absolute;
+  inset: 0;                 /* ✅ plus de -14px */
+  border-radius: 44px;
+  border: 14px solid #000;  /* ✅ le cadre = bordure */
+  background: transparent;  /* ✅ ne masque plus l'app */
+  z-index: 10;
+  pointer-events:none;
+  box-shadow: 0 30px 90px rgba(0,0,0,.25);
+}
+
+
+/* ✅ notch */
+
+
+/* ✅ ton app garde son format exact */
+.phone .app{
+  position:absolute;
+  inset: 0;
+  border-radius: 34px;
+  overflow:hidden;
+  background:#fff;
+  z-index: 1;
 }

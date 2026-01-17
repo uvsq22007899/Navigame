@@ -23,582 +23,595 @@
 </head>
 
 <body>
-  <div class="app">
+  <div class="bg-curves">
+    <div class="curve curve-green" id="curve-green"></div>
+    <div class="curve curve-pink" id="curve-pink"></div>
+    <div class="curve curve-blue" id="curve-blue"></div>
+    <div class="curve curve-yellow" id="curve-yellow"></div>
+  </div>
 
-    <main>
-      <div id="map"></div>
-      <!-- =========================
+
+
+  <div class="phone">
+    <div class="phone-frame" aria-hidden="true"></div>
+    <div class="app">
+
+      <main>
+        <div id="map"></div>
+        <!-- =========================
            ONBOARDING (nickel)
       ========================== -->
-      <section id="onboarding" class="page">
-        <div class="onboarding-track" id="track">
+        <section id="onboarding" class="page">
+          <div class="onboarding-track" id="track">
 
-          <!-- SLIDE 1 -->
-          <div class="slide">
-            <div class="card">
-              <div id="lottie-jaune" class="lottie"></div>
+            <!-- SLIDE 1 -->
+            <div class="slide">
+              <div class="card">
+                <div id="lottie-jaune" class="lottie"></div>
 
-              <button class="skip-dev" onclick="finishOnboarding()">SKIP (DEV)</button>
+                <button class="skip-dev" onclick="finishOnboarding()">SKIP (DEV)</button>
 
-              <div class="step-progress">
-                <span class="step-dot"></span>
-                <div class="step-line"></div>
-                <div class="step-line"></div>
-                <div class="step-line"></div>
+                <div class="step-progress">
+                  <span class="step-dot"></span>
+                  <div class="step-line"></div>
+                  <div class="step-line"></div>
+                  <div class="step-line"></div>
+                </div>
+
+                <h2>
+                  Et si vos trajets devenaient un <span class="orange">jeu</span>&nbsp;?
+                </h2>
+
+                <p>
+                  Faites de vos déplacements un moment ludique grâce à
+                  <strong>NaviGame</strong>, des mini-quiz culturels à jouer pendant votre trajet.
+                </p>
               </div>
+            </div>
 
-              <h2>
-                Et si vos trajets devenaient un <span class="orange">jeu</span> ?
-              </h2>
+            <!-- SLIDE 2 -->
+            <div class="slide">
+              <div class="card">
+                <div id="lottie-vert" class="lottie"></div>
 
-              <p>
-                Faites de vos déplacements un moment ludique grâce à
-                <strong>NaviGame</strong>, des mini-quiz culturels à jouer pendant votre trajet.
-              </p>
+                <div class="step-progress">
+                  <span class="step-dot"></span>
+                  <div class="step-line"></div>
+                  <div class="step-line"></div>
+                  <div class="step-line"></div>
+                </div>
+
+                <h2>
+                  <span class="green">Simple</span> comme votre trajet
+                </h2>
+
+                <p>
+                  Entrez en station, lancez une session, jouez quelques minutes
+                  et gagnez des points avant d’arriver à destination.
+                </p>
+              </div>
+            </div>
+
+            <!-- SLIDE 3 -->
+            <div class="slide">
+              <div class="card">
+                <div id="lottie-rose" class="lottie"></div>
+
+                <div class="step-progress">
+                  <span class="step-dot"></span>
+                  <div class="step-line"></div>
+                  <div class="step-line"></div>
+                  <div class="step-line"></div>
+                </div>
+
+                <h2>
+                  Jouez ensemble, en toute <span class="pink">tranquillité</span>
+                </h2>
+
+                <p>
+                  Partagez la partie avec les voyageurs de votre trajet
+                  de façon anonyme et temporaire.
+                </p>
+              </div>
+            </div>
+
+            <!-- SLIDE 4 -->
+            <div class="slide">
+              <div class="card">
+                <div class="lottie-bleu"></div>
+
+                <div class="step-progress">
+                  <span class="step-dot"></span>
+                  <div class="step-line"></div>
+                  <div class="step-line"></div>
+                  <div class="step-line"></div>
+                </div>
+
+                <h2>
+                  À vous de <span class="blue">jouer</span> !
+                </h2>
+
+                <p>
+                  Cumulez des points, débloquez des badges,
+                  grimpez au classement et profitez de récompenses partenaires.
+                </p>
+              </div>
             </div>
           </div>
 
-          <!-- SLIDE 2 -->
-          <div class="slide">
-            <div class="card">
-              <div id="lottie-vert" class="lottie"></div>
-
-              <div class="step-progress">
-                <span class="step-dot"></span>
-                <div class="step-line"></div>
-                <div class="step-line"></div>
-                <div class="step-line"></div>
-              </div>
-
-              <h2>
-                <span class="green">Simple</span> comme votre trajet
-              </h2>
-
-              <p>
-                Entrez en station, lancez une session, jouez quelques minutes
-                et gagnez des points avant d’arriver à destination.
-              </p>
-            </div>
+          <!-- NAVIGATION -->
+          <div class="nav-buttons">
+            <button class="back" type="button" onclick="prevSlide()"><span>‹</span></button>
+            <button id="nextBtn" class="next" type="button" onclick="nextSlide()">Suivant</button>
           </div>
+        </section>
 
-          <!-- SLIDE 3 -->
-          <div class="slide">
-            <div class="card">
-              <div id="lottie-rose" class="lottie"></div>
-
-              <div class="step-progress">
-                <span class="step-dot"></span>
-                <div class="step-line"></div>
-                <div class="step-line"></div>
-                <div class="step-line"></div>
-              </div>
-
-              <h2>
-                Jouez ensemble, en toute <span class="pink">tranquillité</span>
-              </h2>
-
-              <p>
-                Partagez la partie avec les voyageurs de votre trajet
-                de façon anonyme et temporaire.
-              </p>
-            </div>
-          </div>
-
-          <!-- SLIDE 4 -->
-          <div class="slide">
-            <div class="card">
-              <div class="lottie-bleu"></div>
-
-              <div class="step-progress">
-                <span class="step-dot"></span>
-                <div class="step-line"></div>
-                <div class="step-line"></div>
-                <div class="step-line"></div>
-              </div>
-
-              <h2>
-                À vous de <span class="blue">jouer</span> !
-              </h2>
-
-              <p>
-                Cumulez des points, débloquez des badges,
-                grimpez au classement et profitez de récompenses partenaires.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- NAVIGATION -->
-        <div class="nav-buttons">
-          <button class="back" type="button" onclick="prevSlide()">‹</button>
-          <button id="nextBtn" class="next" type="button" onclick="nextSlide()">Suivant</button>
-        </div>
-      </section>
-
-      <!-- =========================
+        <!-- =========================
            HOME (clean)
       ========================== -->
-      <section id="home" class="page hidden">
+        <section id="home" class="page hidden">
 
 
-        <div class="home-search">
-          <div class="searchbar searchbar--input">
-            <span class="search-ico" aria-hidden="true"></span>
+          <div class="home-search">
+            <div class="searchbar searchbar--input">
+              <span class="search-ico" aria-hidden="true"></span>
 
-            <input id="stationSearch" class="search-input" type="text" autocomplete="off"
-              placeholder="Rechercher une station" aria-label="Rechercher une station" />
+              <input id="stationSearch" class="search-input" type="text" autocomplete="off"
+                placeholder="Rechercher une station" aria-label="Rechercher une station" />
 
-            <button id="searchClear" class="search-clear" type="button" aria-label="Effacer">✕</button>
+              <button id="searchClear" class="search-clear" type="button" aria-label="Effacer">✕</button>
 
-            <div id="searchResults" class="search-results hidden" role="listbox" aria-label="Résultats"></div>
+              <div id="searchResults" class="search-results hidden" role="listbox" aria-label="Résultats"></div>
+            </div>
+
+            <button class="filter-btn" type="button" aria-label="Filtres">⚙︎</button>
           </div>
 
-          <button class="filter-btn" type="button" aria-label="Filtres">⚙︎</button>
-        </div>
+          <!-- bottom sheet (statique pour l’instant) -->
+          <div class="sheet">
 
-        <!-- bottom sheet (statique pour l’instant) -->
-        <div class="sheet">
+            <!-- Zone drag (handle + grab) -->
+            <div class="sheet-grab-zone">
+              <div class="sheet-handle"></div>
+            </div>
 
-  <!-- Zone drag (handle + grab) -->
-  <div class="sheet-grab-zone">
-    <div class="sheet-handle"></div>
-  </div>
+            <!-- ✅ Contenu scrollable -->
+            <div class="sheet-content">
 
-  <!-- ✅ Contenu scrollable -->
-  <div class="sheet-content">
+              <!-- Shortcuts (Maison / Travail) -->
+              <div class="sheet-shortcuts">
+                <button class="chip active" type="button">
+                  <span class="chip-ico">🏠</span>
+                  <span class="chip-txt">
+                    <strong>Maison</strong>
+                  </span>
+                </button>
 
-    <!-- Shortcuts (Maison / Travail) -->
-    <div class="sheet-shortcuts">
-      <button class="chip active" type="button">
-        <span class="chip-ico">🏠</span>
-        <span class="chip-txt">
-          <strong>Maison</strong>
-          <small>3 rue du petit cham…</small>
-        </span>
-      </button>
+                <button class="chip" id="btn-work" type="button">
+                  <span class="chip-ico">💼</span>
+                  <span class="chip-txt">
+                    <strong>Travail</strong>
+                  </span>
+                </button>
+              </div>
 
-      <button class="chip" id="btn-work" type="button">
-        <span class="chip-ico">💼</span>
-        <span class="chip-txt">
-          <strong>Travail</strong>
-          <small>44 Av de colmar, Ru…</small>
-        </span>
-      </button>
-    </div>
+              <!-- Récemment consulté -->
+              <div class="sheet-section">
+                <h3>Récemment consulté</h3>
 
-    <!-- Récemment consulté -->
-    <div class="sheet-section">
-      <h3>Récemment consulté</h3>
+                <div class="recent-card v2">
+                  <div class="recent-head">
+                    <div class="recent-pincol" aria-hidden="true">
+                      <span class="rp rp-from"></span>
+                      <span class="rp rp-line"></span>
+                      <span class="rp rp-to"></span>
+                    </div>
 
-      <div class="recent-card">
-        <div class="recent-top">
-          <span class="recent-pin">📍</span>
-          <span class="recent-addr">69 Avenue du Marechal Joffre, Nanterre</span>
-          <span class="recent-arrow">→</span>
-        </div>
+                    <div class="recent-texts">
+                      <div class="recent-from">Bibliothèque François Mitterrand, Paris 13e Arrondiss…</div>
+                      <div class="recent-to">Saint-Lazare, Paris 8e Arrondissement</div>
+                    </div>
 
-        <div class="recent-main">
-          <div class="recent-title">
-            Boulanvilliers, Paris 16e<br>
-            <span>Arrondissement</span>
+                    <button class="recent-more" type="button" aria-label="Plus">•••</button>
+                  </div>
+
+                  <div class="recent-badges v2">
+                    <span class="b mode">M</span>
+                    <span class="b line l14">14</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Où allons-nous ? -->
+              <div class="sheet-section">
+                <h3>Où allons-nous ?</h3>
+
+                <div class="list">
+                  <button class="row" type="button">
+                    <span class="row-ico">🕒</span>
+                    <span class="row-txt">
+                      <strong>Boulanvilliers</strong>
+                      <small>Paris 16E Arrondissement (75016)</small>
+                    </span>
+                    <span class="row-arrow">→</span>
+                  </button>
+
+                  <button class="row" type="button">
+                    <span class="row-ico">🕒</span>
+                    <span class="row-txt">
+                      <strong>Belleville</strong>
+                      <small>Paris 20E Arrondissement (75020)</small>
+                    </span>
+                    <span class="row-arrow">→</span>
+                  </button>
+
+                  <button class="row" type="button">
+                    <span class="row-ico">🕒</span>
+                    <span class="row-txt">
+                      <strong>Rue du Ranelagh</strong>
+                      <small>Paris 16E Arrondissement (75016)</small>
+                    </span>
+                    <span class="row-arrow">→</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Actualités -->
+              <div class="sheet-section">
+                <h3>Actualités</h3>
+
+                <div class="news-carousel">
+                  <article class="news-card">
+                    <img class="news-thumb" src="asset/news-1.jpg" alt="">
+                    <div class="news-body">
+                      <div class="news-tag">Info</div>
+                      <h4>Le Passe Navigo coûtera 90,80€…</h4>
+                      <p>Mais pour 9 Franciliens sur 10, le prix sera de 45,50€ par mois…</p>
+                    </div>
+                  </article>
+
+                  <article class="news-card">
+                    <img class="news-thumb" src="asset/news-2.jpg" alt="">
+                    <div class="news-body">
+                      <div class="news-tag">Info</div>
+                      <h4>À voir, à faire en décembre…</h4>
+                      <p>Un marché de Noël pas comme les autres, une expo, une balade…</p>
+                    </div>
+                  </article>
+
+                  <article class="news-card">
+                    <img class="news-thumb" src="asset/news-3.jpg" alt="">
+                    <div class="news-body">
+                      <div class="news-tag">Info</div>
+                      <h4>Nouveautés réseau</h4>
+                      <p>Travaux, améliorations et infos pratiques pour vos trajets…</p>
+                    </div>
+                  </article>
+
+                  <article class="news-card">
+                    <img class="news-thumb" src="asset/news-4.jpg" alt="">
+                    <div class="news-body">
+                      <div class="news-tag">Info</div>
+                      <h4>La nouvelle ligne de Métro est là…</h4>
+                      <p>La ligne 15 sera prête à vous accueillir : nouvelles gares, nouveaux repères…</p>
+                    </div>
+                  </article>
+
+                  <article class="news-card">
+                    <img class="news-thumb" src="asset/news-5.jpg" alt="">
+                    <div class="news-body">
+                      <div class="news-tag">Info</div>
+                      <h4>Véligo Location se réinvente…</h4>
+                      <p>En 2026 : plus de choix, plus simple, et des nouveautés côté offres…</p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+            </div>
           </div>
 
-          <div class="recent-badges">
-            <span class="b">RER</span>
-            <span class="b red">A</span>
-            <span class="b">M</span>
-            <span class="b green">6</span>
-            <span class="b">M</span>
-            <span class="b yellow">9</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Où allons-nous ? -->
-    <div class="sheet-section">
-      <h3>Où allons-nous ?</h3>
-
-      <div class="list">
-        <button class="row" type="button">
-          <span class="row-ico">🕒</span>
-          <span class="row-txt">
-            <strong>Boulanvilliers</strong>
-            <small>Paris 16E Arrondissement (75016)</small>
-          </span>
-          <span class="row-arrow">→</span>
-        </button>
-
-        <button class="row" type="button">
-          <span class="row-ico">🕒</span>
-          <span class="row-txt">
-            <strong>Belleville</strong>
-            <small>Paris 20E Arrondissement (75020)</small>
-          </span>
-          <span class="row-arrow">→</span>
-        </button>
-
-        <button class="row" type="button">
-          <span class="row-ico">🕒</span>
-          <span class="row-txt">
-            <strong>Rue du Ranelagh</strong>
-            <small>Paris 16E Arrondissement (75016)</small>
-          </span>
-          <span class="row-arrow">→</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Actualités -->
-    <div class="sheet-section">
-      <h3>Actualités</h3>
-
-      <div class="news-carousel">
-        <article class="news-card">
-          <img class="news-thumb" src="asset/news-1.jpg" alt="">
-          <div class="news-body">
-            <div class="news-tag">Info</div>
-            <h4>Le Passe Navigo coûtera 90,80€…</h4>
-            <p>Mais pour 9 Franciliens sur 10, le prix sera de 45,50€ par mois…</p>
-          </div>
-        </article>
-
-        <article class="news-card">
-          <img class="news-thumb" src="asset/news-2.jpg" alt="">
-          <div class="news-body">
-            <div class="news-tag">Info</div>
-            <h4>À voir, à faire en décembre…</h4>
-            <p>Un marché de Noël pas comme les autres, une expo, une balade…</p>
-          </div>
-        </article>
-
-        <article class="news-card">
-          <img class="news-thumb" src="asset/news-3.jpg" alt="">
-          <div class="news-body">
-            <div class="news-tag">Info</div>
-            <h4>Nouveautés réseau</h4>
-            <p>Travaux, améliorations et infos pratiques pour vos trajets…</p>
-          </div>
-        </article>
-
-        <article class="news-card">
-          <img class="news-thumb" src="asset/news-4.jpg" alt="">
-          <div class="news-body">
-            <div class="news-tag">Info</div>
-            <h4>La nouvelle ligne de Métro est là…</h4>
-            <p>La ligne 15 sera prête à vous accueillir : nouvelles gares, nouveaux repères…</p>
-          </div>
-        </article>
-
-        <article class="news-card">
-          <img class="news-thumb" src="asset/news-5.jpg" alt="">
-          <div class="news-body">
-            <div class="news-tag">Info</div>
-            <h4>Véligo Location se réinvente…</h4>
-            <p>En 2026 : plus de choix, plus simple, et des nouveautés côté offres…</p>
-          </div>
-        </article>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 
+          <nav class="bottom-nav" aria-label="Navigation">
+            <button class="nav-item active" type="button">
+              <img class="nav-svg" src="asset/itineraires.svg" alt="" aria-hidden="true">
+              <span class="nav-txt">Itinéraires</span>
+            </button>
 
-        <nav class="bottom-nav" aria-label="Navigation">
-          <button class="nav-item active" type="button">
-            <img class="nav-svg" src="asset/itineraires.svg" alt="" aria-hidden="true">
-            <span class="nav-txt">Itinéraires</span>
-          </button>
+            <button class="nav-item" type="button">
+              <img class="nav-svg" src="asset/infotrafic.svg" alt="" aria-hidden="true">
+              <span class="nav-txt">Info trafic</span>
+            </button>
 
-          <button class="nav-item" type="button">
-            <img class="nav-svg" src="asset/infotrafic.svg" alt="" aria-hidden="true">
-            <span class="nav-txt">Info trafic</span>
-          </button>
+            <button class="nav-item" type="button">
+              <img class="nav-svg" src="asset/achat.svg" alt="" aria-hidden="true">
+              <span class="nav-txt">Achat</span>
+            </button>
 
-          <button class="nav-item" type="button">
-            <img class="nav-svg" src="asset/achat.svg" alt="" aria-hidden="true">
-            <span class="nav-txt">Achat</span>
-          </button>
+            <button class="nav-item" type="button">
+              <img class="nav-svg" src="asset/navigame.svg" alt="" aria-hidden="true">
+              <span class="nav-txt">NaviGame</span>
+            </button>
 
-          <button class="nav-item" type="button">
-            <img class="nav-svg" src="asset/navigame.svg" alt="" aria-hidden="true">
-            <span class="nav-txt">NaviGame</span>
-          </button>
+            <button class="nav-item" type="button">
+              <img class="nav-svg" src="asset/monespace.svg" alt="" aria-hidden="true">
+              <span class="nav-txt">Mon espace</span>
+            </button>
+          </nav>
+        </section>
 
-          <button class="nav-item" type="button">
-            <img class="nav-svg" src="asset/monespace.svg" alt="" aria-hidden="true">
-            <span class="nav-txt">Mon espace</span>
-          </button>
-        </nav>
-      </section>
-
-      <!-- =========================
+        <!-- =========================
            ITINERARY (LE BON, UNIQUE)
       ========================== -->
-      <section id="itinerary" class="page hidden">
-        <!-- Top bar -->
-        <header class="it-topbar">
-          <button class="it-backBtn" type="button" id="itBack" aria-label="Retour">‹</button>
-          <div class="it-topTitle">Itinéraires</div>
-          <button class="it-filterBtn" type="button" aria-label="Filtres">
-            <!-- icône sliders -->
-            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M4 7h10M18 7h2M10 7v0" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" />
-              <path d="M4 12h2M10 12h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              <path d="M4 17h10M18 17h2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              <circle cx="15" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="2" />
-              <circle cx="8" cy="12" r="2" fill="none" stroke="currentColor" stroke-width="2" />
-              <circle cx="15" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="2" />
-            </svg>
-          </button>
-        </header>
-
-        <!-- Route card -->
-        <div class="it-routeCard">
-          <div class="it-routeRows">
-            <div class="it-routeRow">
-              <div class="it-routeLabel">Départ</div>
-              <div class="it-routeValue">
-                <span id="itFromTxt">Châtelet</span><span class="it-routeMeta">, Paris 4E Arrondisseme…</span>
-              </div>
-            </div>
-
-            <div class="it-routeDivider"></div>
-
-            <div class="it-routeRow">
-              <div class="it-routeLabel">Arrivée</div>
-              <div class="it-routeValue">
-                <span id="itToTxt">La Défense</span><span class="it-routeMeta">, Puteaux (92800)</span>
-              </div>
-            </div>
-          </div>
-
-          <button class="it-swap" type="button" aria-label="Inverser">⇅</button>
-        </div>
-
-        <!-- Quand -->
-        <div class="it-when">
-          <div class="it-whenCell it-whenLeft">
-            <div class="it-whenLabel">Quand</div>
-            <div class="it-whenValue">Maintenant</div>
-          </div>
-          <button class="it-whenBtn" type="button">-10 min</button>
-          <button class="it-whenBtn it-whenBtnPlus" type="button">+10 min</button>
-        </div>
-
-        <!-- Modes -->
-        <div class="it-modes">
-          <button class="it-modeTab active" type="button">
-            <div class="it-modeIcon">
-              <!-- transport icon -->
+        <section id="itinerary" class="page hidden">
+          <!-- Top bar -->
+          <header class="it-topbar">
+            <button class="it-backBtn" type="button" id="itBack" aria-label="Retour">‹</button>
+            <div class="it-topTitle">Itinéraires</div>
+            <button class="it-filterBtn" type="button" aria-label="Filtres">
+              <!-- icône sliders -->
               <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M7 17h10M7 7h10M8 17v2M16 17v2" fill="none" stroke="currentColor" stroke-width="2"
+                <path d="M4 7h10M18 7h2M10 7v0" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" />
-                <path d="M8 3h8c2 0 3 1 3 3v11H5V6c0-2 1-3 3-3Z" fill="none" stroke="currentColor" stroke-width="2" />
+                <path d="M4 12h2M10 12h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M4 17h10M18 17h2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <circle cx="15" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="2" />
+                <circle cx="8" cy="12" r="2" fill="none" stroke="currentColor" stroke-width="2" />
+                <circle cx="15" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="2" />
               </svg>
-            </div>
-            <div class="it-modeTime">18min</div>
-            <div class="it-underline"></div>
-          </button>
+            </button>
+          </header>
 
-          <button class="it-modeTab" type="button">
-            <div class="it-modeIcon">
-              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 5v14M9 8l3-3 3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </div>
-            <div class="it-modeTime">&gt; 2h</div>
-            <div class="it-underline"></div>
-          </button>
-
-          <button class="it-modeTab" type="button">
-            <div class="it-modeIcon">
-              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 18l5-10h4l5 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                <circle cx="8" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="2" />
-                <circle cx="16" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="2" />
-              </svg>
-            </div>
-            <div class="it-modeTime">48min</div>
-            <div class="it-underline"></div>
-          </button>
-
-          <button class="it-modeTab" type="button">
-            <div class="it-modeIcon">
-              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 15l2-5h10l2 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                <path d="M7 15v3M17 15v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                <circle cx="8" cy="18" r="1" fill="currentColor" />
-                <circle cx="16" cy="18" r="1" fill="currentColor" />
-              </svg>
-            </div>
-            <div class="it-modeTime">-</div>
-            <div class="it-underline"></div>
-          </button>
-        </div>
-
-        <!-- Actions -->
-        <div class="it-actions">
-          <button class="it-pill" type="button">
-            <span class="it-pillPlus">＋</span> Éviter une ligne
-          </button>
-          <button class="it-pill" type="button">
-            <span class="it-pillPlus">＋</span> Éviter un arrêt
-          </button>
-        </div>
-
-        <h2 class="it-h2">Trajets suggérés</h2>
-
-        <!-- Cards list -->
-        <div class="it-cards" id="itList">
-          <!-- Card 1 -->
-          <div class="it-tripCard">
-            <div class="it-tripTop">
-              <span class="it-tag">Suggéré</span>
-              <div class="it-timeRange">10:19 → 10:37</div>
-            </div>
-
-            <div class="it-tripMid">
-              <div class="it-leftRow">
-                <div class="it-walk">
-                  <span class="it-walkMan">🚶</span>
-                  <span class="it-walkMin">08</span>
-                </div>
-
-                <div class="it-badgesRow">
-                  <span class="it-badgeMode">RER</span>
-                  <span class="it-badgeLine it-line-A">A</span>
+          <!-- Route card -->
+          <div class="it-routeCard">
+            <div class="it-routeRows">
+              <div class="it-routeRow">
+                <div class="it-routeLabel">Départ</div>
+                <div class="it-routeValue">
+                  <span id="itFromTxt">Châtelet</span><span class="it-routeMeta">, Paris 4E Arrondisseme…</span>
                 </div>
               </div>
 
-              <div class="it-rightRow">
-                <div class="it-durationBig">18 min</div>
-                <div class="it-price">2,55 €</div>
+              <div class="it-routeDivider"></div>
+
+              <div class="it-routeRow">
+                <div class="it-routeLabel">Arrivée</div>
+                <div class="it-routeValue">
+                  <span id="itToTxt">La Défense</span><span class="it-routeMeta">, Puteaux (92800)</span>
+                </div>
               </div>
             </div>
 
-            <div class="it-tripBottom">
-              <span class="it-phoneWave" aria-hidden="true"></span>
-              <div class="it-deps">
-                <strong>0, 5, 11 min</strong> <span>de Châtelet les Halles</span>
-              </div>
-            </div>
+            <button class="it-swap" type="button" aria-label="Inverser">⇅</button>
           </div>
 
-          <!-- Card 2 -->
-          <div class="it-tripCard">
-            <div class="it-tripTop">
-              <span class="it-tag it-tagAlt">Le moins de marche</span>
-              <div class="it-timeRange">10:18 → 10:39</div>
+          <!-- Quand -->
+          <div class="it-when">
+            <div class="it-whenCell it-whenLeft">
+              <div class="it-whenLabel">Quand</div>
+              <div class="it-whenValue">Maintenant</div>
             </div>
+            <button class="it-whenBtn" type="button">-10 min</button>
+            <button class="it-whenBtn it-whenBtnPlus" type="button">+10 min</button>
+          </div>
 
-            <div class="it-tripMid">
-              <div class="it-leftRow">
-                <div class="it-badgesRow">
-                  <span class="it-badgeMode">M</span>
-                  <span class="it-badgeLine it-line-1">1</span>
+          <!-- Modes -->
+          <div class="it-modes">
+            <button class="it-modeTab active" type="button">
+              <div class="it-modeIcon">
+                <!-- transport icon -->
+                <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17h10M7 7h10M8 17v2M16 17v2" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" />
+                  <path d="M8 3h8c2 0 3 1 3 3v11H5V6c0-2 1-3 3-3Z" fill="none" stroke="currentColor" stroke-width="2" />
+                </svg>
+              </div>
+              <div class="it-modeTime">18min</div>
+              <div class="it-underline"></div>
+            </button>
+
+            <button class="it-modeTab" type="button">
+              <div class="it-modeIcon">
+                <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 5v14M9 8l3-3 3 3" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="it-modeTime">&gt; 2h</div>
+              <div class="it-underline"></div>
+            </button>
+
+            <button class="it-modeTab" type="button">
+              <div class="it-modeIcon">
+                <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 18l5-10h4l5 10" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" />
+                  <circle cx="8" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="2" />
+                  <circle cx="16" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="2" />
+                </svg>
+              </div>
+              <div class="it-modeTime">48min</div>
+              <div class="it-underline"></div>
+            </button>
+
+            <button class="it-modeTab" type="button">
+              <div class="it-modeIcon">
+                <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 15l2-5h10l2 5" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" />
+                  <path d="M7 15v3M17 15v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <circle cx="8" cy="18" r="1" fill="currentColor" />
+                  <circle cx="16" cy="18" r="1" fill="currentColor" />
+                </svg>
+              </div>
+              <div class="it-modeTime">-</div>
+              <div class="it-underline"></div>
+            </button>
+          </div>
+
+          <!-- Actions -->
+          <div class="it-actions">
+            <button class="it-pill" type="button">
+              <span class="it-pillPlus">＋</span> Éviter une ligne
+            </button>
+            <button class="it-pill" type="button">
+              <span class="it-pillPlus">＋</span> Éviter un arrêt
+            </button>
+          </div>
+
+          <h2 class="it-h2">Trajets suggérés</h2>
+
+          <!-- Cards list -->
+          <div class="it-cards" id="itList">
+            <!-- Card 1 -->
+            <div class="it-tripCard">
+              <div class="it-tripTop">
+                <span class="it-tag">Suggéré</span>
+                <div class="it-timeRange">10:19 → 10:37</div>
+              </div>
+
+              <div class="it-tripMid">
+                <div class="it-leftRow">
+                  <div class="it-walk">
+                    <span class="it-walkMan">🚶</span>
+                    <span class="it-walkMin">08</span>
+                  </div>
+
+                  <div class="it-badgesRow">
+                    <span class="it-badgeMode">RER</span>
+                    <span class="it-badgeLine it-line-A">A</span>
+                  </div>
+                </div>
+
+                <div class="it-rightRow">
+                  <div class="it-durationBig">18 min</div>
+                  <div class="it-price">2,55 €</div>
                 </div>
               </div>
 
-              <div class="it-rightRow">
-                <div class="it-durationBig">21 min</div>
-                <div class="it-price">2,55 €</div>
+              <div class="it-tripBottom">
+                <span class="it-phoneWave" aria-hidden="true"></span>
+                <div class="it-deps">
+                  <strong>0, 5, 11 min</strong> <span>de Châtelet les Halles</span>
+                </div>
               </div>
             </div>
 
-            <div class="it-tripBottom">
-              <span class="it-phoneWave" aria-hidden="true"></span>
-              <div class="it-deps">
-                <strong>2, 4, 6 min</strong> <span>de Châtelet</span>
+            <!-- Card 2 -->
+            <div class="it-tripCard">
+              <div class="it-tripTop">
+                <span class="it-tag it-tagAlt">Le moins de marche</span>
+                <div class="it-timeRange">10:18 → 10:39</div>
+              </div>
+
+              <div class="it-tripMid">
+                <div class="it-leftRow">
+                  <div class="it-badgesRow">
+                    <span class="it-badgeMode">M</span>
+                    <span class="it-badgeLine it-line-1">1</span>
+                  </div>
+                </div>
+
+                <div class="it-rightRow">
+                  <div class="it-durationBig">21 min</div>
+                  <div class="it-price">2,55 €</div>
+                </div>
+              </div>
+
+              <div class="it-tripBottom">
+                <span class="it-phoneWave" aria-hidden="true"></span>
+                <div class="it-deps">
+                  <strong>2, 4, 6 min</strong> <span>de Châtelet</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
 
 
 
 
-      <section id="trip" class="page hidden">
-        <!-- la map reste la même (#map). Ici on ne remet PAS un 2e #map -->
-        <div class="trip-ui">
-          <button class="trip-back" id="tripBack" type="button">‹</button>
+        <section id="trip" class="page hidden">
+          <!-- la map reste la même (#map). Ici on ne remet PAS un 2e #map -->
+          <div class="trip-ui">
+            <button class="trip-back" id="tripBack" type="button">‹</button>
 
-          <div class="trip-fabs">
-            <button class="trip-fab" type="button">☆</button>
-            <button class="trip-fab" type="button">➤</button>
-          </div>
-
-          <button class="trip-start" type="button">→ Démarrer</button>
-        </div>
-
-        <div class="trip-sheet" id="tripSheet">
-          <div class="trip-handle"></div>
-
-          <div class="trip-row">
-            <div class="trip-badges">
-              <span class="tb-mode">M</span>
-              <span class="tb-line" id="tripLineBadge">1</span>
+            <div class="trip-fabs">
+              <button class="trip-fab" type="button">☆</button>
+              <button class="trip-fab" type="button">➤</button>
             </div>
-            <div class="trip-time">
-              <div class="trip-range" id="tripRange">13:38 → 13:58</div>
-              <div class="trip-min" id="tripMin">20 min</div>
-            </div>
+
+            <button class="trip-start" type="button">→ Démarrer</button>
           </div>
 
-          <div class="trip-block">
-            <div class="trip-label">Départ</div>
-            <div class="trip-value" id="tripFrom">Station Châtelet</div>
-          </div>
+          <div class="trip-sheet" id="tripSheet">
+            <div class="trip-handle"></div>
 
-          <div class="trip-card">
-            <div class="trip-card-top">
-              <div class="trip-card-left">
+            <div class="trip-row">
+              <div class="trip-badges">
                 <span class="tb-mode">M</span>
-                <span class="tb-line" id="tripLineBadge2">1</span>
-                <span class="trip-card-title">Métro 1</span>
+                <span class="tb-line" id="tripLineBadge">1</span>
               </div>
-              <button class="trip-more" type="button">•••</button>
-            </div>
-            <div class="trip-card-sub" id="tripDir">Vers La Défense (Grande Arche)</div>
-
-            <div class="trip-times">
-              <div class="trip-time-row"><span>Départ à 13:38</span><span class="ok">📶 1 min</span></div>
-              <div class="trip-time-row"><span>Départ à 13:42</span><span class="ok">📶 5 min</span></div>
-              <div class="trip-time-row"><span>Départ à 13:45</span><span class="ok">📶 8 min</span></div>
+              <div class="trip-time">
+                <div class="trip-range" id="tripRange">13:38 → 13:58</div>
+                <div class="trip-min" id="tripMin">20 min</div>
+              </div>
             </div>
 
-            <div class="trip-stops" id="tripStops">▼ 14 arrêts | 20 min</div>
+            <div class="trip-block">
+              <div class="trip-label">Départ</div>
+              <div class="trip-value" id="tripFrom">Station Châtelet</div>
+            </div>
+
+            <div class="trip-card">
+              <div class="trip-card-top">
+                <div class="trip-card-left">
+                  <span class="tb-mode">M</span>
+                  <span class="tb-line" id="tripLineBadge2">1</span>
+                  <span class="trip-card-title">Métro 1</span>
+                </div>
+                <button class="trip-more" type="button">•••</button>
+              </div>
+              <div class="trip-card-sub" id="tripDir">Vers La Défense (Grande Arche)</div>
+
+              <div class="trip-times">
+                <div class="trip-time-row"><span>Départ à 13:38</span><span class="ok">📶 1 min</span></div>
+                <div class="trip-time-row"><span>Départ à 13:42</span><span class="ok">📶 5 min</span></div>
+                <div class="trip-time-row"><span>Départ à 13:45</span><span class="ok">📶 8 min</span></div>
+              </div>
+
+              <div class="trip-stops" id="tripStops">▼ 14 arrêts | 20 min</div>
+            </div>
+
+            <div class="trip-block">
+              <div class="trip-label">Arrivée</div>
+              <div class="trip-value" id="tripTo">Station La Défense</div>
+            </div>
           </div>
-
-          <div class="trip-block">
-            <div class="trip-label">Arrivée</div>
-            <div class="trip-value" id="tripTo">Station La Défense</div>
-          </div>
-        </div>
-      </section>
+        </section>
 
 
 
-    </main>
+      </main>
+    </div>
   </div>
+
+
 
   <!-- LOTTIE -->
   <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
 
   <!-- Leaflet -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- JS split -->
   <script src="js/onboarding.js"></script>
   <script src="js/home.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/decor-curves.js"></script>
+
 
 </body>
 

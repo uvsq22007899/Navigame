@@ -597,10 +597,12 @@ function initBottomSheet() {
   // mid : position “normal”
   // peek: position “presque fermé”
   const SNAP = {
-    open: 150,
-    mid: () => Math.round(window.innerHeight * 0.38),
-    peek: () => Math.round(window.innerHeight * 0.70),
-  };
+  open: Math.round(searchBottom + 100),
+  mid: () => Math.round(window.innerHeight * 0.38),
+  peek: () => Math.round(window.innerHeight * 0.70),
+};
+
+
 
   let currentY = SNAP.mid();
   let isDragging = false;
