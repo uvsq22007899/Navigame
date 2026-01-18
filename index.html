@@ -164,7 +164,10 @@
               <div id="searchResults" class="search-results hidden" role="listbox" aria-label="Résultats"></div>
             </div>
 
-            <button class="filter-btn" type="button" aria-label="Filtres">⚙︎</button>
+            <button class="filter-btn" type="button" aria-label="Réglages">
+              <img class="filter-ico" src="asset/Home/filtre.svg" alt="" aria-hidden="true">
+            </button>
+
           </div>
 
           <!-- bottom sheet (statique pour l’instant) -->
@@ -178,22 +181,23 @@
             <!-- ✅ Contenu scrollable -->
             <div class="sheet-content">
 
-              <!-- Shortcuts (Maison / Travail) -->
-              <div class="sheet-shortcuts">
-                <button class="chip active" type="button">
-                  <span class="chip-ico">🏠</span>
-                  <span class="chip-txt">
-                    <strong>Maison</strong>
+              <div class="sheet-shortcuts fg">
+                <button class="fg-chip is-active" type="button" aria-label="Maison">
+                  <span class="fg-ico" aria-hidden="true">
+                    <img src="asset/Home/maison.svg" alt="" aria-hidden="true">
                   </span>
+                  <span class="fg-txt">Maison</span>
                 </button>
 
-                <button class="chip" id="btn-work" type="button">
-                  <span class="chip-ico">💼</span>
-                  <span class="chip-txt">
-                    <strong>Travail</strong>
+                <button class="fg-chip" id="btn-work" type="button" aria-label="Travail">
+                  <span class="fg-ico" aria-hidden="true">
+                    <img src="asset/Home/travail.svg" alt="" aria-hidden="true">
                   </span>
+                  <span class="fg-txt">Travail</span>
                 </button>
               </div>
+
+
 
               <!-- Récemment consulté -->
               <div class="sheet-section">
@@ -229,7 +233,8 @@
 
                 <div class="list">
                   <button class="row" type="button">
-                    <span class="row-ico">🕒</span>
+                    <img class="row-ico row-ico--svg" src="asset/Home/clock.svg" alt="" aria-hidden="true">
+
                     <span class="row-txt">
                       <strong>Boulanvilliers</strong>
                       <small>Paris 16E Arrondissement (75016)</small>
@@ -238,7 +243,8 @@
                   </button>
 
                   <button class="row" type="button">
-                    <span class="row-ico">🕒</span>
+                    <img class="row-ico row-ico--svg" src="asset/Home/clock.svg" alt="" aria-hidden="true">
+
                     <span class="row-txt">
                       <strong>Belleville</strong>
                       <small>Paris 20E Arrondissement (75020)</small>
@@ -247,7 +253,7 @@
                   </button>
 
                   <button class="row" type="button">
-                    <span class="row-ico">🕒</span>
+                    <img class="row-ico row-ico--svg" src="asset/Home/clock.svg" alt="" aria-hidden="true">
                     <span class="row-txt">
                       <strong>Rue du Ranelagh</strong>
                       <small>Paris 16E Arrondissement (75016)</small>
@@ -401,7 +407,7 @@
           <div class="it-modes">
             <button class="it-modeTab active" type="button">
               <div class="it-modeIcon">
-                <!-- transport icon -->
+                <!-- métro+bus -->
                 <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M7 17h10M7 7h10M8 17v2M16 17v2" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" />
@@ -414,6 +420,7 @@
 
             <button class="it-modeTab" type="button">
               <div class="it-modeIcon">
+                <!-- marche -->
                 <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 5v14M9 8l3-3 3 3" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round" />
@@ -425,6 +432,7 @@
 
             <button class="it-modeTab" type="button">
               <div class="it-modeIcon">
+                <!-- vélo -->
                 <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M5 18l5-10h4l5 10" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" />
@@ -438,6 +446,7 @@
 
             <button class="it-modeTab" type="button">
               <div class="it-modeIcon">
+                <!-- voiture -->
                 <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M5 15l2-5h10l2 5" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" />
@@ -450,6 +459,7 @@
               <div class="it-underline"></div>
             </button>
           </div>
+
 
           <!-- Actions -->
           <div class="it-actions">
@@ -480,7 +490,7 @@
                   </div>
 
                   <div class="it-badgesRow">
-                    <span class="it-badgeMode">RER</span>
+                    <span class="it-badgeMode rer">RER</span>
                     <span class="it-badgeLine it-line-A">A</span>
                   </div>
                 </div>
@@ -509,7 +519,7 @@
               <div class="it-tripMid">
                 <div class="it-leftRow">
                   <div class="it-badgesRow">
-                    <span class="it-badgeMode">M</span>
+                    <span class="it-badgeMode metro">M</span>
                     <span class="it-badgeLine it-line-1">1</span>
                   </div>
                 </div>

@@ -44,11 +44,11 @@
 }
 
 .filter-btn {
+  background: #B8DDFA;
   width: 44px;
   height: 44px;
   border-radius: 14px;
   border: none;
-  background: rgba(255, 255, 255, .92);
   box-shadow: 0 10px 25px rgba(0, 0, 0, .12);
   backdrop-filter: blur(10px);
   font-size: 18px;
@@ -111,22 +111,19 @@
 .sheet-handle{
   width:56px;
   height:5px;
-  background:#d9d9d9;
+  background:#B8DDFA;
   border-radius:999px;
 
   /* ✅ centré + air bas */
   margin:0 auto 10px;
 }
 
-/* shortcuts (chips) */
-.sheet-shortcuts{
+/* Ancien système (emoji) — UNIQUEMENT si pas en FG */
+.sheet-shortcuts:not(.fg){
   display:flex;
-  flex-direction:row;
-  gap:12px;
-
-  /* un peu d’air sous les chips */
-  padding:6px 2px 12px;
+  gap:14px;
 }
+
 
 /* contenu scrollable */
 .sheet-content{
@@ -145,51 +142,53 @@
   padding-bottom:100px;
 }
 
-.chip{
+.sheet-shortcuts:not(.fg) .chip{
   flex:1;
-  border:none;
-  border-radius:16px;                 /* moins gros */
-  background: rgba(90,167,255,.14);
-  border: 1px solid rgba(62,145,255,.20);
-
-  padding:10px 12px;                  /* ✅ plus petit */
   display:flex;
   align-items:center;
-  gap:10px;
-  justify-content:center;  
-  min-width:0;                        /* ✅ ellipsis safe */
+  gap:12px;
+
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:18px;
+  padding:14px 16px;
+
+  box-shadow:0 12px 26px rgba(0,0,0,.08);
+  cursor:pointer;
+
+  transition:transform .15s ease, box-shadow .15s ease;
 }
 
 
 
 
 
+.chip:active{
+  transform:scale(.98);
+  box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+/* emoji */
 .chip-ico{
-  font-size:27px;
-  opacity:.95;
-  width:auto;
-  height:auto;
-  background:transparent;   /* ✅ enlève le blanc */
-  box-shadow:none;         /* ✅ */
-  border-radius:0;         /* ✅ */
-  display:block;
-  transform: translateX(-8px);
+  font-size:26px;
+  transform: translateX(-2px);
 }
 
-
-
-.chip-txt{
-  min-width:0;
+/* texte */
+.chip-txt strong{
+  font-size:20px;
+  font-weight:800;
+  color:#111;
 }
 
-.chip-txt strong {
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-  display: block;
-  font-size: 22px;
-  font-weight: 500; /* optionnel si tu veux + impact */
-    text-align:center;   
+/* petit chevron (pour dire cliquable) */
+.chip::after{
+  content:"›";
+  margin-left:auto;
+  font-size:22px;
+  font-weight:900;
+  color: rgba(0,0,0,.25);
 }
-
 
 
 
@@ -238,7 +237,7 @@
 .recent-card.v2 .rp-from{
   width:22px; height:22px;   /* 26 -> 22 */
   border-radius:999px;
-  border:3px solid rgba(0,0,0,.75);
+  border:3px solid #6ab2e9;
   background:transparent;
   position:relative;
 }
@@ -247,7 +246,7 @@
   position:absolute;
   inset:5px;                 /* 6 -> 5 */
   border-radius:999px;
-  border:3px solid rgba(0,0,0,.75);
+  border:3px solid #6ab2e9;
 }
 
 .recent-card.v2 .rp-line{
@@ -256,7 +255,7 @@
   margin:5px 0;              /* 6 -> 5 */
   background: repeating-linear-gradient(
     to bottom,
-    rgba(0,0,0,.55) 0 6px,
+    #6ab2e9 0 6px,
     transparent 6px 12px
   );
   border-radius:2px;
@@ -296,19 +295,24 @@
 
 /* ✅ GROS TITRE (réduit) */
 .recent-card.v2 .recent-to{
-  margin-top:6px;            /* 8 -> 6 */
-  font-size:22px;            /* 30 -> 22 (≈ /1.36) */
-  font-weight:750;
-  letter-spacing:-.6px;
-  line-height:1.05;
+  margin-top:4px;
+  font-size:19px;          /* ✅ réduit */
+  font-weight:700;         /* ✅ plus net */
+  letter-spacing:-.4px;
+  line-height:1.12;        /* ✅ respire un peu */
   color:#111;
+
+  display:-webkit-box;     /* ✅ coupe sur 2 lignes max */
+  -webkit-box-orient:vertical;
+  overflow:hidden;
 }
+
 
 /* ✅ Bouton "..." plus petit */
 .recent-card.v2 .recent-more{
   border:none;
   background:transparent;
-  color:#2f86ff;
+  color:#6ab2e9;
   font-weight:900;
   font-size:16px;            /* 20 -> 16 */
   line-height:1;
@@ -379,10 +383,15 @@
   border-bottom: none;
 }
 
-.row-ico {
-  width: 26px;
+.row-ico{
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
   opacity: .75;
+  display: block;
+  object-fit: contain;
 }
+
 
 .row-txt {
   text-align: left;
@@ -402,8 +411,22 @@
 }
 
 .row-arrow {
+  color: #6ab2e9; /* ton bleu */
   font-weight: 900;
-  opacity: .6;
+  opacity: 1;
+}
+
+
+.filter-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.filter-ico{
+  width:22px;
+  height:22px;
+  display:block;
 }
 
 
@@ -817,3 +840,80 @@
 .si-mode.metro{
   font-size:16px;  /* gros “M” mais pas énorme */
 }
+
+/* ====== Figma chips (Maison / Travail) ====== */
+/* =========================
+   HOME – FG SHORTCUTS
+========================= */
+
+/* =========================
+   HOME – FG SHORTCUTS
+========================= */
+
+
+
+/* ⚠️ Si tu as un ancien style qui les rend "full row" */
+.sheet-shortcuts.fg > .fg-chip{
+  min-width:0; /* évite que ça casse la grille */
+}
+
+
+.fg-ico{
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color: rgba(0,0,0,.85);
+}
+
+.fg-txt{
+  font-weight: 600;
+  font-size: 18px;
+  color: #111;
+}
+
+/* état actif (optionnel) */
+.fg-chip.is-active{
+  background: rgba(47,134,255,.26);
+  border-color: rgba(47,134,255,.35);
+}
+
+.sheet-shortcuts.fg{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+  margin-bottom:14px;
+  align-items:stretch;
+}
+
+.fg-chip{
+  width:100%;
+  height:54px;                 /* moins haut */
+  box-sizing:border-box;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:0 12px;              /* moins de padding */
+
+  border-radius:14px;
+  border:1px solid rgba(0,0,0,.06); /* plus fin */
+
+  background:#eef4ff;          /* ✅ nouveau fond */
+  box-shadow: 0 8px 18px rgba(0,0,0,.06); /* moins lourd */
+}
+
+/* normal */
+.fg-chip{
+  background:#B8DDFA; /* bleu très light */
+}
+
+/* actif (Maison par ex) */
+.fg-chip.is-active{
+  background:#B8DDFA;                 /* un peu plus bleu */
+}
+
+.filter-btn{ background:#B8DDFA !important; }
+

@@ -597,11 +597,10 @@ function initBottomSheet() {
   // mid : position “normal”
   // peek: position “presque fermé”
   const SNAP = {
-  open: Math.round(searchBottom + 100),
-  mid: () => Math.round(window.innerHeight * 0.38),
-  peek: () => Math.round(window.innerHeight * 0.70),
-};
-
+    open: Math.round(searchBottom + 100),
+    mid: () => Math.round(window.innerHeight * 0.38),
+    peek: () => Math.round(window.innerHeight * 0.70),
+  };
 
 
   let currentY = SNAP.mid();
@@ -829,10 +828,10 @@ function initSearchUI() {
   });
 
   results.addEventListener("click", (e) => {
-  const btn = e.target.closest(".search-item");
-  if (!btn) return;
+    const btn = e.target.closest(".search-item");
+    if (!btn) return;
 
-  window.sheetTo?.("peek"); // ✅ ferme/descend le volet pour voir la map
+    window.sheetTo?.("peek"); // ✅ ferme/descend le volet pour voir la map
 
 
     const key = btn.getAttribute("data-key");
@@ -947,18 +946,20 @@ function renderItineraryFake(fromName, toName) {
       tripId: "rerA",
       duration: "18 min",
       badges: [
-        `<span class="it-mode">RER</span>`,
-        `<span class="it-line line-A" style="background:${stationColor("RER", "A")}">A</span>`
+        `<span class="it-mode it-mode--rer">RER</span>`,
+        `<span class="it-line line-A">A</span>`
       ],
+
       waits: "0, 5, 11 min"
     },
     {
       tripId: "metro1",
       duration: "21 min",
       badges: [
-        `<span class="it-mode">M</span>`,
-        `<span class="it-line line-1" style="background:${stationColor("M", "1")}">1</span>`
+        `<span class="it-mode it-mode--metro">M</span>`,
+        `<span class="it-line line-1">1</span>`
       ],
+
       waits: "2, 4, 6 min"
     }
   ];

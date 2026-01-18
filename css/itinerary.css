@@ -1,383 +1,575 @@
+/* =========================
+   ITINERARY PAGE (CLEAN + FIX BADGES)
+   -> 1 seul système: .it-mode + .it-line
+========================= */
+
 /* PAGE */
-#itinerary{
-  background:#ffffff;
+#itinerary {
+  background: #f2f4f7;
   padding: 14px 14px 18px;
 }
 
-/* Topbar */
-.it-topbar{
-  display:flex;
-  align-items:center;
-  gap:12px;
+/* =========================
+   TOPBAR
+========================= */
+.it-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 4px 0 10px;
 }
 
-.it-backBtn{
-  width:44px;
-  height:44px;
-  border:none;
-  border-radius:14px;
-  background:#ffffff;
-  box-shadow: 0 10px 25px rgba(0,0,0,.10);
-  font-size:20px;
-  line-height:1;
+.it-backBtn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .10);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
 }
 
-.it-topTitle{
-  flex:1;
-  text-align:center;
-  font-weight:800;
-  font-size:18px;
-  transform: translateX(-22px); /* compense le bouton back */
+.it-topTitle {
+  flex: 1;
+  text-align: center;
+  font-weight: 800;
+  font-size: 18px;
+  transform: translateX(-22px);
 }
 
-.it-filterBtn{
-  width:44px;
-  height:44px;
-  border:none;
-  border-radius:14px;
-  background:transparent;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.it-filterBtn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 14px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #3e91ff;
+  cursor: pointer;
 }
 
-/* Route card */
-.it-routeCard{
-  position:relative;
-  background:#fff;
-  border:1px solid rgba(0,0,0,.10);
-  border-radius:12px;
+/* =========================
+   ROUTE CARD
+========================= */
+.it-routeCard {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
   padding: 14px 54px 14px 14px;
 }
 
-.it-routeRows{ display:flex; flex-direction:column; gap:12px; }
-.it-routeRow{ display:grid; grid-template-columns: 70px 1fr; gap:14px; align-items:center; }
-
-.it-routeLabel{
-  color:#7b7b7b;
-  font-size:13px;
+.it-routeRows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.it-routeValue{
-  font-size:16px;
-  font-weight:800;
-  color:#111;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+.it-routeRow {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 14px;
+  align-items: center;
 }
 
-.it-routeMeta{
-  font-weight:600;
-  color:#6f6f6f;
+.it-routeLabel {
+  color: #7b7b7b;
+  font-size: 13px;
 }
 
-.it-routeDivider{
-  height:1px;
-  background: rgba(0,0,0,.10);
+.it-routeValue {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.it-routeMeta {
+  font-weight: 600;
+  color: #6f6f6f;
+}
+
+.it-routeDivider {
+  height: 1px;
+  background: rgba(0, 0, 0, .10);
   margin-left: 70px;
 }
 
-.it-swap{
-  position:absolute;
-  right:10px;
-  top:50%;
+.it-swap {
+  position: absolute;
+  right: 10px;
+  top: 50%;
   transform: translateY(-50%);
-  width:42px;
-  height:42px;
-  border-radius:999px;
-  border:2px solid rgba(27,85,255,.25);
-  background:#fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 2px solid rgba(27, 85, 255, .25);
+  background: #fff;
   color: #3e91ff;
-  font-size:18px;
+  font-size: 18px;
+  cursor: pointer;
 }
 
-/* Quand */
-.it-when{
+/* =========================
+   WHEN
+========================= */
+.it-when {
   margin-top: 10px;
-  display:grid;
+  display: grid;
   grid-template-columns: 1fr 96px 96px;
-  border:1px solid rgba(0,0,0,.10);
-  border-radius:10px;
-  overflow:hidden;
-  background:#fff;
+  border: 1px solid rgba(0, 0, 0, .10);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
 }
 
-.it-whenCell{
-  padding:10px 12px;
-  display:flex;
-  gap:8px;
-  align-items:center;
+.it-whenCell {
+  padding: 10px 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
-.it-whenLabel{ color:#7b7b7b; font-size:13px; }
-.it-whenValue{ font-size:16px; font-weight:800; color:#111; }
-
-.it-whenBtn{
-  border:none;
-  background:#fff;
-  font-weight:800;
-  color:#6f6f6f;
-  border-left:1px solid rgba(0,0,0,.10);
+.it-whenLabel {
+  color: #7b7b7b;
+  font-size: 13px;
 }
 
-.it-whenBtnPlus{ color:#1b55ff; }
+.it-whenValue {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111;
+}
 
-/* Modes tabs */
-.it-modes{
+.it-whenBtn {
+  border: none;
+  background: #fff;
+  font-weight: 800;
+  color: #6f6f6f;
+  border-left: 1px solid rgba(0, 0, 0, .10);
+  cursor: pointer;
+}
+
+.it-whenBtnPlus {
+  color: #1b55ff;
+}
+
+/* =========================
+   MODES (top tabs iOS)
+========================= */
+.it-modes {
   margin-top: 12px;
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 6px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
 }
 
-.it-modeTab{
-  flex:1;
-  border:none;
-  background:transparent;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:6px;
-  padding: 8px 6px 12px;
-  color:#6f6f6f;
-  position:relative;
+.it-modeTab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0 12px;
+  color: rgba(0, 0, 0, .55);
+  position: relative;
+  cursor: pointer;
 }
 
-.it-modeIcon{
-  width:52px;
-  height:52px;
-  border-radius:999px;
-  border:2px solid rgba(0,0,0,.22);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#fff;
+.it-modeIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(62, 145, 255, .55);
+  color: rgba(62, 145, 255, .95);
+  background: transparent;
 }
 
-.it-modeTime{
-  font-size:14px;
-  font-weight:900;
+.it-modeIcon svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
 }
 
-.it-modeTab.active{   color: #3e91ff; }
-.it-modeTab.active .it-modeIcon{ border-color: rgba(27,85,255,.55); }
-
-.it-underline{
-  position:absolute;
-  bottom:0;
-  left:18%;
-  right:18%;
-  height:3px;
-  border-radius:3px;
-  background:transparent;
+.it-modeTime {
+  font-weight: 800;
+  font-size: 14px;
+  color: rgba(0, 0, 0, .55);
 }
 
-.it-modeTab.active .it-underline{ background: #3e91ff; }
+.it-modeTab.active {
+  color: rgba(62, 145, 255, 1);
+}
 
-/* Actions pills */
-.it-actions{
+.it-modeTab.active .it-modeIcon {
+  background: rgba(62, 145, 255, 1);
+  border-color: rgba(62, 145, 255, 1);
+  color: #fff;
+}
+
+.it-modeTab.active .it-modeTime {
+  color: rgba(62, 145, 255, 1);
+}
+
+/* underline */
+.it-underline {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 0;
+  height: 4px;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.it-modeTab.active .it-underline {
+  background: rgba(62, 145, 255, 1);
+}
+
+/* =========================
+   ACTION PILLS
+========================= */
+.it-actions {
   margin-top: 14px;
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.it-pill{
-  border:2px solid rgba(27,85,255,.45);
+.it-pill {
+  border: 2px solid rgba(27, 85, 255, .45);
   color: #3e91ff;
-  background:#fff;
+  background: #fff;
   padding: 10px 14px;
-  border-radius:999px;
-  font-weight:900;
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
+  border-radius: 999px;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
 }
 
-.it-pillPlus{
-  width:24px;
-  height:24px;
-  border:2px solid rgba(27,85,255,.45);
-  border-radius:999px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
+.it-pillPlus {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(27, 85, 255, .45);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
 }
 
-/* Title */
-.it-h2{
+/* =========================
+   TITLE
+========================= */
+.it-h2 {
   margin-top: 14px;
-  font-size:28px;
-  font-weight:900;
-  letter-spacing:-.5px;
-  color:#111;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -.5px;
+  color: #111;
 }
 
-/* Trip cards */
-.it-cards{
+/* =========================
+   TRIP CARDS (list)
+========================= */
+.it-cards {
   margin-top: 10px;
-  display:flex;
-  flex-direction:column;
-  gap:14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.it-tripCard{
-  background:#fff;
-  border-radius:16px;
-  border:1px solid rgba(0,0,0,.10);
-  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+.it-tripCard {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, .10);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
   padding: 12px 12px 10px;
 }
 
-.it-tripTop{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
+.it-tripTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   margin-bottom: 8px;
 }
 
-.it-tag{
-  background: rgba(27,85,255,.08);
-    color: #3e91ff;
-  font-weight:900;
+.it-tag {
+  background: rgba(27, 85, 255, .08);
+  color: #3e91ff;
+  font-weight: 900;
   padding: 6px 10px;
   border-radius: 999px;
-  font-size:13px;
+  font-size: 13px;
 }
 
-.it-tagAlt{
-  background: rgba(0,0,0,.06);
-  color:#3b3b3b;
+.it-tagAlt {
+  background: rgba(0, 0, 0, .06);
+  color: #3b3b3b;
 }
 
-.it-timeRange{
-  color:#6f6f6f;
-  font-weight:800;
-  font-size:14px;
+.it-timeRange {
+  color: #6f6f6f;
+  font-weight: 800;
+  font-size: 14px;
 }
 
-.it-tripMid{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:12px;
+.it-tripMid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.it-leftRow{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
+.it-leftRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.it-walk{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  color:#111;
-  font-weight:900;
+.it-walk {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #111;
+  font-weight: 900;
 }
 
-.it-walkMan{ font-size:18px; opacity:.9; }
-.it-walkMin{ font-size:18px; }
-
-.it-badgesRow{
-  display:flex;
-  align-items:center;
-  gap:8px;
+.it-walkMan {
+  font-size: 18px;
+  opacity: .9;
 }
 
-/* Centrage parfait badges */
-.it-badgeMode,
-.it-badgeLine{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  line-height:1;
+.it-walkMin {
+  font-size: 18px;
 }
 
-/* Fix taille/alignement du texte dans le rond */
-.it-badgeLine{
-  font-size:14px;
-  font-weight:900;
-  text-align:center;
+/* =========================
+   BADGES FINAL (M / RER + A / 1)
+   -> 1 seul système: .it-mode + .it-line
+========================= */
+
+#itinerary .it-badges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-/* Force le A en blanc */
-.it-line-A{
-  background:#E2231A; color:#fff; }
 
-.it-line-1{ background:#FFCD00; color:#111; }
+/* M = rond parfait */
+#itinerary .it-mode.m {
+  width: 44px;
+  padding: 0;
+  border-radius: 50%;
+  letter-spacing: 0;
+}
 
-.it-rightRow{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap:8px;
+/* LIGNE (A / 1) */
+#itinerary .it-line {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 1000;
+  font-size: 20px;
+  line-height: 1;
+
+  border: 6px solid rgba(170, 61, 61, 0.04);
+  /* halo */
+  box-shadow: none;
+}
+
+/* couleurs lignes */
+#itinerary .it-line.line-A {
+  background: #E2231A;
+  color: #fff;
+}
+
+#itinerary .it-line.line-1 {
+  background: #FFCD00;
+  color: #111;
+}
+
+/* =========================
+   RIGHT COLUMN
+========================= */
+.it-rightRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
   min-width: 96px;
 }
 
-.it-durationBig{
-  font-size:30px;
-  font-weight:1000;
-  letter-spacing:-.5px;
-  color:#111;
+.it-durationBig {
+  font-size: 25px;
+  font-weight: 1000;
+  letter-spacing: -.5px;
+  color: #111;
 }
 
-.it-price{
-  background: rgba(123, 87, 255, .12);
-  color: #6b4cff;
-  font-weight:900;
-  padding: 6px 10px;
-  border-radius: 10px;
+/* enlever les euros */
+.it-price {
+  display: none;
 }
 
-.it-tripBottom{
+.it-tripBottom {
   margin-top: 10px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:#111;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #111;
 }
 
-.it-phoneWave{
-  width:20px;
-  height:20px;
-  display:inline-block;
-  position:relative;
+.it-phoneWave {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  position: relative;
 }
 
 .it-phoneWave::before,
-.it-phoneWave::after{
-  content:"";
-  position:absolute;
-  left:2px;
-  top:2px;
-  width:16px;
-  height:16px;
-  border-radius:999px;
-  border: 3px solid rgba(0,140,70,.45);
+.it-phoneWave::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 3px solid rgba(0, 140, 70, .45);
   border-right-color: transparent;
   border-top-color: transparent;
   transform: rotate(45deg);
 }
 
-.it-phoneWave::after{
-  left:6px; top:6px;
-  width:8px; height:8px;
+.it-phoneWave::after {
+  left: 6px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
   border-width: 3px;
-  opacity:.7;
+  opacity: .7;
 }
 
-.it-deps{
-  color:#111;
-  font-size:16px;
+.it-deps {
+  color: #111;
+  font-size: 16px;
 }
 
-.it-deps span{ color:#6f6f6f; font-weight:700; }
+.it-deps span {
+  color: #6f6f6f;
+  font-weight: 700;
+}
+
+/* =========================
+   ITINERARY — BADGES (FINAL)
+   HTML attendu (home.js) :
+   <div class="it-badges">
+     <span class="it-mode it-mode--rer">RER</span>
+     <span class="it-line line-A">A</span>
+   </div>
+   <div class="it-badges">
+     <span class="it-mode it-mode--metro">M</span>
+     <span class="it-line line-1">1</span>
+   </div>
+========================= */
+
+#itinerary .it-badges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* pill mode (RER / M) */
+#itinerary .it-mode {
+  height: 44px;
+  padding: 0 22px;
+  /* RER pilule */
+  background: #fff;
+  border: 3px solid rgb(28, 28, 28);
+  color: #111;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: .2px;
+}
+
+#itinerary .it-mode--rer {
+  border-radius: 10px;
+  /* ✅ carré arrondi */
+  letter-spacing: .35px;
+}
+
+
+/* M = rond parfait */
+#itinerary .it-mode--metro {
+  width: 44px;
+  padding: 0;
+  border-radius: 50%;
+  letter-spacing: 0;
+}
+
+/* RER = carré arrondi (moins de blanc) */
+#itinerary .it-mode--rer {
+  height: 34px;
+  padding: 0 12px;
+  /* ✅ réduit le blanc gauche/droite */
+  letter-spacing: .35px;
+}
+
+/* rond ligne (A / 1) */
+#itinerary .it-line {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 1000;
+  font-size: 20px;
+  line-height: 1;
+
+  border: 0px solid rgba(224, 255, 23, 0.673);
+  /* halo */
+}
+
+/* couleurs lignes */
+#itinerary .it-line.line-A {
+  background: #E2231A;
+  color: #fff;
+}
+
+#itinerary .it-line.line-1 {
+  background: #FFCD00;
+  color: #111;
+}
