@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NaviGame – Matchmaking</title>
+
+  <!-- mêmes fichiers que ton index pour garder le contour tel + fond bleu -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/match.css" />
+</head>
+
+<body>
+  <!-- fond bleu + courbes (comme ton index) -->
+  <div class="bg-curves">
+    <div class="curve curve-green" id="curve-green"></div>
+    <div class="curve curve-pink" id="curve-pink"></div>
+    <div class="curve curve-blue" id="curve-blue"></div>
+    <div class="curve curve-yellow" id="curve-yellow"></div>
+  </div>
+
+  <div class="phone">
+    <div class="phone-frame" aria-hidden="true"></div>
+
+    <div class="app">
+      <div id="iris" class="is-on is-open"></div>
+
+      <main>
+        <div class="pages">
+          <div class="pages-track">
+
+            <!-- ===================================================
+                 PAGE 1 : LOADING (matchmaking)
+            ==================================================== -->
+            <section id="matchmakingPage" class="page">
+              <div class="mm-wrap">
+                <div class="mm-center">
+                  <img class="mm-logo" src="asset/Home/quiz/logo2.svg" alt="" aria-hidden="true">
+                </div>
+
+                <div class="mm-sub">
+                  Recherche d’un partenaire de jeu<span class="mm-dots" aria-hidden="true"></span>
+                </div>
+
+                <!-- NAVBAR (reste identique) -->
+                <nav class="bottom-nav" aria-label="Navigation">
+                  <button class="nav-item active" type="button">
+                    <img class="nav-svg" src="asset/itineraires.svg" alt="" aria-hidden="true">
+                    <span class="nav-txt">Itinéraires</span>
+                  </button>
+
+                  <button class="nav-item" type="button">
+                    <img class="nav-svg" src="asset/infotrafic.svg" alt="" aria-hidden="true">
+                    <span class="nav-txt">Info trafic</span>
+                  </button>
+
+                  <button class="nav-item" type="button">
+                    <img class="nav-svg" src="asset/achat.svg" alt="" aria-hidden="true">
+                    <span class="nav-txt">Achat</span>
+                  </button>
+
+                  <button class="nav-item" type="button">
+                    <img class="nav-svg" src="asset/Home/quiz/logo.svg" alt="" aria-hidden="true">
+                    <span class="nav-txt">NaviGame</span>
+                  </button>
+
+                  <button class="nav-item" type="button">
+                    <img class="nav-svg" src="asset/monespace.svg" alt="" aria-hidden="true">
+                    <span class="nav-txt">Mon espace</span>
+                  </button>
+                </nav>
+              </div>
+            </section>
+
+
+            <!-- ===================================================
+                 PAGE 2 : MATCH TROUVÉ
+                 + (écran CHOIX intégré dedans)
+            ==================================================== -->
+            <section id="matchFoundPage" class="page">
+
+              <!-- ✅ A = tout l'écran "Match trouvé" -->
+              <div class="mf-content" id="mfContent">
+
+                <header class="mf-header">
+                  <div class="mf-top">
+                    <button class="mf-back" type="button" aria-label="Retour">←</button>
+
+                    <div class="mf-titles">
+                      <div class="mf-h1">Match trouvé</div>
+                      <div class="mf-h2">Un voyageur fait le même trajet que toi</div>
+                    </div>
+                  </div>
+
+                  <div class="mf-divider"></div>
+                </header>
+
+                <div class="mf-line">
+                  <div class="mf-badge">
+                    <span class="mf-metro">M</span><span class="mf-num">1</span>
+                  </div>
+
+                  <div class="mf-stops">
+                    <div class="mf-stopsLine" aria-hidden="true"></div>
+
+                    <div class="mf-stop is-start"></div>
+                    <div class="mf-stop"></div>
+                    <div class="mf-stop"></div>
+                    <div class="mf-stop"></div>
+                    <div class="mf-stop"></div>
+                    <div class="mf-stop"></div>
+                    <div class="mf-stop"></div>
+                    <div class="mf-stop"></div>
+                    <div class="mf-stop"></div>
+                    <div class="mf-stop is-end"></div>
+                  </div>
+
+                  <div class="mf-stations">
+                    <span>Châtelet</span>
+                    <span>La défense</span>
+                  </div>
+                </div>
+
+                <div class="mf-duel">
+                  <div class="mf-player mf-left">
+                    <div class="mf-avatar mf-pink">
+                      <img src="asset/Home/quiz/avatar.svg" alt="" aria-hidden="true">
+                    </div>
+                    <div class="mf-name">Moi</div>
+                    <div class="mf-nameLine" aria-hidden="true"></div>
+                    <div class="mf-level">Niveau 3</div>
+                  </div>
+
+                  <div class="mf-vs">VS</div>
+
+                  <div class="mf-player mf-right">
+                    <div class="mf-avatar mf-orange">
+                      <img src="asset/Home/quiz/avatarr.svg" alt="" aria-hidden="true">
+                    </div>
+                    <div class="mf-name">Camille</div>
+                    <div class="mf-nameLine" aria-hidden="true"></div>
+                    <div class="mf-level">Niveau 3</div>
+                  </div>
+                </div>
+
+                <div class="mf-meta">
+                  <div class="mf-metaItem">
+                    <img class="mf-metaSvg" src="asset/Home/clock.svg" alt="" aria-hidden="true">
+                    <span class="mf-metaTxt"><b>2 min</b></span>
+                  </div>
+
+                  <div class="mf-metaSep" aria-hidden="true"></div>
+
+                  <div class="mf-metaItem">
+                    <img class="mf-metaSvg" src="asset/Home/quiz/question.svg" alt="" aria-hidden="true">
+                    <span class="mf-metaTxt"><b>5 questions</b></span>
+                  </div>
+                </div>
+
+                <div class="mf-waveWrap" aria-hidden="true">
+                  <img class="mf-waveSvg" src="asset/vert.svg" alt="">
+                </div>
+
+              </div>
+              <!-- ✅ fin mf-content -->
+
+
+              <!-- ✅ B = écran “Choix arrondissement ou département” (caché au début) -->
+              <div class="mc-content" id="mcContent" aria-hidden="true">
+
+                <header class="mc-header">
+                  <button class="mc-back" type="button" aria-label="Retour">←</button>
+
+                  <div class="mc-logo" aria-hidden="true">
+                    <img src="asset/Home/quiz/logo.svg" alt="">
+                  </div>
+                </header>
+
+                <h1 class="mc-h1">Sélectionne une proposition</h1>
+
+                <div class="mc-grid">
+                  <button class="mc-card" type="button">Arrondissement</button>
+                  <button class="mc-card" type="button">Département</button>
+                </div>
+
+                <button class="mc-next" type="button" aria-label="Suivant">→</button>
+              </div>
+
+
+              <!-- ✅ NAVBAR UNIQUE (reste en place, ne bouge pas) -->
+              <nav class="bottom-nav" aria-label="Navigation">
+                <button class="nav-item" type="button">
+                  <img class="nav-svg" src="asset/itineraires.svg" alt="" aria-hidden="true">
+                  <span class="nav-txt">Itinéraires</span>
+                </button>
+
+                <button class="nav-item" type="button">
+                  <img class="nav-svg" src="asset/infotrafic.svg" alt="" aria-hidden="true">
+                  <span class="nav-txt">Info trafic</span>
+                </button>
+
+                <button class="nav-item" type="button">
+                  <img class="nav-svg" src="asset/achat.svg" alt="" aria-hidden="true">
+                  <span class="nav-txt">Achat</span>
+                </button>
+
+                <button class="nav-item active" type="button">
+                  <img class="nav-svg" src="asset/Home/quiz/logo.svg" alt="" aria-hidden="true">
+                  <span class="nav-txt">NaviGame</span>
+                </button>
+
+                <button class="nav-item" type="button">
+                  <img class="nav-svg" src="asset/monespace.svg" alt="" aria-hidden="true">
+                  <span class="nav-txt">Mon espace</span>
+                </button>
+              </nav>
+
+            </section>
+            <!-- fin matchFoundPage -->
+
+
+          </div>
+        </div>
+      </main>
+
+      <div id="iris"></div>
+    </div>
+  </div>
+
+  <!-- LOTTIE -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+  <!-- courbes background -->
+  <script src="js/decor-curves.js"></script>
+
+  <!-- iris open -->
+  <script>
+    window.addEventListener("load", () => {
+      const iris = document.getElementById("iris");
+      if (!iris) return;
+      iris.classList.add("is-on");
+      iris.classList.remove("is-close");
+      iris.classList.add("is-open");
+      setTimeout(() => {
+        iris.classList.remove("is-on");
+      }, 450);
+    });
+  </script>
+
+  <!-- logique match -->
+  <script src="js/match.js"></script>
+</body>
+
+</html>

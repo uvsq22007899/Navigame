@@ -1,10 +1,73 @@
 /* TRACK */
+
+.slide{
+  position: relative;
+}
+
+.ob-mockup{
+  position: absolute;
+  top: 120px;               /* ajuste */
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(240px, 75vw); 
+  height: auto;
+  z-index: 2;              /* derrière le voile */
+  pointer-events: none;
+  user-select: none;
+}
+
+/* voile sombre au-dessus du mockup */
+.slide::before{
+  z-index: 1;
+}
+
+/* card au-dessus */
+.card{ z-index: 3; }
+
+/* nav au-dessus de tout */
+.nav-buttons{ z-index: 4; }
+
+
 .onboarding-track{
   display:flex;
   width:400%;
   height:100%;
   transition:transform .4s ease;
 }
+
+/* === ONBOARDING: voile sombre léger derrière tout === */
+#onboarding{
+  position: absolute; /* si déjà défini, laisse */
+  inset: 0;           /* si déjà défini, laisse */
+}
+
+/* slide = zone plein écran qui contient mockup + card */
+.slide{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* voile sombre UNIQUEMENT derrière la card */
+.slide::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(121, 170, 239, 0.787);   /* ajuste ici */
+  z-index: 1;
+  pointer-events:none;
+}
+
+/* ta card au-dessus */
+.card{
+  position:absolute;
+  bottom:0;
+  left:0;
+  z-index: 3;
+  background:#fff;
+}
+
+
 
 .slide{
   width:100%;
@@ -14,6 +77,7 @@
 
 /* CARD */
 .card{
+  z-index: 3;
   position:absolute;
   bottom:0;
   left:0;
@@ -130,6 +194,7 @@
 
 /* NAV onboarding */
 .nav-buttons{
+  z-index: 4;
   position:absolute;
   bottom:35px;
   left:20px;

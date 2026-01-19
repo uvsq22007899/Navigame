@@ -1,0 +1,477 @@
+/* =========================================================
+   QUIZ / GAME — CLEAN
+   - map draggable
+   - UI cliquable au-dessus
+========================================================= */
+
+/* Quiz ne doit pas bloquer la map */
+#quiz{
+  pointer-events:none;
+  background:transparent;
+}
+
+/* ✅ Seuls les vrais éléments UI capturent le clic */
+#quiz .game-ui,
+#quiz .game-ui *{
+  pointer-events:auto;
+}
+
+/* ✅ la couche plein écran ne capte rien */
+#quiz .game-ui{
+  pointer-events:none;
+  position:absolute;
+  inset:0;
+  z-index:720;
+  font-family:"Segoe UI", system-ui, -apple-system, sans-serif;
+  padding-top:18px;
+}
+
+/* ✅ mais tes blocs UI captent */
+#quiz .game-top,
+#quiz .game-card,
+#quiz .game-bottom,
+#quiz .game-back{
+  pointer-events:auto;
+}
+
+/* ✅ Navbar cliquable */
+#quiz .bottom-nav,
+#quiz .bottom-nav *{
+  pointer-events:auto;
+}
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+.game-top{
+  position:absolute;
+  top:35px;
+  left:16px;
+  right:16px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.game-profile{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.game-avatar{
+  border:1px solid #F49FB4;
+  width:54px;
+  height:54px;
+  border-radius:999px;
+  background:#FCE2E9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  box-shadow:0 10px 22px rgba(0,0,0,.14);
+}
+
+.game-avatar img{
+  width:28px;
+  height:28px;
+  display:block;
+}
+
+.game-stats{
+  height:44px;
+  background:#fff;
+  border-radius:7px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:0 12px;
+  box-shadow:0 10px 22px rgba(0,0,0,.14);
+}
+
+.game-pill{
+  display:flex;
+  align-items:baseline;
+  gap:6px;
+}
+
+.game-pill .lbl{
+  font-weight:900;
+  color:#111;
+  opacity:.85;
+}
+
+.game-pill .val{
+  font-weight:400;
+  color:#3d3d3d;
+}
+
+.game-sep{
+  width:1px;
+  height:22px;
+  background:rgba(0,0,0,.12);
+}
+
+/* =========================================================
+   MENU BUTTON (hamburger <-> croix)
+========================================================= */
+.game-menuBtn{
+  position:relative;
+  width:70px;
+  height:44px;
+  border:none;
+  border-radius:7px;
+  background:#fff;
+  box-shadow:0 10px 22px rgba(0,0,0,.14);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  cursor:pointer;
+  top:5px;
+  transition:transform .15s ease;
+  will-change:transform;
+  z-index:760;
+}
+
+.game-menuBtn:active{
+  transform:translateY(1px) scale(.98);
+}
+
+.menu-ico{
+  position:relative;
+  width:22px;
+  height:16px;
+  background:linear-gradient(#111,#111) center/22px 2px no-repeat;
+  transition:background-size .16s ease;
+}
+
+.menu-ico::before,
+.menu-ico::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  height:2px;
+  border-radius:2px;
+  background:#111;
+  transition:transform .22s ease, top .22s ease;
+}
+
+.menu-ico::before{ top:0; }
+.menu-ico::after{ top:14px; }
+
+.game-menuBtn.is-open .menu-ico{ background-size:0 2px; }
+.game-menuBtn.is-open .menu-ico::before{ top:7px; transform:rotate(45deg); }
+.game-menuBtn.is-open .menu-ico::after{ top:7px; transform:rotate(-45deg); }
+
+/* =========================================================
+   MENU DROIT
+========================================================= */
+.game-menu{
+  position:absolute;
+  top:60px;
+  right:0;
+  width:70px;
+  background:#fff;
+  border-radius:7px;
+  box-shadow:0 16px 30px rgba(0,0,0,.18);
+  padding:10px;
+  z-index:750;
+  transform-origin:top right;
+  animation:gmPop .18s ease;
+}
+
+.game-menu.hidden{ display:none; }
+
+@keyframes gmPop{
+  from{ opacity:0; transform:translateY(-6px) scale(.98); }
+  to{ opacity:1; transform:translateY(0) scale(1); }
+}
+
+.gm-item{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border:none;
+  background:transparent;
+  padding:2px 1px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.gm-item img{
+  width:40px;
+  height:40px;
+  display:block;
+}
+
+.gm-item span{
+  font-size:13px;
+  font-weight:600;
+  color:#111;
+}
+
+.gm-line{
+  height:1px;
+  width:70%;
+  margin:10px auto;
+  background:rgba(0,0,0,.15);
+}
+
+/* =========================================================
+   CARD "ARRÊT ACTUEL / PROCHAIN"
+========================================================= */
+.game-card{
+  position:absolute;
+  top:100px;
+  left:16px;
+  right:16px;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 12px 26px rgba(0,0,0,.14);
+  padding:14px;
+  display:flex;
+  gap:12px;
+  z-index:730;
+}
+
+.gc-dots{
+  width:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:6px;
+}
+
+.gc-dot{
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background:#ffcd00;
+  border:2px solid #111;
+}
+
+.gc-stem{
+  flex:1;
+  width:2px;
+  background:rgba(0,0,0,.25);
+  margin:6px 0;
+  border-radius:2px;
+}
+
+.gc-text{
+  flex:1;
+  min-width:0;
+}
+
+.gc-row{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+}
+
+.gc-k{
+  font-size:12px;
+  font-weight:700;
+  color:#8a8a8a;
+}
+
+.gc-t{
+  font-size:12px;
+  font-weight:700;
+  color:#b0b0b0;
+}
+
+.gc-main{
+  font-size:16px;
+  font-weight:900;
+  color:#111;
+  margin-top:2px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.gc-divider{
+  height:1px;
+  background:rgba(0,0,0,.12);
+  margin:10px 0;
+}
+
+.gc-text .muted{ opacity:.55; }
+
+/* =========================================================
+   BOTTOM BUTTONS
+========================================================= */
+.game-bottom{
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:120px;
+  display:flex;
+  gap:12px;
+  z-index:730;
+}
+
+.gb-btn{
+  flex:1;
+  height:44px;
+  border:none;
+  border-radius:7px;
+  background:rgba(210,232,255,.85);
+  box-shadow:0 10px 22px rgba(0,0,0,.14);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:0 16px;
+  font-weight:600;
+  cursor:pointer;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+
+.gb-btn img{
+  width:20px;
+  height:20px;
+  display:block;
+}
+
+.gb-btn--active{ background:rgba(210,232,255,.95); }
+
+.game-back{
+  position:absolute;
+  left:16px;
+  bottom:140px;
+  height:40px;
+  padding:0 14px;
+  border:none;
+  border-radius:12px;
+  background:#3e91ff;
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
+  z-index:735;
+}
+
+/* =========================================================
+   MAP FILTER + OVERLAY (quiz only)
+========================================================= */
+body.is-quiz .leaflet-tile-pane{
+  filter:hue-rotate(200deg) saturate(1.5) brightness(1.05) contrast(1.08);
+}
+
+body.is-quiz #map::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(0,0,0,0) 0%, rgba(0,0,0,.35) 70%, rgba(0,0,0,.6) 100%),
+    rgba(15,65,114,.349);
+  mix-blend-mode:screen;
+  z-index:450;
+}
+
+/* =========================================================
+   SIGNALER (pill)
+========================================================= */
+.game-report{
+  position:absolute;
+  right:-20px;
+  bottom:200px;
+  height:46px;
+  padding:0 30px 0 12px;
+  border:none;
+  border-radius:50px;
+  background:rgba(210,232,255,.92);
+  box-shadow:0 10px 22px rgba(0,0,0,.14);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  z-index:735;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  transition:all .18s ease;
+}
+
+.game-report::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:-35px;
+  width:35px;
+  background:inherit;
+  border-radius:50px;
+  box-shadow:inherit;
+  z-index:-1;
+}
+
+.game-report:active{ transform:translateY(1px) scale(.99); }
+.game-report:hover{ transform:translateY(-1px); }
+
+.gr-ico{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  background:#fff;
+  color:#E00000;
+  font-weight:900;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  line-height:1;
+  transition:all .18s ease;
+}
+
+.gr-txt{
+  font-size:16px;
+  font-weight:700;
+  color:#111;
+}
+
+.game-report:hover .gr-ico{
+  background:#E00000;
+  color:#fff;
+}
+
+/* =========================================================
+   IRIS TRANSITION (cartoon)
+   (⚠️ utilisé aussi pour aller vers match.html)
+========================================================= */
+.app{
+  position:relative;
+  overflow:hidden;
+}
+
+#iris{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  background:#6aa4ff;
+  opacity:0;
+  clip-path:circle(120% at 50% 50%);
+  transform:translateZ(0);
+  will-change:clip-path, opacity;
+}
+
+#iris.is-on{ opacity:1; }
+#iris.is-close{ animation:irisClose .85s ease-in forwards; }
+#iris.is-open{  animation:irisOpen  .85s ease-out forwards; }
+
+@keyframes irisClose{
+  from{ clip-path:circle(120% at 50% 50%); }
+  to{ clip-path:circle(0% at 50% 50%); }
+}
+@keyframes irisOpen{
+  from{ clip-path:circle(0% at 50% 50%); }
+  to{ clip-path:circle(120% at 50% 50%); }
+}

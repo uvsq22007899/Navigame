@@ -1,0 +1,727 @@
+/* =========================================================
+   MATCH.CSS — CLEAN (sans slide)
+   - Page 1 (loading) visible par défaut
+   - Au clic: logo sort + on affiche Page 2 direct
+   - Anim avatars + VS déclenchée par .is-found (sur body)
+========================================================= */
+
+/* =========================
+   BASE
+========================= */
+html, body {
+  height: 100%;
+}
+
+.phone, .app, main, .pages, .pages-track {
+  height: 100%;
+}
+
+.pages-track { position: relative; } /* test */
+
+
+body {
+    background: #6aa4ff;
+}
+
+/* on garde ton wrapper "pages/pages-track" mais on NE slide plus */
+.pages,
+.pages-track,
+.app,
+.app main {
+    height: 100%;
+}
+
+.pages {
+    position: relative;
+    overflow: hidden;
+}
+
+/* IMPORTANT : plus de translateX / width:200% ici */
+.pages-track {
+    position: absolute;
+    inset: 0;
+}
+
+/* =========================
+   VISIBILITÉ DES PAGES
+========================= */
+#matchmakingPage,
+#matchFoundPage {
+    position: absolute;
+    inset: 0;
+}
+
+/* page 2 cachée par défaut */
+#matchFoundPage {
+    display: none;
+}
+
+/* quand on a trouvé : on swap direct */
+body.is-found #matchmakingPage {
+    display: none;
+}
+
+body.is-found #matchFoundPage {
+    display: block;
+}
+
+/* =========================
+   PAGE 1 — LOADING
+========================= */
+#matchmakingPage {
+    background: #fff;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+/* wrapper */
+.mm-wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 24px;
+}
+
+/* (si tu ne l'utilises plus tu peux le laisser sans souci) */
+.mm-title {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    font-weight: 800;
+    color: #1a7bdc;
+}
+
+/* logo */
+.mm-logo {
+    width: 120px;
+    height: 120px;
+    animation: mmPulse 1.1s ease-in-out infinite;
+}
+
+@keyframes mmPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: .85;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* sortie logo au clic */
+.mm-logo.is-leaving {
+    animation: logoLeave .38s ease-in forwards;
+}
+
+@keyframes logoLeave {
+    to {
+        transform: translateY(-18px) scale(.92);
+        opacity: 0;
+    }
+}
+
+/* texte bas */
+.mm-sub {
+    position: absolute;
+    bottom: 130px;
+    color: #8a8a8a;
+    font-weight: 600;
+}
+
+/* dots animés */
+.mm-dots::after {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    text-align: left;
+    animation: dots 1.1s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0% {
+        content: "";
+    }
+
+    25% {
+        content: ".";
+    }
+
+    50% {
+        content: "..";
+    }
+
+    75% {
+        content: "...";
+    }
+
+    100% {
+        content: "";
+    }
+}
+
+/* bottom nav (page 1 uniquement) */
+#matchmakingPage .bottom-nav {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    height: 74px;
+    border-radius: 20px;
+    background: rgba(210, 232, 255, .92);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .16);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    z-index: 1200;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+#matchmakingPage .bottom-nav .nav-item {
+    width: 68px;
+    border: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: #6f6f6f;
+}
+
+#matchmakingPage .bottom-nav .nav-svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+#matchmakingPage .bottom-nav .nav-txt {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* =========================
+   PAGE 2 — MATCH TROUVÉ
+========================= */
+/* =========================
+   MATCH FOUND — iOS HEADER
+========================= */
+
+#matchFoundPage {
+    background: #f6fbff;
+    padding: 0 16px 110px;
+    box-sizing: border-box;
+}
+
+.mf-header {
+    padding-top: 18px;
+}
+
+.mf-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 6px;
+}
+
+/* contenu de matchFound (sans navbar) */
+.mf-content{
+  position: relative;
+  height: 100%;
+  padding-bottom: 110px; /* comme avant */
+  transition: opacity .35s ease, transform .35s ease, filter .35s ease;
+}
+
+/* quand tu cliques => on retire visuellement le contenu */
+
+/* navbar reste au dessus */
+#matchFoundPage .bottom-nav{
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 9999;
+}
+
+
+.mf-back {
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 999px;
+    background: #d8ecff;
+    color: #101010;
+    font-size: 26px;
+    font-weight: 950;
+    display: grid;
+    place-items: center;
+}
+
+.mf-titles {
+    padding-top: 2px;
+}
+
+.mf-h1 {
+    font-size: 25px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.02;
+    letter-spacing: -0.6px;
+}
+
+.mf-h2 {
+    margin-top: 6px;
+    font-size: 18px;
+    font-weight: 650;
+    color: #6e6e6e;
+    line-height: 1.2;
+}
+
+.mf-divider {
+    height: 1px;
+    background: rgba(0, 0, 0, .10);
+    margin-top: 14px;
+}
+
+/* ligne */
+.mf-line {
+    margin-top: 16px;
+}
+
+.mf-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mf-metro {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    border: 2px solid #0b5bd3;
+    display: grid;
+    place-items: center;
+    font-weight: 950;
+    color: #0b5bd3;
+    background: #fff;
+}
+
+.mf-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: #ffcd00;
+    display: grid;
+    place-items: center;
+    font-weight: 950;
+    color: #111;
+}
+
+.mf-stops {
+    position: relative;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    /* important: plus de gap */
+    padding: 0 2px;
+}
+
+/* la ligne jaune derrière */ .mf-stopsLine {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 50%;
+    height: 6px;
+    transform: translateY(-50%);
+    background: #ffcd00;
+    border-radius: 999px;
+    z-index: 0;
+}
+
+/* les ronds au-dessus */
+.mf-stop {
+    position: relative;
+    z-index: 1;
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    background: #ffcd00;
+}
+
+.mf-stops {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* important */
+    gap: 0;
+    /* on enlève le gap */
+    position: relative;
+    padding: 0 6px;
+    /* petit padding pour que la ligne touche pas bord */
+}
+
+/* la ligne jaune derrière */
+.mf-stops::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 6px;
+    /* ✅ plus fin */
+    border-radius: 999px;
+    background: #ffcd00;
+    z-index: 0;
+}
+
+/* ronds */
+.mf-stop {
+    position: relative;
+    z-index: 2;
+    /* au dessus du trait */
+    width: 26px;
+    /* taille rond */
+    height: 22px;
+    width: 22px;
+    border-radius: 999px;
+    background: #ffcd00;
+    border: 4px solid #f3f8ff;
+    /* ✅ bordure blanche */
+}
+
+/* option : 1er et dernier un poil plus gros */
+.mf-stop.is-start,
+.mf-stop.is-end {
+    width: 30px;
+    height: 30px;
+    border-width: 4px;
+}
+
+.mf-stations {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    color: #111;
+    font-weight: 900;
+}
+
+/* duel */
+.mf-duel {
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 18px;
+}
+
+.mf-player {
+    text-align: center;
+}
+
+.mf-name {
+    margin-top: 12px;
+    font-size: 26px;
+    font-weight: 750;
+    color: #111;
+}
+
+.mf-level {
+    margin-top: 6px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #6f6f6f;
+}
+
+.mf-avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+}
+
+.mf-avatar img {
+    width: 70px;
+    height: 70px;
+    opacity: .9;
+}
+
+.mf-pink {
+    background: rgba(232, 138, 165, .20);
+    outline: 2px solid rgba(232, 138, 165, .55);
+}
+
+.mf-orange {
+    background: rgba(244, 162, 42, .18);
+    outline: 2px solid rgba(244, 162, 42, .55);
+}
+
+.mf-left .mf-avatar {
+    transform: translateX(-30px) scale(.98);
+}
+
+.mf-right .mf-avatar {
+    transform: translateX(30px) scale(.98);
+}
+
+.mf-vs {
+    font-size: 34px;
+    font-weight: 750;
+    color: #5aa7ff;
+    opacity: 0;
+    transform: scale(.85);
+}
+
+/* plus tardif */
+body.is-found .mf-left .mf-avatar {
+    animation: inLeft .35s ease-out .80s forwards;
+}
+
+body.is-found .mf-right .mf-avatar {
+    animation: inRight .35s ease-out .80s forwards;
+}
+
+.mf-vs{
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: center;
+}
+
+body.is-found .mf-vs{
+  animation: vsPulse 1.1s ease-in-out infinite;
+    animation-delay: 2s;   /* ✅ 1 seconde */
+}
+
+@keyframes vsPulse{
+  0%,100% { transform: scale(1); opacity: 1.5; }
+  50%     { transform: scale(1.12); opacity: 1; }
+}
+
+body.is-found .mf-vs{ animation: vsPulse 2.1s ease-in-out infinite !important; }
+
+/* VS encore après */
+body.is-found .mf-vs {
+    animation: vsPop .65s cubic-bezier(.2, 1.2, .2, 1) .24s forwards;
+}
+
+
+@keyframes inLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes inRight {
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes vsPop {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* meta + CTA */
+
+/* =========================
+   META (chrono / questions) — iOS like
+========================= */
+
+.mf-meta{
+  margin-top: 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 16px;
+  color:#1a4484;
+  font-weight: 800;
+}
+
+.mf-metaItem{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.mf-metaTxt b{
+  font-weight: 600;
+}
+
+/* séparateur */
+.mf-metaSep{
+  width: 2px;
+  height: 28px;
+  background: rgba(0,0,0,.14);
+  border-radius: 999px;
+}
+
+
+
+
+.mf-cta {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 92px;
+    height: 54px;
+    border-radius: 10px;
+    border: 2px solid rgba(90, 167, 255, .55);
+    background: #cfe8ff;
+    font-weight: 950;
+}
+
+/* ligne sous le prénom (Moi / Camille) */
+.mf-nameLine{
+  width: 110px;             /* ajuste si tu veux + ou - long */
+  height: 2px;
+  background: rgba(0,0,0,.10);
+  border-radius: 999px;
+  margin: 6px auto 6px;   /* espace : name -> line -> niveau */
+}
+
+
+
+/* conteneur de la courbe dans la page match */
+.mf-waveWrap{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 86px;          /* ajuste si besoin (nav ~74px + marge) */
+  height: 220px;         /* hauteur visible de la courbe */
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;            /* au-dessus du fond */
+}
+
+
+/* ta courbe (elle vient déjà de ton onboarding normalement) */
+.mf-waveWrap .curve{
+  position: absolute;
+  left: -12%;
+  right: -12%;
+  bottom: -40px;
+  transform: translateY(40px);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* quand match trouvé => la courbe “entre” */
+body.is-found .mf-waveWrap .curve{
+  animation: waveIn .55s cubic-bezier(.2,.9,.2,1) .10s forwards;
+}
+
+@keyframes waveIn{
+  to{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+
+.mf-waveWrap{
+  position:absolute;
+  left:0; right:0;
+  bottom:74px;      /* ajuste selon ta bottom-nav */
+  height:220px;     /* hauteur zone wave */
+  pointer-events:none;
+  overflow:hidden;
+}
+.mf-waveLottie{
+  position: absolute;
+  left: 50%;
+  bottom: -10px;         /* colle un peu en bas */
+  transform: translateX(-50%);
+  width: 140%;
+  height: 260px;
+}
+
+.mf-waveWrap{ opacity: 0; transform: translateY(18px); }
+body.is-found .mf-waveWrap{
+  animation: waveIn .45s ease-out .20s forwards;
+}
+@keyframes waveIn{
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+
+/* ton SVG */
+.mf-waveSvg{
+  position: absolute;
+  left: 50%;
+  bottom: 25px;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+transform: translateX(-50%) scaleY(.65);
+  transform-origin: center;
+    width: 115%;   
+}
+
+/* anim quand page active */
+body.is-found .mf-waveSvg{
+  opacity: 1;
+  animation: mfWaveMove 3.6s ease-in-out infinite;
+}
+
+.mf-waveSvg{
+  filter: brightness(0) invert(.92) opacity(.92)
+          sepia(1) saturate(1200%) hue-rotate(175deg);
+}
+
+
+
+.mf-waveSvg path{
+  fill: #a86a3a;      /* couleur */ /* si stroke */
+}
+
+@keyframes mfWaveMove{
+  0%   { transform: translateX(-52%) translateY(0) rotate(-12deg); }
+  50%  { transform: translateX(-48%) translateY(-12px) rotate(-12deg); }
+  100% { transform: translateX(-52%) translateY(0) rotate(-12deg); }
+}
+
+/* le contenu VS fade out */
+.mf-content.is-hide{
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s ease, transform .25s ease;
+  pointer-events: none;
+}
+
+/* écran choix caché au début */
+.mc-content{
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  padding: 18px 16px 110px; /* laisse la place à la navbar */
+}
+
+/* écran choix visible */
+.mc-content.is-show{
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .25s ease, transform .25s ease;
+}

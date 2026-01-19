@@ -9,7 +9,7 @@
 
 .trip-back{
   position:absolute;
-  top:18px; left:16px;
+  top:30px; left:16px;
   width:44px; height:44px;
   border:none; border-radius:999px;
   background:#fff;
@@ -33,17 +33,27 @@
 .trip-start{
   position:absolute;
   right:16px;
-  top:250px;
+  top:360px;
   height:54px;
   padding:0 18px;
   border:none;
   border-radius:10px;
-  background:#2f86ff;
+  background:#6ab2e9;
   color:#fff;
   font-weight:900;
   font-size:18px;
   box-shadow:0 12px 28px rgba(47,134,255,.35);
 }
+
+.trip-start--second{
+  top:300px;           /* ✅ sous le 1er */
+  background:#fff;     /* exemple style différent */
+  color:#6ab2e9;
+  border:2px solid rgba(47,134,255,.35);
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+
+
 
 .trip-sheet{
   position:absolute;
@@ -59,7 +69,7 @@
 .trip-handle{
   width:46px; height:5px;
   border-radius:10px;
-  background:rgba(0,0,0,.12);
+  background:#B8DDFA;
   margin:6px auto 12px;
 }
 
@@ -159,3 +169,4 @@ section.page{
   0%, 100% { opacity: 1; }
   50%      { opacity: 0; }
 }
+

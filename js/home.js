@@ -84,16 +84,26 @@ function initHomeMapOnce() {
     zoomControl: false,
     attributionControl: false,
     minZoom: 11,
-    maxZoom: 18
+    maxZoom: 20
   }).setView(paris, 12);
 
   // expose for app.js refresh
   window.map = map;
 
-  L.tileLayer(
+  const baseLayer = L.tileLayer(
     "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-    { attribution: "" }
+    { subdomains: "abcd", maxZoom: 20 }
   ).addTo(map);
+
+
+  window.baseLayer = baseLayer;
+
+  window.setBaseMap = function setBaseMap(url, opts = {}) {
+    if (!window.map) return;
+    if (window.baseLayer) window.map.removeLayer(window.baseLayer);
+    window.baseLayer = L.tileLayer(url, opts).addTo(window.map);
+  };
+
 
   loadStations();
 
@@ -1144,7 +1154,7 @@ function drawTripRoute(points, color) {
 
   // Décale la map vers le bas (pour laisser place à la sheet)
   setTimeout(() => {
-    map.panBy([0, 500], { animate: true, duration: 0.4 });
+    map.panBy([0, 540], { animate: true, duration: 0.4 });
   }, 120);
 }
 
@@ -1283,3 +1293,4 @@ document.addEventListener("click", (e) => {
 
   handleItineraryBack();
 }, true); // capture pour passer avant d’autres handlers
+

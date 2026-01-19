@@ -35,6 +35,7 @@
   <div class="phone">
     <div class="phone-frame" aria-hidden="true"></div>
     <div class="app">
+      <div id="iris"></div>
 
       <main>
         <div id="map"></div>
@@ -46,6 +47,7 @@
 
             <!-- SLIDE 1 -->
             <div class="slide">
+              <img class="ob-mockup" src="asset/onboarding/mockup-1.png" alt="" aria-hidden="true">
               <div class="card">
                 <div id="lottie-jaune" class="lottie"></div>
 
@@ -71,6 +73,7 @@
 
             <!-- SLIDE 2 -->
             <div class="slide">
+              <img class="ob-mockup" src="asset/onboarding/mockup-2.png" alt="" aria-hidden="true">
               <div class="card">
                 <div id="lottie-vert" class="lottie"></div>
 
@@ -94,6 +97,7 @@
 
             <!-- SLIDE 3 -->
             <div class="slide">
+              <img class="ob-mockup" src="asset/onboarding/mockup-3.png" alt="" aria-hidden="true">
               <div class="card">
                 <div id="lottie-rose" class="lottie"></div>
 
@@ -117,6 +121,7 @@
 
             <!-- SLIDE 4 -->
             <div class="slide">
+              <img class="ob-mockup" src="asset/onboarding/mockup-4.png" alt="" aria-hidden="true">
               <div class="card">
                 <div class="lottie-bleu"></div>
 
@@ -337,7 +342,7 @@
             </button>
 
             <button class="nav-item" type="button">
-              <img class="nav-svg" src="asset/navigame.svg" alt="" aria-hidden="true">
+              <img class="nav-svg" src="asset/Home/quiz/logo.svg" alt="" aria-hidden="true">
               <span class="nav-txt">NaviGame</span>
             </button>
 
@@ -357,17 +362,9 @@
             <button class="it-backBtn" type="button" id="itBack" aria-label="Retour">‹</button>
             <div class="it-topTitle">Itinéraires</div>
             <button class="it-filterBtn" type="button" aria-label="Filtres">
-              <!-- icône sliders -->
-              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 7h10M18 7h2M10 7v0" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" />
-                <path d="M4 12h2M10 12h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                <path d="M4 17h10M18 17h2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                <circle cx="15" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="2" />
-                <circle cx="8" cy="12" r="2" fill="none" stroke="currentColor" stroke-width="2" />
-                <circle cx="15" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="2" />
-              </svg>
+              <img src="asset/Home/filtre.svg" alt="" />
             </button>
+
           </header>
 
           <!-- Route card -->
@@ -405,60 +402,43 @@
 
           <!-- Modes -->
           <div class="it-modes">
+            <!-- TRANSPORT -->
             <button class="it-modeTab active" type="button">
               <div class="it-modeIcon">
-                <!-- métro+bus -->
-                <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M7 17h10M7 7h10M8 17v2M16 17v2" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" />
-                  <path d="M8 3h8c2 0 3 1 3 3v11H5V6c0-2 1-3 3-3Z" fill="none" stroke="currentColor" stroke-width="2" />
-                </svg>
+                <img class="it-ico" src="asset/Home/ico-transport.svg" alt="">
               </div>
               <div class="it-modeTime">18min</div>
               <div class="it-underline"></div>
             </button>
 
+            <!-- MARCHE -->
             <button class="it-modeTab" type="button">
               <div class="it-modeIcon">
-                <!-- marche -->
-                <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 5v14M9 8l3-3 3 3" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+                <img class="it-ico" src="asset/Home/ico-walk.svg" alt="">
               </div>
               <div class="it-modeTime">&gt; 2h</div>
               <div class="it-underline"></div>
             </button>
 
+            <!-- VÉLO -->
             <button class="it-modeTab" type="button">
               <div class="it-modeIcon">
-                <!-- vélo -->
-                <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 18l5-10h4l5 10" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" />
-                  <circle cx="8" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="2" />
-                  <circle cx="16" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="2" />
-                </svg>
+                <img class="it-ico" src="asset/Home/ico-bike.svg" alt="">
               </div>
               <div class="it-modeTime">48min</div>
               <div class="it-underline"></div>
             </button>
 
+            <!-- VOITURE -->
             <button class="it-modeTab" type="button">
               <div class="it-modeIcon">
-                <!-- voiture -->
-                <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 15l2-5h10l2 5" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" />
-                  <path d="M7 15v3M17 15v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                  <circle cx="8" cy="18" r="1" fill="currentColor" />
-                  <circle cx="16" cy="18" r="1" fill="currentColor" />
-                </svg>
+                <img class="it-ico" src="asset/Home/ico-car.svg" alt="">
               </div>
               <div class="it-modeTime">-</div>
               <div class="it-underline"></div>
             </button>
           </div>
+
 
 
           <!-- Actions -->
@@ -553,6 +533,11 @@
               <button class="trip-fab" type="button">☆</button>
               <button class="trip-fab" type="button">➤</button>
             </div>
+            <button class="trip-start trip-start--second" type="button" aria-label="NaviGame">
+              <img class="trip-startIco" src="asset/navigame-white.svg" alt="" aria-hidden="true">
+              Navigame
+            </button>
+
 
             <button class="trip-start" type="button">→ Démarrer</button>
           </div>
@@ -588,10 +573,32 @@
               <div class="trip-card-sub" id="tripDir">Vers La Défense (Grande Arche)</div>
 
               <div class="trip-times">
-                <div class="trip-time-row"><span>Départ à 13:38</span><span class="ok">📶 1 min</span></div>
-                <div class="trip-time-row"><span>Départ à 13:42</span><span class="ok">📶 5 min</span></div>
-                <div class="trip-time-row"><span>Départ à 13:45</span><span class="ok">📶 8 min</span></div>
+                <div class="trip-time-row">
+                  <span class="tt-left">Départ à 13:38</span>
+                  <span class="tt-right">
+                    <span class="min-ico blink" aria-hidden="true"></span>
+                    <span class="tt-min tt-min--soon">0 min</span>
+                  </span>
+                </div>
+
+                <div class="trip-time-row">
+                  <span class="tt-left">Départ à 13:42</span>
+                  <span class="tt-right">
+                    <span class="min-ico blink" aria-hidden="true"></span>
+                    <span class="tt-min tt-min--mid">5 min</span>
+                  </span>
+                </div>
+
+                <div class="trip-time-row">
+                  <span class="tt-left">Départ à 13:45</span>
+                  <span class="tt-right">
+                    <span class="min-ico blink" aria-hidden="true"></span>
+                    <span class="tt-min tt-min--late">8 min</span>
+                  </span>
+                </div>
               </div>
+
+
 
               <div class="trip-stops" id="tripStops">▼ 14 arrêts | 20 min</div>
             </div>
@@ -605,9 +612,169 @@
 
 
 
+
+
+
+
+        <section id="quiz" class="page hidden">
+          <!-- UI AU-DESSUS DE LA MAP -->
+          <div class="game-ui">
+            <!-- TOP BAR -->
+            <div class="game-top">
+              <div class="game-profile">
+                <div class="game-avatar">
+                  <!-- ton svg perso -->
+                  <img src="asset/Home/quiz/avatar.svg" alt="" aria-hidden="true">
+                </div>
+
+                <div class="game-stats">
+                  <div class="game-pill">
+                    <span class="lbl">Niv.</span>
+                    <span class="val">3</span>
+                  </div>
+                  <div class="game-sep"></div>
+                  <div class="game-pill">
+                    <span class="val">2541</span>
+                    <span class="lbl">XP</span>
+                  </div>
+                </div>
+              </div>
+
+              <button class="game-menuBtn" id="gameMenuBtn" type="button" aria-label="Menu">
+                <span class="menu-ico" aria-hidden="true"></span>
+              </button>
+
+
+              <!-- MENU DROIT (hidden au départ) -->
+              <div class="game-menu hidden" id="gameMenu">
+                <button class="gm-item" type="button">
+                  <img src="asset/Home/quiz/Amis.svg" alt="" aria-hidden="true">
+                </button>
+                <div class="gm-line"></div>
+                <button class="gm-item" type="button">
+                  <img src="asset/Home/quiz/Badge.svg" alt="" aria-hidden="true">
+                </button>
+                <div class="gm-line"></div>
+                <button class="gm-item" type="button">
+                  <img src="asset/Home/quiz/Récompense.svg" alt="" aria-hidden="true">
+                </button>
+              </div>
+            </div>
+
+            <!-- BTN SIGNALER -->
+            <button class="game-report" id="gameReport" type="button">
+              <span class="gr-ico">!</span>
+              <span class="gr-txt">Signaler</span>
+            </button>
+
+
+            <!-- CARD NEXT/ACTUAL STOP -->
+            <div class="game-card">
+              <div class="gc-col gc-dots" aria-hidden="true">
+                <span class="gc-dot"></span>
+                <span class="gc-stem"></span>
+                <span class="gc-dot"></span>
+              </div>
+
+              <div class="gc-col gc-text">
+                <div class="gc-row">
+                  <div class="gc-k">Arrêt actuel</div>
+                  <div class="gc-t">Maintenant</div>
+                </div>
+                <div class="gc-main">Chatêlet</div>
+
+                <div class="gc-divider"></div>
+
+                <div class="gc-row">
+                  <div class="gc-k muted">Prochain arrêt</div>
+                  <div class="gc-t muted">Dans 3min</div>
+                </div>
+                <div class="gc-main muted">Louvre Rivoli</div>
+              </div>
+            </div>
+
+            <!-- BOTTOM BUTTONS (Entraînement / Match) -->
+            <div class="game-bottom">
+              <button class="gb-btn" type="button">
+                <img src="asset/Home/quiz/train.svg" alt="" aria-hidden="true">
+                <span>Entraînement</span>
+              </button>
+
+              <button id="btnMatch" class="gb-btn gb-btn--active" type="button">
+                <img src="asset/Home/quiz/match.svg" alt="" aria-hidden="true">
+                <span>Match</span>
+              </button>
+              <section id="matchmaking" class="page hidden">
+                <div class="mm-wrap">
+                  <div class="mm-title">Recherche adversaire</div>
+
+                  <div class="mm-center">
+                    <!-- remplace le SVG par le tien si tu veux -->
+                    <img class="mm-logo" src="asset/Home/quiz/logo-match.svg" alt="" aria-hidden="true">
+                  </div>
+
+                  <div class="mm-sub">Recherche d’un partenaire de jeu…</div>
+
+                  <nav class="bottom-nav" aria-label="Navigation">
+                    <!-- recopie EXACT ta bottom nav (comme quiz) -->
+                    ...
+                  </nav>
+                </div>
+              </section>
+
+              <section id="matchfound" class="page hidden">
+                <!-- tu peux copier ta maquette “Match trouvé” ici (static) -->
+                <div class="mf-wrap">
+                  <h2>Match trouvé</h2>
+                  <p>Un voyageur fait le même trajet que toi</p>
+                  <button id="mfLaunch" type="button">Lancer le quiz</button>
+                </div>
+              </section>
+
+            </div>
+
+
+          </div>
+
+          <!-- NAVBAR BAS (tu peux reprendre exactement celle de HOME si tu veux) -->
+          <nav class="bottom-nav" aria-label="Navigation">
+            <button class="nav-item" type="button">
+              <img class="nav-svg" src="asset/itineraires.svg" alt="" aria-hidden="true">
+              <span class="nav-txt">Itinéraires</span>
+            </button>
+
+            <button class="nav-item" type="button">
+              <img class="nav-svg" src="asset/infotrafic.svg" alt="" aria-hidden="true">
+              <span class="nav-txt">Info trafic</span>
+            </button>
+
+            <button class="nav-item" type="button">
+              <img class="nav-svg" src="asset/achat.svg" alt="" aria-hidden="true">
+              <span class="nav-txt">Achat</span>
+            </button>
+
+            <button class="nav-item active" type="button">
+              <img class="nav-svg" src="asset/Home/quiz/logo.svg" alt="" aria-hidden="true">
+              <span class="nav-txt">NaviGame</span>
+            </button>
+
+            <button class="nav-item" type="button">
+              <img class="nav-svg" src="asset/monespace.svg" alt="" aria-hidden="true">
+              <span class="nav-txt">Mon espace</span>
+            </button>
+          </nav>
+        </section>
+
+
+
+
+
+
       </main>
     </div>
   </div>
+
+
 
 
 
@@ -619,9 +786,9 @@
 
   <script src="js/onboarding.js"></script>
   <script src="js/home.js"></script>
+  <script src="js/quiz.js"></script>
   <script src="js/app.js"></script>
   <script src="js/decor-curves.js"></script>
-
 
 </body>
 

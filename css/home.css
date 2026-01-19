@@ -513,6 +513,19 @@
   box-shadow: 0 18px 40px rgba(0, 0, 0, .16);
 }
 
+.trip-start--second{
+  display:flex;
+  align-items:center;
+  gap:10px; /* espace entre logo et texte */
+}
+
+.trip-startIco{
+  width:22px;
+  height:22px;
+  display:block;
+}
+
+
 
 .nav-center {
   width: 62px;
@@ -540,23 +553,27 @@
 }
 
 .bottom-nav .nav-item{
+    margin-top: -10px;
   flex:1;
   min-width:0;
 }
 
 .bottom-nav .nav-item:nth-child(1),
 .bottom-nav .nav-item:nth-child(2){
+  margin-top: -10px;
   margin-right:2px;
 }
 
 .bottom-nav .nav-item:nth-last-child(1),
 .bottom-nav .nav-item:nth-last-child(2){
+  margin-top: -10px;
   margin-left:2px;
 }
 
 /* le rond NG au centre doit rester pile au milieu */
 .nav-center{
   flex:0 0 auto;
+    margin-top: -10px;
   margin:0 6px;
   transform:translateY(-18px);
 }
